@@ -2,6 +2,14 @@
 
 Entradas novas no topo. Formato: `## AAAA-MM-DD · conta · título`, o pedido do Luis e o que mudou. Nunca apague entradas.
 
+## 2026-11-19 · principal · Dia 12: gancho mais viral
+
+Pedido do Luis: os 3 primeiros segundos ficaram fracos; reformular o que aparece para ficar mais viral. Ele aprovou o storyboard novo e pediu o vídeo fechado para postar.
+
+O que mudou:
+- `producoes/dia12/fonte/d12.html`: gancho v2. O Claude abre acorrentado com um cadeado de $200/mês (a bola vermelha é a fechadura), a bola vira um corte que estoura as correntes no "de graça", o cadeado cai e entra o $0 verde; soco de zoom no frame 0, no corte e no "GIGANTE" (barra engrossa e atravessa a tela com linhas de velocidade). Loop volta para o Claude acorrentado.
+- `producoes/dia12/fonte/a12.py`: sons do gancho (correntes, corte, elos estourando, cadeado, $0 carimbado).
+
 ## 2026-11-19 · principal · Dia 12 com a trilha suave aprovada
 
 Pedido do Luis: aprovou o áudio com a trilha suave (mesma base, mudanças em rampa de 0,3 s no corte de cada cena) e pediu para trocar no vídeo. Salvou a skill atualizada na conta.

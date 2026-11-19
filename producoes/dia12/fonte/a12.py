@@ -104,8 +104,13 @@ add(mus, kick(.4, 120, 40, 1), LOOP + .2, .6)       # a bola cai na etiqueta e e
 # ---- foley ----
 for c in CH: add(sfx, waterdrop(260, 520, .09) * .8, c['t'] - .04, .28)
 for s0 in [4.1, 6.8, 10.45, 13.72, 17.5, 22.92, 28.18, 32.05, 37.64, 40.18, 45.55, 54.28]: add(sfx, clunk(), s0 + .02, .6); add(sfx, ratchet(.3, 9) * .6, s0 + .05, .3)
-# gancho: risco, $0 verde (caixa: dinheiro), barra estourando
-add(sfx, pencil(.2, 120), 1.61, .6); add(sfx, relay() * 2, 1.8, .8); add(sfx, tink(2600, .5), 1.82, .5); add(sfx, glass(midi(93), .8, .01) * .4, 1.84, .7)
+# gancho v2: correntes chacoalhando, corte que estoura as correntes, cadeado abre e cai, $0 verde carimbado
+add(sfx, kick(.35, 150, 45, 1.1), 0.0, .7)                      # soco de zoom no frame 0
+for tc in (0.05, 0.67, 1.29): add(sfx, ratchet(.25, 8) * .6, tc, .3)  # correntes tremendo
+add(sfx, swell(.14, 800, 9000), 1.47, .45)                       # o corte vermelho
+add(sfx, crackle(.45, 90), 1.61, .7); add(sfx, ratchet(.5, 22) * .8, 1.62, .55); add(sfx, clunk(), 1.62, .9)   # elos estourando, cadeado abrindo
+add(sfx, relay() * 2, 1.68, .8); add(sfx, subdrop(.7, 70, 30), 1.68, .6); add(sfx, tink(2600, .5), 1.7, .45); add(sfx, glass(midi(93), .8, .01) * .4, 1.72, .6)  # $0 carimbado
+add(sfx, clunk(), 1.98, .35)                                     # cadeado caindo
 add(sfx, swell(.5, 400, 5000), 2.79, .4); add(sfx, subdrop(.9, 75, 30), 3.35, .9); add(sfx, kick(.4, 140, 40, 1.2), 3.35, .8); add(sfx, crackle(.5, 50), 3.4, .5)
 # calendário
 for i in range(11): add(sfx, pencil(.06, 90), 4.31 + i * .016, .28)
@@ -152,7 +157,7 @@ add(sfx, relay() * 2, 56.75, .7); add(sfx, swell(.25, 1500, 7000) * .6, 56.75, .
 add(sfx, lp(noise(.08), 1500) * env(.08, .0005, .02), PURP, .9)
 add(sfx, pluck_bend(98, .4, 3, .12), LOOP + .2, .6)
 # o elemento vermelho: squish, voo, pop (×0,7 em relação ao Dia 10 v3)
-HS = [(0, 2.2), (2.42, 3.95), (4.3, 6.48), (7.0, 7.85), (8.75, 10.25), (10.6, 13.55), (13.9, 17.3), (17.6, 19.45), (19.75, 22.8), (23.05, 26.6), (26.8, 28.05), (28.35, 30.25), (30.5, 31.9), (32.7, 36.2), (36.55, 37.55), (37.85, 39.6), (42.4, 44.15), (47.4, 52.3), (52.95, 54.25), (54.42, 55.2), (55.48, 57.7)]
+HS = [(0, 1.42), (1.5, 1.95), (2.42, 3.95), (4.3, 6.48), (7.0, 7.85), (8.75, 10.25), (10.6, 13.55), (13.9, 17.3), (17.6, 19.45), (19.75, 22.8), (23.05, 26.6), (26.8, 28.05), (28.35, 30.25), (30.5, 31.9), (32.7, 36.2), (36.55, 37.55), (37.85, 39.6), (42.4, 44.15), (47.4, 52.3), (52.95, 54.25), (54.42, 55.2), (55.48, 57.7)]
 for i in range(len(HS) - 1):
     t1, t0n = HS[i][1], HS[i + 1][0]
     if t0n - t1 < .05: continue
