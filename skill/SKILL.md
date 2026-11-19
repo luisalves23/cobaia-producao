@@ -53,7 +53,7 @@ Tudo o que se repete entre os vídeos mora no repositório privado `luisalves23/
 10. **Estratégia é segredo da casa.** Palavras do Luis: "A gente usa, mas a gente não revela." Nunca explique na fala, na tela ou nas legendas do post as táticas do canal: a barra dinâmica, a curva de retenção, a fórmula dos ganchos e loops, a chuva de dopamina.
 11. **Nada de código ou arquivo interno legível na tela.** Código, o texto da skill, o changelog e prompts grandes aparecem só como representação abstrata (retângulos em forma de palavra, blocos coloridos, rolagem rápida). Números reais podem aparecer.
 12. **Canal dark.** Nunca mostrar o nome, a profissão ou qualquer dado do Luis: nada de nome na saudação da tela simulada, foto dele ou e-mail real. Saudações sem nome e avatares com letra genérica. **Exceção pedida em 17/11:** a foto de perfil nova do canal (`motor/perfil.jpg`) aparece **em todos os vídeos** (no mínimo no "segue o cobaia" da chamada final, com "@cobaia.dev" logo abaixo), nas capas e no site. Moldura branca redonda com o "+" **por cima da moldura**, nunca coberto pelo leque. Avatares de quem comenta continuam genéricos.
-13. **Vídeo em loop.** O último frame emenda no primeiro .
+13. **Vídeo em loop.** O último frame emenda no primeiro.
 14. **Verde só para o que é positivo:** acertou, certinhos do gabarito, grátis, R$ 0, dinheiro. "Nota máxima" e destaques de ênfase continuam vermelhos.
 15. **Laranja é do Claude.** O laranja (`--or`) só aparece no ícone do Claude, na palavra "Claude" e no brilho dele. Nenhuma cena pode ser dominada por laranja, amarelo, azul ou verde: o vídeo é preto, off-white e vermelho (com fundo vermelho permitido nas inversões de ritmo), e cores de terceiros ficam dentro das telas simuladas. Exceção: o roxo escuro da chamada final padrão (seção 7).
 
@@ -170,7 +170,7 @@ Referência atual: Dia 10 v3 (`referencia/dia10-v3/postar/cobaia-dia10-final-lev
 ## 7. Chamada final e material de quem comenta
 
 **Chamada final padrão (atualizada em 17/11/2026):** a chamada ainda é o vídeo: mesmo estilo (preto, vermelho e branco), e o elemento vermelho continua construindo as cenas.
-1. **"Segue o cobaia":** foto de perfil do canal (`img/perfil-cobaia.*`) com **"@cobaia.dev" logo embaixo** (nunca escondido no rodapé). Botão "+" como no TikTok: o cursor vai e clica (ou aparece o clique), o ícone vibra e vira ✓.
+1. **"Segue o cobaia":** foto de perfil do canal (`motor/perfil.jpg`) com **"@cobaia.dev" logo embaixo** (nunca escondido no rodapé). Botão "+" como no TikTok: o cursor vai e clica (ou aparece o clique), o ícone vibra e vira ✓.
 2. **"Curte":** a foto com o ✓ desliza para a esquerda; à direita, o coração cresce com pop de bolha e fica curtido.
 3. **"Comenta PALAVRA":** abre uma caixa de comentário, a palavra é digitada e enviada; depois aparece embaixo o card do material ("guia completo").
 4. **Fim sem fala (~2 s), sempre igual:** corte seco para a tela roxa escura (`#0B0820`), clique e nota de vidro, "comenta" em Inter e a PALAVRA em Instrument Serif itálico acesa (neon só se for vivo de verdade).
@@ -225,7 +225,7 @@ Referência atual: Dia 10 v3 (`referencia/dia10-v3/postar/cobaia-dia10-final-lev
 6. Confira por nova transcrição com prompt neutro (um prompt com a frase faz o whisper pular a frase). Se a transcrição longa cortar uma sílaba, confira numa janela curta antes de mexer no mix.
 7. Regravação parcial: mantenha a voz aprovada até o ponto de troca e anexe a parte nova, cada parte em −16 LUFS. Se houver risco de diferença de timbre, peça para regravar inteiro.
 
-**Voz de IA (ElevenLabs) ou whisper bloqueado:** `motor/voz/align.py` alinha pelo texto do roteiro (frases pela pontuação, programação dinâmica por duração esperada de sílaba, palavras distribuídas por sílaba; ajuste a contagem de siglas como MCP) e `motor/voz/cut.py` corta com atempo. Foi o caminho do Dia 11 (`exemplos/dia11-paleta-gta/palavras-voz-dia11.json`). Bom para voz limpa.
+**Sem whisper:** `motor/voz/align.py` alinha pelo texto do roteiro (frases pela pontuação, programação dinâmica por duração esperada de sílaba, palavras distribuídas por sílaba; ajuste a contagem de siglas como MCP). Foi o caminho do Dia 11. Em voz do ElevenLabs os tempos já são os do vídeo; o `motor/voz/cut.py` (corte + atempo) só entra em gravação. Gravação com "corrigindo" sem whisper: plano B no `motor/voz/LEIAME.md`.
 
 Resultado dos dois caminhos: a voz tratada e as palavras com tempo, que viram os blocos de palavras grandes em `fonte/dNNchunks.js` (formato no `motor/LEIAME.md`).
 

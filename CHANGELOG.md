@@ -9,7 +9,7 @@ Pedido do Luis (dúvidas da conta secundária): o áudio da fala sempre vem pron
 O que mudou:
 - `motor/voz/LEIAME.md` (novo): entrada, ElevenLabs (como chegou, sem corte, sem atempo; medidas do Dia 10: −18,4 LUFS, pico −0,9 dBFS, fala de 0,06 a 52,26 s), cadeia do `aNN.py` → `mix()` → `enc.sh`, volume de entrada, receita de celular com "corrigindo", entradas e saídas de `transcribe.py`, `align.py`, `cut.py` e `cut3.py`, e o plano B testado na voz do Dia 11.
 - `motor/LEIAME.md`: passo a passo de como os blocos do `dNNchunks.js` são escritos (agrupamento, fonte por bloco, destaques 1/2/3), tirado do Dia 10.
-- `skill/SKILL.md`: seção 1 (voz) e seção 9 (entrada e ElevenLabs), seção 10 item 2.
+- `skill/SKILL.md`: seção 1 (voz), seção 9 (entrada, ElevenLabs e sem whisper), seção 10 item 2 e o caminho da foto de perfil na seção 7.
 - `CLAUDE.md`: etapas 3 e 4 do pipeline, "Como trabalhar com o Luis" e a ordem de leitura.
 
 ## 2026-11-19 · principal · Histórico de pedidos e protocolo de mudança
