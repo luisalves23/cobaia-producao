@@ -131,11 +131,21 @@ function limitBar(c, t, P) { const y = 470, L = 140; const g = t < 3.35 ? lerp(0
   c.save(); c.globalAlpha *= clamp(k * 2); c.fillStyle = P.fg; rr(c, L, y - 40, Math.max(80, g + 40), 80, 40); c.fill(); mono(c, 'LIMITE', L, y - 72, P.fg, 30, 700);
   const tk = [0, 200, 400, 600, 800]; tk.forEach((v, i) => { c.globalAlpha = .5 * clamp(k * 2); c.fillRect(L + i * 200, y + 52, 3, 18); });
   c.restore(); return [L + Math.max(40, g), y]; }
+// the tag hangs from the Claude logo by a string; the hole (pivot) never moves, so the hero sits there
+const RIG = { g: [540, 500], piv: [450, 530], logo: [270, 350], ls: 320, ts: .8 };
+const tagAng = t => .3 + .05 * Math.sin(t * 2.6) + (t > 1.61 ? .16 * Math.exp(-(t - 1.61) * 3.5) * Math.sin((t - 1.61) * 13) : 0);
+const rigPt = (p, gs) => [RIG.g[0] + gs * (p[0] - RIG.g[0]), RIG.g[1] + gs * (p[1] - RIG.g[1])];
+function drawRig(c, t, P, price, gs) {
+  const [lx, ly] = rigPt(RIG.logo, gs), [px, py] = rigPt(RIG.piv, gs); const pulse = 1 + .14 * Math.exp(-Math.pow((t - 1.04) / .09, 2));
+  claude(c, lx, ly, RIG.ls * gs * pulse, .35 * Math.sin(t * 1.3) + (t > .94 ? 6.2832 * easeInOutCubic(ap(t, .94, .5)) : 0), 1);
+  c.save(); c.strokeStyle = P.fg; c.globalAlpha *= .75; c.lineWidth = 6 * gs; c.lineCap = 'round'; const ax = lx + 60 * gs, ay = ly + 70 * gs; c.beginPath(); c.moveTo(ax, ay); c.quadraticCurveTo((ax + px) / 2 - 10 * gs, (ay + py) / 2 + 30 * gs, px, py); c.stroke(); c.restore();
+  c.save(); c.translate(px, py); c.rotate(tagAng(t)); c.scale(RIG.ts * gs, RIG.ts * gs); c.translate(-HOLE[0], -HOLE[1]); drawTag(c, t, P, price);
+  if (t > 1.8 && t < 2.4) { const r = ap(t, 1.8, .45); const R_ = rng(12); c.fillStyle = GN; c.globalAlpha = 1 - r; for (let q = 0; q < 16; q++) { const a = R_() * 6.28, d = 60 + 220 * r * R_(); c.beginPath(); c.arc(TAG.x + 120 + Math.cos(a) * d, TAG.y + 70 + Math.sin(a) * d, 7, 0, 7); c.fill(); } }
+  c.restore();
+}
 S.hook = (c, t, P) => {
-  const out = sp(t, 2.3, 2.6, .55); const k0 = 1;
-  if (out < .99) { c.save(); c.globalAlpha *= 1 - out; c.translate(TAG.x, TAG.y); c.scale(1 - .4 * out, 1 - .4 * out); c.rotate(-.04 + .02 * Math.sin(t * 3)); c.translate(-TAG.x, -TAG.y);
-    drawTag(c, t, P, { strike: easeOutCubic(ap(t, 1.61, .2)), zero: sp(t, 1.8, 3, .45) }); c.restore();
-    if (t > 1.8 && t < 2.4) { const r = ap(t, 1.8, .45); const R_ = rng(12); c.save(); c.fillStyle = GN; c.globalAlpha = 1 - r; for (let q = 0; q < 16; q++) { const a = R_() * 6.28, d = 60 + 220 * r * R_(); c.beginPath(); c.arc(TAG.x + 120 + Math.cos(a) * d, TAG.y + 70 + Math.sin(a) * d, 6, 0, 7); c.fill(); } c.restore(); } }
+  const out = sp(t, 2.3, 2.6, .55);
+  if (out < .99) { c.save(); c.globalAlpha *= 1 - out; drawRig(c, t, P, { strike: easeOutCubic(ap(t, 1.61, .2)), zero: sp(t, 1.8, 3, .45) }, 1 - .4 * out); c.restore(); }
   if (t > 2.3) { const sh = t > 3.35 && t < 3.9 ? 10 * Math.sin(t * 80) * (1 - ap(t, 3.35, .55)) : 0; c.save(); c.translate(sh, 0); limitBar(c, t, P); c.restore(); }
 };
 // 2 · calendar: day 12 circled
@@ -285,7 +295,7 @@ S.cmd = (c, t, P) => {
 // 13 · question before the CTA: the scene steps back, words + logo carry it
 S.ask = (c, t, P) => { const k = sp(t, 52.9, 2.6, .5); if (k <= 0) return; c.save(); c.globalAlpha *= .9 * clamp(k * 2); c.strokeStyle = P.fg; c.lineWidth = 3; c.setLineDash([4, 14]); c.beginPath(); c.arc(540, 520, 220 * k, 0, 7); c.stroke(); c.restore(); };
 // loop: the ball falls into the tag hole and the tag rebuilds exactly like frame 0
-S.loop = (c, t, P) => { const k = sp(t, LOOP, 3, .55); c.save(); c.globalAlpha *= clamp(k * 3); c.translate(TAG.x, TAG.y); c.scale(.9 + .1 * k, .9 + .1 * k); c.rotate(-.04 + .02 * Math.sin(t * 3)); c.translate(-TAG.x, -TAG.y); drawTag(c, t, P, { strike: 0, zero: 0 }); c.restore(); };
+S.loop = (c, t, P) => { const k = sp(t, LOOP, 3, .55); c.save(); c.globalAlpha *= clamp(k * 3); drawRig(c, t, P, { strike: 0, zero: 0 }, .9 + .1 * k); c.restore(); };
 const AV = circPts(540, 990, 172);
 
 // ================= THE HERO: one red element, always compressing into a ball and becoming the next thing =================
@@ -297,14 +307,14 @@ function blobAt(c, t, x, y, r, col, vx = 0, vy = 0, seed = 1) { const v = Math.h
   for (let i = 0; i <= 40; i++) { const a = i / 40 * 6.2832; const rr_ = r * (1 + .09 * noise1(a * 1.6 + t * 7, seed)); i ? c.lineTo(rr_ * Math.cos(a), rr_ * Math.sin(a)) : c.moveTo(rr_ * Math.cos(a), rr_ * Math.sin(a)); } c.fill(); c.restore(); }
 const L_ = (x, y) => t => P2S(x, y, t);
 let HC = RD, HI = OW;
-const tagHole = t => { const out = sp(t, 2.3, 2.6, .55); const a = -.04 + .02 * Math.sin(t * 3); const dx = HOLE[0] - TAG.x, dy = HOLE[1] - TAG.y; const s = 1 - .4 * out; return P2S(TAG.x + s * (dx * Math.cos(a) - dy * Math.sin(a)), TAG.y + s * (dx * Math.sin(a) + dy * Math.cos(a)), t); };
+const tagHole = t => { const out = sp(t, 2.3, 2.6, .55); return P2S(...rigPt(RIG.piv, 1 - .4 * out), t); };
 const barHead = t => { const g = t < 3.35 ? lerp(0, 700, easeOutCubic(ap(t, 2.79, .5))) : 700 + 900 * easeInOutCubic(ap(t, 3.35, .55)); const sh = t > 3.35 && t < 3.9 ? 10 * Math.sin(t * 80) * (1 - ap(t, 3.35, .55)) : 0; return P2S(Math.min(900, 140 + Math.max(40, g)) + sh, 470, t); };
 const arrowUp = t => { const u = easeInOutCubic(ap(t, 7.21, .6)); return [lerp(400, 690, u), lerp(380, 300, u) - 120 * Math.sin(Math.PI * u)]; };
 const quotaPos = t => { if (t < 25.01) return [TX_[0], TB - TH * tankLvl(0, t) - 34]; const u = easeInOutCubic(ap(t, 25.01, .45)); const y1 = TB - TH * tankLvl(0, 25.01) - 34, y2 = TB - TH * tankLvl(1, t) - 34; return [lerp(TX_[0], TX_[1], u), lerp(y1, y2, u) - 220 * Math.sin(Math.PI * u)]; };
 const toolHop = t => { const ts = [32.83, 33.2, 33.56, 34.08]; const xs = [270, 540, 810, 540]; const ys = [130, 130, 130, 470]; let i = 0; ts.forEach((tt, j) => { if (t >= tt) i = j; }); if (i === 0 && t < ts[0]) return [270, 130]; const j = Math.min(i + 1, 3); const u = i === 3 ? 1 : easeInOutCubic(ap(t, ts[i] + .12, .22)); const a = [xs[i], ys[i]], b = i === 3 ? a : [xs[j], ys[j]]; if (t < ts[i] + .12) return [xs[i], ys[i] - 30 * Math.sin(Math.PI * ap(t, ts[i], .12))]; return [lerp(a[0], b[0], u), lerp(a[1], b[1], u) - 90 * Math.sin(Math.PI * u)]; };
 const cmdCur = t => { let i = 0; CMDT.forEach((tt, j) => { if (t >= tt - .1) i = j; }); const yy = 300 + i * 140; const n = ap(t, CMDT[i], .7); return [360 + [360, 300, 460][i] * (t > CMDT[i] ? n : 0) + 16, yy]; };
 const HS = [
-  { t0: 0, t1: 2.2, at: tagHole, draw: (c, t, x, y, g, s) => { c.fillStyle = HC; c.beginPath(); c.arc(x, y, 34 * s * g, 0, 7); c.fill(); } },
+  { t0: 0, t1: 2.2, at: tagHole, draw: (c, t, x, y, g, s) => { c.fillStyle = HC; c.beginPath(); c.arc(x, y, 28 * s * g, 0, 7); c.fill(); } },
   { t0: 2.42, t1: 3.95, at: barHead, draw: (c, t, x, y, g, s) => { c.fillStyle = HC; c.beginPath(); c.arc(x, y, 52 * s * g, 0, 7); c.fill(); } },
   { t0: 4.3, t1: 6.48, at: t => P2S(...penPos(t), t), draw: (c, t, x, y, g, s) => blobAt(c, t, x, y, 13 * g, HC, 0, 0, 3) },
   { t0: 7.0, t1: 7.85, at: t => P2S(...arrowUp(t), t), draw: (c, t, x, y, g, s) => { c.save(); c.translate(x, y); c.scale(g * s, g * s); c.fillStyle = HC; rr(c, -10, -10, 20, 70, 10); c.fill(); c.beginPath(); c.moveTo(-36, 6); c.lineTo(36, 6); c.lineTo(0, -40); c.closePath(); c.lineJoin = 'round'; c.lineWidth = 8; c.strokeStyle = HC; c.fill(); c.stroke(); c.restore(); } },
@@ -331,7 +341,7 @@ const HS = [
 const lerpCol = (a, b, k) => { const h = x => [1, 3, 5].map(j => parseInt(x.slice(j, j + 2), 16)); const A = h(a), B = h(b); return `rgb(${A.map((v, i) => Math.round(lerp(v, B[i], k))).join(',')})`; };
 function hero(t, P) {
   if (t >= PURP && t < LOOP) return; const c = ctx; HC = P.bg === RD ? OW : RD; HI = P.bg === RD ? RD : OW;
-  if (t >= LOOP) { const lt = t - LOOP; const [hx, hy, hs] = tagHole(0); const y = lerp(-80, hy, easeInCubic(clamp(lt / .22))); const sq = Math.exp(-Math.pow((lt - .22) / .04, 2)); ball(c, hx, Math.min(y, hy), 34 * hs, RD, sq); return; }
+  if (t >= LOOP) { const lt = t - LOOP; const [hx, hy, hs] = tagHole(0); const y = lerp(-80, hy, easeInCubic(clamp(lt / .22))); const sq = Math.exp(-Math.pow((lt - .22) / .04, 2)); ball(c, hx, Math.min(y, hy), 28 * hs, RD, sq); return; }
   for (let i = 0; i < HS.length; i++) { const h = HS[i], nx = HS[i + 1];
     if (t >= h.t0 && t < h.t1) { if (h.hidden) return; const [x, y, s] = h.at(t); const grow = h.t0 === 0 ? 1 : spring(t - h.t0, 3.2, .5); const cp = ap(t, h.t1 - .16, .16); const g = Math.max(0, grow * (1 - .7 * easeInCubic(cp)));
       c.save(); c.globalAlpha = 1 - cp * .85; h.draw(c, t, x, y, g, s); c.restore();
