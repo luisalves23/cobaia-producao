@@ -1,6 +1,6 @@
 # Dia 12 · Claude Code sem terminal · CODE
 
-Status: **aguardando aprovação do Luis** (roteiro v2 com a passada de viralização, 19/11/2026)
+Status: **aguardando aprovação do Luis** (roteiro v3: viralização + app novo do Claude, 19/11/2026)
 
 ## Referência viral (de onde vem)
 
@@ -24,17 +24,17 @@ O que mudamos para o jeito do cobaia:
 
 Palavra: **CODE** → guia de instalação do Claude Code sem terminal, passo a passo (página do site).
 
-## Texto para gravar (179 palavras, ~55 s)
+## Texto para gravar (187 palavras, ~57 s)
 
 Usar o Claude Code sem essa tela preta leva cinco minutos.
 
 Dia doze dos trinta experimentos com Claude.
 
-É o Claude mexendo nos arquivos do seu computador: ele cria site, planilha ou app e entrega funcionando. Só que nasceu no terminal, e aquilo espanta muita gente boa.
+É o Claude mexendo nos arquivos do seu computador: ele cria site, planilha ou app e entrega pronto. Nasceu no terminal, e aquilo espanta muita gente boa. Só que a versão nova do app do Claude trouxe ele pra uma janela comum.
 
-Baixa o aplicativo do Claude no computador. Do lado do chat tem uma aba chamada Code. Clica, escolhe uma pasta pro seu projeto e pronto: é o mesmo Claude Code, numa janela comum.
+Instala, entra na aba Code, escolhe rodar na sua máquina e cria uma pasta pro projeto.
 
-Conta o que você quer criar e ele vai montando os arquivos ali mesmo.
+Conta o que você quer criar. Ele monta os arquivos e abre o resultado num navegador dentro do próprio app, pra você testar ali mesmo.
 
 Agora, o passo que quase ninguém faz: digita barra init.
 
@@ -50,11 +50,11 @@ Quer saber mais sobre o Claude? Segue o cobaia, curte e comenta CODE que eu te m
 
 Dia doze dos trinta experimentos com Claude.
 
-É o Claude mexendo nos arquivos do seu computador: ele cria site, planilha ou app e entrega funcionando. Só que nasceu no terminal, e aquilo espanta muita gente boa.
+É o Claude mexendo nos arquivos do seu computador: ele cria site, planilha ou app e entrega pronto. Nasceu no terminal, e aquilo espanta muita gente boa. Só que a versão nova do app do Claude trouxe ele pra uma janela comum.
 
-Baixa o aplicativo do Claude no computador. Do lado do chat tem uma aba chamada Code. Clica, escolhe uma pasta pro seu projeto e pronto: é o mesmo Claude Code, numa janela comum.
+Instala, entra na aba Code, escolhe rodar na sua máquina e cria uma pasta pro projeto.
 
-Conta o que você quer criar e ele vai montando os arquivos ali mesmo.
+Conta o que você quer criar. Ele monta os arquivos e abre o resultado num navegador dentro do próprio app, pra você testar ali mesmo.
 
 [curious] Agora, o passo que quase ninguém faz: digita barra init.
 
@@ -70,7 +70,7 @@ Quer saber mais sobre o Claude? Segue o cobaia, curte e comenta CODE que eu te m
 
 - O gancho inteiro em um fôlego só, em ~3 s, batendo em "cinco minutos".
 - Vinheta logo em seguida, sem pausa.
-- Passos (baixa, aba Code, pasta) em ritmo de instrução, rápido e seguro.
+- Passos (instala, aba Code, pasta) em ritmo de instrução, rápido e seguro.
 - "o passo que quase ninguém faz" com respiro antes, como quem conta um segredo; "barra init" devagar e claro.
 - "Você fala, ele constrói" com sorriso na voz.
 - "Code" e "init" em inglês ("côud", "inít"). Chamada final sem pressa, com "CODE" destacado.
@@ -85,6 +85,14 @@ Pedido do Luis: gancho forte nos 3 primeiros segundos, entregar valor logo de ca
 - **Loop aberto no meio (~30 s):** "o passo que quase ninguém faz", padrão "por que ninguém ensina isso?" do banco de ganchos (2,5 mi somados), segura quem já aprendeu a instalar.
 - **Fechamento do original:** "just speak to it and it builds" virou "Você fala, ele constrói, e o terminal nem abriu", amarrando com o gancho.
 - **Densidade no gancho (tela):** uma coisa nova por segundo (tabela abaixo, linhas 0 a 3 s).
+
+## Versão nova do app (19/11, pedido do Luis)
+
+O Luis lembrou que o app do Claude para computador (a versão 2.0, com a aba Code) já não exige VS Code nem Antigravity, porque o Claude Code deixou de ser só terminal. O roteiro passa a dizer isso e mostra o que o app novo traz:
+- "a versão nova do app do Claude trouxe ele pra uma janela comum";
+- caminho real: baixar em claude.com/download, aba Code, "este computador", pasta nova;
+- o navegador embutido que abre o site sendo feito, para testar ali mesmo.
+Fontes: [Product Compass](https://www.productcompass.pm/p/claude-desktop-code-tab), [DEV Community](https://dev.to/hisashispace/claude-20-full-guide-12-changes-in-the-new-claude-desktop-app-and-the-ones-burning-your-usage-3nk4). Precisa de plano pago (Pro para cima). Nenhuma das duas fontes cita o `/init` no app: o Luis confirma num teste rápido antes de gravar.
 
 ## Onde estão os gatilhos
 
@@ -104,14 +112,13 @@ Pedido do Luis: gancho forte nos 3 primeiros segundos, entregar valor logo de ca
 | "leva cinco minutos" (2 a 3 s) | O cursor vermelho vira um cronômetro 5:00 em Anton que bate com peso e começa a rolar | nova | soco de zoom, tick_wood |
 | "Dia doze dos trinta experimentos com Claude" | Calendário com dias riscados, o 12 circulado à caneta; logo do Claude | base Dia 10 (calendário) | selo DIA 12/30 com pop |
 | "Claude Code: mexendo nos arquivos do seu computador" | Pastas e arquivos flat abrindo em leque; a bola vermelha pula de um para o outro | nova | pluck por arquivo |
-| "site, planilha ou app funcionando" | Três telinhas montando rápido (site, planilha com gráfico, app de celular), uma por palavra | nova | tick_wood em cada |
-| "nasceu no terminal, e aquilo espanta" | Volta o terminal; um bonequinho minimalista dá um passo para trás | nova (bonequinho do Dia 9 como base) | vinheta que respira, tensão |
-| "Baixa o aplicativo do Claude no computador" | Notebook flat; o ícone do app desce com mola e encaixa no dock | nova | glass_chime |
-| "aba chamada Code. Clica nela" | Janela do app simulada (mockup genérico), abas Chat / Code; cursor branco clica em Code, zoom inclinado no clique | motor (cursor, zoom `foco()`) | keyclick |
-| "escolhe uma pasta pro seu projeto" | Seletor de pasta, a pasta "meu-projeto" é escolhida | nova | relay |
-| "numa janela comum" | Janela clara e arrumada ao lado do terminal, que encolhe e some | nova | power_down no terminal |
-| "conta o que você quer criar" | Pedido digitado no ritmo da fala (ex.: "um site pra minha confeitaria"), palavra-chave em vermelho | base Dia 10 (digitação) | keyclick no ritmo |
-| "vai montando os arquivos ali mesmo" | Arquivos surgindo numa lista; ao lado, o site da confeitaria se monta em blocos | nova | build na trilha, tink por arquivo |
+| "site, planilha ou app e entrega pronto" | Três telinhas montando rápido (site, planilha com gráfico, app de celular), uma por palavra | nova | tick_wood em cada |
+| "Nasceu no terminal, e aquilo espanta" | Volta o terminal; um bonequinho minimalista dá um passo para trás | nova (bonequinho do Dia 9 como base) | vinheta que respira, tensão |
+| "a versão nova do app do Claude trouxe ele pra uma janela comum" | O terminal encolhe e vira uma aba dentro de uma janela clara do app (mockup genérico); selo "2.0" com mola | nova | power_down no terminal, glass_chime |
+| "Instala, entra na aba Code" | Abas Chat / Code; cursor branco clica em Code, zoom inclinado no clique | motor (cursor, zoom `foco()`) | keyclick |
+| "escolhe rodar na sua máquina e cria uma pasta pro projeto" | Opção "este computador" marcada; pasta nova "meu-projeto" nasce com mola | nova | relay |
+| "Conta o que você quer criar" | Pedido digitado no ritmo da fala (ex.: "um site pra minha confeitaria"), palavra-chave em vermelho | base Dia 10 (digitação) | keyclick no ritmo |
+| "monta os arquivos e abre o resultado num navegador dentro do próprio app" | Arquivos surgindo numa lista; ao lado, um navegador embutido abre e o site da confeitaria se monta em blocos; o cursor clica num botão e ele funciona | nova | build na trilha, tink por arquivo, bloom no site |
 | "o passo que quase ninguém faz: digita barra init" | "/init" gigante em JetBrains Mono, digitado; a bola vermelha vira o cursor | motor (palavras grandes, mono digitada) | silêncio curto e tape stop antes, drop no "init" |
 | "escreve um arquivo de memória do projeto" | Uma folha "CLAUDE.md" se escreve sozinha com linhas abstratas (nada legível) | nova | glass_chime |
 | "funcionário novo... anotando onde fica cada coisa" | Mapa de escritório flat; bonequinho de crachá anda, a caderneta vai ganhando marcações em cada sala | nova | passos tick_wood |
