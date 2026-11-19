@@ -1,0 +1,13 @@
+node_modules/
+__pycache__/
+*.pyc
+# frames e intermediários de render/mix
+frames/
+render/
+sb/
+*.wav
+# vídeos pesados de produção ficam fora do git (a referência leve do Dia 10 entra explicitamente)
+producoes/**/*.mp4
+producoes/**/*.mov
+formatos/face-cam/brutos/
+.DS_Store
