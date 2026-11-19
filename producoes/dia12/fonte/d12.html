@@ -128,7 +128,8 @@ function drawTag(c, t, P, price) {
 // limit bar
 function limitBar(c, t, P) { const y = 470, L = 140; const g = t < 3.35 ? lerp(0, 700, easeOutCubic(ap(t, 2.79, .5))) : 700 + 900 * easeInOutCubic(ap(t, 3.35, .55)); const k = sp(t, 2.36, 2.6, .5);
   c.save(); c.globalAlpha *= clamp(k * 2); c.fillStyle = P.fg; c.globalAlpha *= .18; rr(c, L, y - 40, 800, 80, 40); c.fill(); c.restore();
-  c.save(); c.globalAlpha *= clamp(k * 2); c.fillStyle = P.fg; rr(c, L, y - 40, Math.max(80, g + 40), 80, 40); c.fill(); mono(c, 'LIMITE', L, y - 72, P.fg, 30, 700);
+  const th = 80 + 70 * (t > 3.35 ? spring(t - 3.35, 2.6, .45) : 0); c.save(); c.globalAlpha *= clamp(k * 2); c.fillStyle = P.fg; rr(c, L, y - th / 2, Math.max(80, g + 40), th, th / 2); c.fill();
+  if (t > 3.35) { const R_ = rng(5); c.save(); c.globalAlpha = .55 * clamp((t - 3.35) / .1); for (let q = 0; q < 14; q++) { const yy = y - 220 + R_() * 440; if (Math.abs(yy - y) < th / 2 + 20) continue; const sp_ = 1400 + 900 * R_(); const xx = 1200 - ((t - 3.35) * sp_ + R_() * 1200) % 1500; c.fillRect(xx, yy, 120 + 200 * R_(), 6); } c.restore(); } mono(c, 'LIMITE', L, y - 72, P.fg, 30, 700);
   const tk = [0, 200, 400, 600, 800]; tk.forEach((v, i) => { c.globalAlpha = .5 * clamp(k * 2); c.fillRect(L + i * 200, y + 52, 3, 18); });
   c.restore(); return [L + Math.max(40, g), y]; }
 // the tag hangs from the Claude logo by a string; the hole (pivot) never moves, so the hero sits there
@@ -143,11 +144,55 @@ function drawRig(c, t, P, price, gs) {
   if (t > 1.8 && t < 2.4) { const r = ap(t, 1.8, .45); const R_ = rng(12); c.fillStyle = GN; c.globalAlpha = 1 - r; for (let q = 0; q < 16; q++) { const a = R_() * 6.28, d = 60 + 220 * r * R_(); c.beginPath(); c.arc(TAG.x + 120 + Math.cos(a) * d, TAG.y + 70 + Math.sin(a) * d, 7, 0, 7); c.fill(); } }
   c.restore();
 }
+// GANCHO v2: o Claude acorrentado com um cadeado de $200/mês; a bola vermelha é o buraco da fechadura,
+// vira um corte que estoura as correntes no "de graça", o cadeado cai e o preço vira $0 verde.
+const LK = { logo: [540, 300], ls: 300, body: [540, 600], bw: 300, bh: 210, key: [540, 560] };
+const T_CUT = 1.61;
+const METAL = '#A8A39A', METAL2 = '#6F6B64';
+function chainLinks(x0, y0, x1, y1, n) { const L = []; for (let i = 0; i <= n; i++) { const u = i / n; L.push([lerp(x0, x1, u), lerp(y0, y1, u), Math.atan2(y1 - y0, x1 - x0), i]); } return L; }
+const CH1 = chainLinks(200, 70, 880, 560, 15), CH2 = chainLinks(880, 70, 200, 560, 15);
+function drawLink(c, x, y, a, i, s) { c.save(); c.translate(x, y); c.rotate(a + (i % 2 ? Math.PI / 2 * .0 : 0)); c.lineWidth = 11 * s; c.strokeStyle = i % 2 ? METAL : METAL2; c.beginPath(); if (i % 2) c.ellipse(0, 0, 26 * s, 9 * s, 0, 0, 7); else c.ellipse(0, 0, 26 * s, 15 * s, 0, 0, 7); c.stroke(); c.restore(); }
+const LKZ = 1.22, lkp = (x, y) => [540 + LKZ * (x - 540), 380 + LKZ * (y - 380)];
+function lockScene(c, t, P, frozen) {
+  c.save(); c.translate(540, 380); c.scale(LKZ, LKZ); c.translate(-540, -380);
+  const tt = frozen ? 0 : t; const cut = frozen ? 0 : clamp((t - T_CUT) / .5);
+  const freed = frozen ? 0 : sp(t, T_CUT, 2.6, .45);
+  // logo: treme preso, gira solto depois do corte
+  const jig = tt < T_CUT ? 6 * Math.sin(tt * 38) * Math.exp(-((tt % .62) / .12)) : 0;
+  const lsz = LK.ls * (1 + .2 * freed) * (1 + .1 * Math.exp(-Math.pow((tt - 1.0) / .09, 2)));
+  const rot = tt < T_CUT ? .05 * Math.sin(tt * 30) * (tt > .7 ? 1 : .3) : 6.2832 * easeOutCubic(ap(tt, T_CUT, .7)) + .2 * Math.sin(tt * 2);
+  if (cut > 0) { c.save(); c.globalAlpha *= (1 - cut) * .7; c.strokeStyle = GN; c.lineWidth = 10; c.beginPath(); c.arc(LK.logo[0], LK.logo[1], 120 + 520 * cut, 0, 7); c.stroke(); c.restore(); }
+  claude(c, LK.logo[0] + jig, LK.logo[1], lsz, rot, tt < T_CUT ? .5 : 1.4);
+  // correntes em X (antes do corte inteiras; depois os elos voam)
+  [[CH1, 1], [CH2, -1]].forEach(([CH, sg]) => CH.forEach(([x, y, a, i]) => {
+    if (cut <= 0) { drawLink(c, x + jig * .5, y, a, i, 1); return; }
+    const R_ = rng(i * 7 + (sg > 0 ? 1 : 99)); const dx = (x - 540) * 1.6 + (R_() - .5) * 300, dy = (y - 315) * 1.4 - 300 * R_();
+    const u = easeOutCubic(cut); c.save(); c.globalAlpha *= 1 - cut; drawLink(c, x + dx * u, y + dy * u + 400 * cut * cut, a + 6 * u * (R_() - .5), i, 1); c.restore(); }));
+  // cadeado com o preço
+  const fall = frozen ? 0 : clamp((t - T_CUT) / .38); const shk = tt < T_CUT ? 4 * Math.sin(tt * 45) : 0;
+  const bx = LK.body[0] + shk + 380 * fall, by = LK.body[1] + 700 * fall * fall, br = 1.6 * fall;
+  if (fall < 1) { c.save(); c.globalAlpha *= (1 - fall) * (1 - fall); c.translate(bx, by); c.rotate(br);
+    const open = easeOutCubic(ap(tt, T_CUT, .15)); c.strokeStyle = METAL; c.lineWidth = 30; c.lineCap = 'round'; c.beginPath(); c.moveTo(-90, -LK.bh / 2 + 6); c.lineTo(-90, -LK.bh / 2 - 60 - 60 * open); c.arc(0, -LK.bh / 2 - 60 - 60 * open, 90, Math.PI, 0); c.lineTo(90, -LK.bh / 2 - 60 * open + (open > 0 ? -40 * open : 0) + 6); c.stroke();
+    c.save(); c.shadowColor = 'rgba(0,0,0,.45)'; c.shadowBlur = 30; c.shadowOffsetY = 12; c.fillStyle = OW; rr(c, -LK.bw / 2, -LK.bh / 2, LK.bw, LK.bh, 34); c.fill(); c.restore();
+    c.fillStyle = 'rgba(12,12,12,.14)'; c.beginPath(); c.arc(0, LK.key[1] - LK.body[1], 40, 0, 7); c.fill();
+    c.font = '900 64px Inter'; c.fillStyle = BK; const s1 = '$200'; const w1 = c.measureText(s1).width; c.fillText(s1, -w1 / 2 - 30, 78); mono(c, '/mês', w1 / 2 - 22, 74, 'rgba(12,12,12,.6)', 28, 700);
+    c.restore(); }
+  // $0 verde carimbado no lugar do cadeado
+  const z = frozen ? 0 : sp(t, T_CUT + .06, 3, .42);
+  if (z > 0) { c.save(); c.translate(540, 640); const sc = Math.max(0, z) * (1 + .5 * (1 - clamp((t - T_CUT) / .12))); c.scale(sc, sc); c.font = '260px Anton'; c.fillStyle = GN; c.shadowColor = 'rgba(34,197,94,.55)'; c.shadowBlur = 40; const zz = '$0'; const zw = c.measureText(zz).width; c.fillText(zz, -zw / 2 - 40, 90); c.shadowBlur = 0; mono(c, '/mês', zw / 2 - 30, 80, GN, 40, 700); c.restore();
+    if (t < T_CUT + .9) { const r = ap(t, T_CUT, .8); const R_ = rng(31); c.save(); c.fillStyle = GN; c.globalAlpha *= 1 - r; for (let q = 0; q < 26; q++) { const a = R_() * 6.283, d = 160 + 420 * easeOutCubic(r) * (.5 + R_()); const x = 540 + Math.cos(a) * d, y = 560 + Math.sin(a) * d * .8; if (y > 470 && y < 760 && Math.abs(x - 540) < 260) continue; c.beginPath(); c.arc(x, y, 6 + 6 * R_(), 0, 7); c.fill(); } c.restore(); } }
+  c.restore();
+}
 S.hook = (c, t, P) => {
   const out = sp(t, 2.3, 2.6, .55);
-  if (out < .99) { c.save(); c.globalAlpha *= 1 - out; drawRig(c, t, P, { strike: easeOutCubic(ap(t, 1.61, .2)), zero: sp(t, 1.8, 3, .45) }, 1 - .4 * out); c.restore(); }
-  if (t > 2.3) { const sh = t > 3.35 && t < 3.9 ? 10 * Math.sin(t * 80) * (1 - ap(t, 3.35, .55)) : 0; c.save(); c.translate(sh, 0); limitBar(c, t, P); c.restore(); }
+  if (out < .99) { c.save(); c.globalAlpha *= 1 - out; c.translate(540, 450); c.scale(1 - .45 * out, 1 - .45 * out); c.translate(-540, -450); lockScene(c, t, P, false); c.restore(); }
+  if (t > 2.3) { const sh = t > 3.35 && t < 3.9 ? 14 * Math.sin(t * 80) * (1 - ap(t, 3.35, .55)) : 0; c.save(); c.translate(sh, 0); limitBar(c, t, P); c.restore(); }
 };
+// câmera do gancho: soco de zoom no frame 0, no corte e no GIGANTE; flash verde no $0 e branco no GIGANTE
+const imp = (t, t0, d = .18) => t < t0 ? 0 : Math.exp(-(t - t0) / d);
+function hookCam(t) { if (t > 4.1) return; const z = 1 + .14 * imp(t, 0, .16) + .07 * imp(t, T_CUT, .14) + .1 * imp(t, 3.35, .16); const sh = 22 * imp(t, T_CUT, .12) + 26 * imp(t, 3.35, .14);
+  ctx.translate(540, 960); ctx.scale(z, z); ctx.translate(-540 + sh * Math.sin(t * 90), -960 + sh * .6 * Math.cos(t * 77)); }
+function hookFlash(t) { if (t > 4.1) return; const g = .14 * imp(t, T_CUT, .08), w = .3 * imp(t, 3.35, .08); if (g > .01) { ctx.save(); ctx.globalAlpha = g; ctx.fillStyle = GN; ctx.fillRect(0, 0, 1080, 1920); ctx.restore(); } if (w > .01) { ctx.save(); ctx.globalAlpha = w; ctx.fillStyle = OW; ctx.fillRect(0, 0, 1080, 1920); ctx.restore(); } }
 // 2 · calendar: day 12 circled
 const CAL = rrPts(540, 440, 640, 720, 30);
 const CW = 560 / 6, CAL_C = d => [260 + ((d - 1) % 6) * CW + CW / 2, 280 + Math.floor((d - 1) / 6) * 92 + 46];
@@ -295,7 +340,7 @@ S.cmd = (c, t, P) => {
 // 13 · question before the CTA: the scene steps back, words + logo carry it
 S.ask = (c, t, P) => { const k = sp(t, 52.9, 2.6, .5); if (k <= 0) return; c.save(); c.globalAlpha *= .9 * clamp(k * 2); c.strokeStyle = P.fg; c.lineWidth = 3; c.setLineDash([4, 14]); c.beginPath(); c.arc(540, 520, 220 * k, 0, 7); c.stroke(); c.restore(); };
 // loop: the ball falls into the tag hole and the tag rebuilds exactly like frame 0
-S.loop = (c, t, P) => { const k = sp(t, LOOP, 3, .55); c.save(); c.globalAlpha *= clamp(k * 3); drawRig(c, t, P, { strike: 0, zero: 0 }, .9 + .1 * k); c.restore(); };
+S.loop = (c, t, P) => { const k = sp(t, LOOP, 3, .55); c.save(); c.globalAlpha *= clamp(k * 3); c.translate(540, 450); c.scale(.9 + .1 * k, .9 + .1 * k); c.translate(-540, -450); lockScene(c, t, P, true); c.restore(); };
 const AV = circPts(540, 990, 172);
 
 // ================= THE HERO: one red element, always compressing into a ball and becoming the next thing =================
@@ -307,14 +352,15 @@ function blobAt(c, t, x, y, r, col, vx = 0, vy = 0, seed = 1) { const v = Math.h
   for (let i = 0; i <= 40; i++) { const a = i / 40 * 6.2832; const rr_ = r * (1 + .09 * noise1(a * 1.6 + t * 7, seed)); i ? c.lineTo(rr_ * Math.cos(a), rr_ * Math.sin(a)) : c.moveTo(rr_ * Math.cos(a), rr_ * Math.sin(a)); } c.fill(); c.restore(); }
 const L_ = (x, y) => t => P2S(x, y, t);
 let HC = RD, HI = OW;
-const tagHole = t => { const out = sp(t, 2.3, 2.6, .55); return P2S(...rigPt(RIG.piv, 1 - .4 * out), t); };
+const tagHole = t => { const sh = t < T_CUT ? 4 * Math.sin(t * 45) : 0; const [x, y] = lkp(LK.key[0] + sh, LK.key[1]); return P2S(x, y, t); };
 const barHead = t => { const g = t < 3.35 ? lerp(0, 700, easeOutCubic(ap(t, 2.79, .5))) : 700 + 900 * easeInOutCubic(ap(t, 3.35, .55)); const sh = t > 3.35 && t < 3.9 ? 10 * Math.sin(t * 80) * (1 - ap(t, 3.35, .55)) : 0; return P2S(Math.min(900, 140 + Math.max(40, g)) + sh, 470, t); };
 const arrowUp = t => { const u = easeInOutCubic(ap(t, 7.21, .6)); return [lerp(400, 690, u), lerp(380, 300, u) - 120 * Math.sin(Math.PI * u)]; };
 const quotaPos = t => { if (t < 25.01) return [TX_[0], TB - TH * tankLvl(0, t) - 34]; const u = easeInOutCubic(ap(t, 25.01, .45)); const y1 = TB - TH * tankLvl(0, 25.01) - 34, y2 = TB - TH * tankLvl(1, t) - 34; return [lerp(TX_[0], TX_[1], u), lerp(y1, y2, u) - 220 * Math.sin(Math.PI * u)]; };
 const toolHop = t => { const ts = [32.83, 33.2, 33.56, 34.08]; const xs = [270, 540, 810, 540]; const ys = [130, 130, 130, 470]; let i = 0; ts.forEach((tt, j) => { if (t >= tt) i = j; }); if (i === 0 && t < ts[0]) return [270, 130]; const j = Math.min(i + 1, 3); const u = i === 3 ? 1 : easeInOutCubic(ap(t, ts[i] + .12, .22)); const a = [xs[i], ys[i]], b = i === 3 ? a : [xs[j], ys[j]]; if (t < ts[i] + .12) return [xs[i], ys[i] - 30 * Math.sin(Math.PI * ap(t, ts[i], .12))]; return [lerp(a[0], b[0], u), lerp(a[1], b[1], u) - 90 * Math.sin(Math.PI * u)]; };
 const cmdCur = t => { let i = 0; CMDT.forEach((tt, j) => { if (t >= tt - .1) i = j; }); const yy = 300 + i * 140; const n = ap(t, CMDT[i], .7); return [360 + [360, 300, 460][i] * (t > CMDT[i] ? n : 0) + 16, yy]; };
 const HS = [
-  { t0: 0, t1: 2.2, at: tagHole, draw: (c, t, x, y, g, s) => { c.fillStyle = HC; c.beginPath(); c.arc(x, y, 28 * s * g, 0, 7); c.fill(); } },
+  { t0: 0, t1: 1.42, at: tagHole, draw: (c, t, x, y, g, s) => { c.fillStyle = HC; c.beginPath(); c.arc(x, y, 30 * s * g, 0, 7); c.fill(); } },
+  { t0: 1.5, t1: 1.95, at: L_(540, 302), draw: (c, t, x, y, g, s) => { const u = easeOutCubic(ap(t, 1.5, .12)); const L = 400 * u * s; c.save(); c.translate(x, y); c.rotate(-.62); c.strokeStyle = HC; c.lineCap = 'round'; c.lineWidth = 26 * s * g; c.beginPath(); c.moveTo(-L, 0); c.lineTo(L, 0); c.stroke(); c.restore(); } },
   { t0: 2.42, t1: 3.95, at: barHead, draw: (c, t, x, y, g, s) => { c.fillStyle = HC; c.beginPath(); c.arc(x, y, 52 * s * g, 0, 7); c.fill(); } },
   { t0: 4.3, t1: 6.48, at: t => P2S(...penPos(t), t), draw: (c, t, x, y, g, s) => blobAt(c, t, x, y, 13 * g, HC, 0, 0, 3) },
   { t0: 7.0, t1: 7.85, at: t => P2S(...arrowUp(t), t), draw: (c, t, x, y, g, s) => { c.save(); c.translate(x, y); c.scale(g * s, g * s); c.fillStyle = HC; rr(c, -10, -10, 20, 70, 10); c.fill(); c.beginPath(); c.moveTo(-36, 6); c.lineTo(36, 6); c.lineTo(0, -40); c.closePath(); c.lineJoin = 'round'; c.lineWidth = 8; c.strokeStyle = HC; c.fill(); c.stroke(); c.restore(); } },
@@ -341,7 +387,7 @@ const HS = [
 const lerpCol = (a, b, k) => { const h = x => [1, 3, 5].map(j => parseInt(x.slice(j, j + 2), 16)); const A = h(a), B = h(b); return `rgb(${A.map((v, i) => Math.round(lerp(v, B[i], k))).join(',')})`; };
 function hero(t, P) {
   if (t >= PURP && t < LOOP) return; const c = ctx; HC = P.bg === RD ? OW : RD; HI = P.bg === RD ? RD : OW;
-  if (t >= LOOP) { const lt = t - LOOP; const [hx, hy, hs] = tagHole(0); const y = lerp(-80, hy, easeInCubic(clamp(lt / .22))); const sq = Math.exp(-Math.pow((lt - .22) / .04, 2)); ball(c, hx, Math.min(y, hy), 28 * hs, RD, sq); return; }
+  if (t >= LOOP) { const lt = t - LOOP; const [hx, hy, hs] = tagHole(0); const y = lerp(-80, hy, easeInCubic(clamp(lt / .22))); const sq = Math.exp(-Math.pow((lt - .22) / .04, 2)); ball(c, hx, Math.min(y, hy), 30 * hs, RD, sq); return; }
   for (let i = 0; i < HS.length; i++) { const h = HS[i], nx = HS[i + 1];
     if (t >= h.t0 && t < h.t1) { if (h.hidden) return; const [x, y, s] = h.at(t); const grow = h.t0 === 0 ? 1 : spring(t - h.t0, 3.2, .5); const cp = ap(t, h.t1 - .16, .16); const g = Math.max(0, grow * (1 - .7 * easeInCubic(cp)));
       c.save(); c.globalAlpha = 1 - cp * .85; h.draw(c, t, x, y, g, s); c.restore();
@@ -427,10 +473,11 @@ function draw(t) {
   if (t >= PURP && t < LOOP) { purple(t); grain(ctx, t, .06); return; }
   const P = pal(t); ctx.fillStyle = P.bg; ctx.fillRect(0, 0, W_, H_);
   ctx.fillStyle = P.fg; ctx.globalAlpha = .045; for (let x = 90; x < 1000; x += 60) for (let y = 330; y < 1700; y += 60) ctx.fillRect(x, y, 3, 3); ctx.globalAlpha = 1;
+  ctx.save(); hookCam(t);
   words(t, P);
   if (t >= CTA0 && t < RALO) { const ex = 1 - clamp((t - (RALO - .15)) / .15); ctx.save(); ctx.globalAlpha = ex; ctxCTA(t, P); ctx.restore(); if (t > RALO - .2) { sceneLayer(t, P); project(t); } }
   else { sceneLayer(t, P); project(t); }
-  hero(t, P);
+  hero(t, P); ctx.restore(); hookFlash(t);
   lens(); hud(t, P); grain(ctx, t, .07);
 }
 function ctxCTA(t, P) { ctaScene(t, P); }
