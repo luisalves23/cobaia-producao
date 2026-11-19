@@ -11,3 +11,4 @@ producoes/**/*.mp4
 producoes/**/*.mov
 formatos/face-cam/brutos/
 .DS_Store
+*.log
