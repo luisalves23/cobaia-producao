@@ -1,136 +1,123 @@
-# Dia 12 · Claude Code sem terminal · CODE
+# Dia 12 · Os nomes do Claude em um minuto · GUIA
 
-Status: **aguardando aprovação do Luis** (roteiro v3: viralização + app novo do Claude, 19/11/2026)
+Status: **aguardando aprovação do Luis** (roteiro v4, 19/11/2026). As versões 1 a 3 (Claude Code sem terminal) ficaram em `roteiro-v3-claude-code-sem-terminal.md`.
 
-## Referência viral (de onde vem)
+## Pedido do Luis (19/11)
 
-Vídeo enviado pelo Luis (Reels baixado pelo Snapinsta, 39 s, criador de fala inglesa, rosto + gravação de tela). Fala, tirada das legendas na tela:
+Em vez do roteiro do Claude Code sem terminal, um roteiro que cita os conceitos principais do Claude (skill, conector, token, modelos, nível de raciocínio, projeto, Claude Code) e passa a ideia: parece difícil, mas existe um jeito simples de aprender tudo isso e começar agora. Fecha com o guia gratuito do básico de tudo o que foi falado e com "segue o perfil, que aqui tem dica de Claude todo dia, direta e rápida".
 
-> Everyone's using Claude Code to build AI agents, but nobody wants to touch the terminal. Here's the easiest way to set it up in less than 5 minutes. It's called Antigravity, Google's new free AI coding tool, and installing Claude Code as an extension takes seconds. [...] Type /init, this creates your project memory file. Now just hit enter and tell it what you wanna build. And that's it: no terminal and no complex setup. Just speak to it and it builds. Just comment "Claude" and I'll send you the full setup guide.
+Leitura que fiz: "nível de verbalização" = o quanto o Claude raciocina antes de responder (raciocínio/esforço). Cada conceito ganha uma frase curta, para o vídeo entregar valor e não ficar só na lista.
 
-O que pegamos:
-- **Gancho de objeção:** a ferramenta é poderosa, mas o terminal assusta. Remove a barreira logo no começo.
-- **Promessa com prazo:** "em menos de 5 minutos".
-- **Passo a passo curto e visual**, um clique por batida.
-- **`/init` como "arquivo de memória do projeto"**: é a parte que ensina algo de verdade.
-- **Fechamento "sem terminal"** + palavra para comentar e receber o guia.
+## O que veio do vídeo viral
 
-O que mudamos para o jeito do cobaia:
-- Sai o Antigravity (ferramenta do Google). O caminho sem terminal é do próprio Claude: a aba **Code** do aplicativo do Claude no computador. Ferramenta de fora só entra quando ajuda a explicar o Claude.
-- O `/init` ganha a analogia da vida real (o funcionário novo que anota onde fica cada coisa no primeiro dia).
-- Ordem corrigida: o `/init` vem depois da primeira versão, porque numa pasta vazia ele não tem o que ler.
-- Avisamos que precisa do plano Pro (passa confiança).
-- Sem "todo mundo" no gancho (vetado no Dia 3) e sem abrir com negação.
+- Gancho que tira o medo logo de cara e promete resolver rápido ("easiest way... in less than 5 minutes" virou "em um minuto você entende todos").
+- O Claude Code entra como um dos conceitos.
+- Fechamento "comenta a palavra que eu te mando o guia completo".
 
-Palavra: **CODE** → guia de instalação do Claude Code sem terminal, passo a passo (página do site).
+## Texto para gravar (194 palavras, ~58 s)
 
-## Texto para gravar (187 palavras, ~57 s)
-
-Usar o Claude Code sem essa tela preta leva cinco minutos.
+Skill, conector, token, projeto, modelo: em um minuto você entende todos.
 
 Dia doze dos trinta experimentos com Claude.
 
-É o Claude mexendo nos arquivos do seu computador: ele cria site, planilha ou app e entrega pronto. Nasceu no terminal, e aquilo espanta muita gente boa. Só que a versão nova do app do Claude trouxe ele pra uma janela comum.
+Mexer com o Claude parece difícil quando alguém despeja esses nomes de uma vez. Só que cada um cabe numa frase.
 
-Instala, entra na aba Code, escolhe rodar na sua máquina e cria uma pasta pro projeto.
+Projeto é uma pasta onde ficam seus arquivos e instruções, pra você não explicar tudo de novo.
 
-Conta o que você quer criar. Ele monta os arquivos e abre o resultado num navegador dentro do próprio app, pra você testar ali mesmo.
+Skill é uma receita: você ensina o seu jeito uma vez e ele repete sempre.
 
-Agora, o passo que quase ninguém faz: digita barra init.
+Conector liga o Claude nos seus apps, tipo agenda e e-mail.
 
-Ele lê tudo o que tem na pasta e escreve um arquivo de memória do projeto. É o funcionário novo que, no primeiro dia, anda pela empresa anotando onde fica cada coisa. No dia seguinte, ninguém precisa explicar de novo.
+Token é o pedacinho de texto que ele lê. Conversa longa gasta mais, e o limite acaba antes.
 
-Você fala, ele constrói, e o terminal nem abriu. Só precisa do plano Pro.
+Modelo é o motor: tem um ligeiro e um caprichado, e você escolhe pra cada tarefa.
 
-Quer saber mais sobre o Claude? Segue o cobaia, curte e comenta CODE que eu te mando o guia de instalação, passo a passo.
+Raciocínio é quanto ele pensa antes de responder. Demora um pouco, mas a resposta sai melhor.
+
+E o Claude Code é ele mexendo nos arquivos do seu computador, criando site e app pra você.
+
+Parece muita coisa, mas existe um jeito simples de aprender isso tudo e começar hoje.
+
+Juntei o básico de cada um num material gratuito, curto e direto.
+
+Quer aprender o Claude sem enrolação? Segue o cobaia, que aqui tem dica todo dia, curte e comenta GUIA que eu te mando agora.
 
 ## Texto para a IA de voz (ElevenLabs)
 
-[excited] Usar o Claude Code sem essa tela preta leva cinco minutos.
+[excited] Skill, conector, token, projeto, modelo: em um minuto você entende todos.
 
-Dia doze dos trinta experimentos com Claude.
+[excited] Dia doze dos trinta experimentos com Claude.
 
-É o Claude mexendo nos arquivos do seu computador: ele cria site, planilha ou app e entrega pronto. Nasceu no terminal, e aquilo espanta muita gente boa. Só que a versão nova do app do Claude trouxe ele pra uma janela comum.
+Mexer com o Claude parece difícil quando alguém despeja esses nomes de uma vez. [curious] Só que cada um cabe numa frase.
 
-Instala, entra na aba Code, escolhe rodar na sua máquina e cria uma pasta pro projeto.
+Projeto é uma pasta onde ficam seus arquivos e instruções, pra você não explicar tudo de novo.
 
-Conta o que você quer criar. Ele monta os arquivos e abre o resultado num navegador dentro do próprio app, pra você testar ali mesmo.
+Skill é uma receita: você ensina o seu jeito uma vez e ele repete sempre.
 
-[curious] Agora, o passo que quase ninguém faz: digita barra init.
+Conector liga o Claude nos seus apps, tipo agenda e e-mail.
 
-Ele lê tudo o que tem na pasta e escreve um arquivo de memória do projeto. É o funcionário novo que, no primeiro dia, anda pela empresa anotando onde fica cada coisa. No dia seguinte, ninguém precisa explicar de novo.
+Token é o pedacinho de texto que ele lê. Conversa longa gasta mais, e o limite acaba antes.
 
-[excited] Você fala, ele constrói, e o terminal nem abriu. Só precisa do plano Pro.
+Modelo é o motor: tem um ligeiro e um caprichado, e você escolhe pra cada tarefa.
 
-Quer saber mais sobre o Claude? Segue o cobaia, curte e comenta CODE que eu te mando o guia de instalação, passo a passo.
+Raciocínio é quanto ele pensa antes de responder. Demora um pouco, mas a resposta sai melhor.
+
+E o Claude Code é ele mexendo nos arquivos do seu computador, criando site e app pra você.
+
+[excited] Parece muita coisa, mas existe um jeito simples de aprender isso tudo e começar hoje.
+
+Juntei o básico de cada um num material gratuito, curto e direto.
+
+Quer aprender o Claude sem enrolação? Segue o cobaia, que aqui tem dica todo dia, curte e comenta GUIA que eu te mando agora.
 
 (Se preferir sem tags, é só apagar os colchetes: o texto é o mesmo.)
 
 ## Como gravar
 
-- O gancho inteiro em um fôlego só, em ~3 s, batendo em "cinco minutos".
-- Vinheta logo em seguida, sem pausa.
-- Passos (instala, aba Code, pasta) em ritmo de instrução, rápido e seguro.
-- "o passo que quase ninguém faz" com respiro antes, como quem conta um segredo; "barra init" devagar e claro.
-- "Você fala, ele constrói" com sorriso na voz.
-- "Code" e "init" em inglês ("côud", "inít"). Chamada final sem pressa, com "CODE" destacado.
+- Os cinco nomes do gancho em metralhadora, quase sem respiro, e "em um minuto você entende todos" firme. Tudo em ~3 s.
+- Cada conceito no mesmo ritmo: o nome com peso, a explicação leve, como quem conta pra um amigo.
+- "Skill", "token" e "Code" em inglês.
+- "Parece muita coisa, mas..." é a virada: respiro antes, voz sobe.
+- Chamada final sem pressa, com "GUIA" destacado.
 
-## Passada de viralização (19/11)
+## Passada de viralização
 
-Pedido do Luis: gancho forte nos 3 primeiros segundos, entregar valor logo de cara, reter a atenção e trazer o melhor do original.
-
-- **0 a 3 s, valor já no gancho:** a primeira frase entrega a promessa inteira do vídeo original ("less than 5 minutes", "nobody wants to touch the terminal"): dá pra usar sem terminal e leva cinco minutos. São 11 palavras, cabem em ~3 s. A v1 gastava o gancho só na curiosidade ("atrás dela fica a parte mais forte").
-- **Problema antes da solução, em uma frase:** o que o Claude Code faz e por que assusta, logo depois da vinheta (no original, 2 s).
-- **Passos sem enrolação:** do original, um clique por batida. Cortei "Em cinco minutos dá pra pular essa parte", que repetia o gancho.
-- **Loop aberto no meio (~30 s):** "o passo que quase ninguém faz", padrão "por que ninguém ensina isso?" do banco de ganchos (2,5 mi somados), segura quem já aprendeu a instalar.
-- **Fechamento do original:** "just speak to it and it builds" virou "Você fala, ele constrói, e o terminal nem abriu", amarrando com o gancho.
-- **Densidade no gancho (tela):** uma coisa nova por segundo (tabela abaixo, linhas 0 a 3 s).
-
-## Versão nova do app (19/11, pedido do Luis)
-
-O Luis lembrou que o app do Claude para computador (a versão 2.0, com a aba Code) já não exige VS Code nem Antigravity, porque o Claude Code deixou de ser só terminal. O roteiro passa a dizer isso e mostra o que o app novo traz:
-- "a versão nova do app do Claude trouxe ele pra uma janela comum";
-- caminho real: baixar em claude.com/download, aba Code, "este computador", pasta nova;
-- o navegador embutido que abre o site sendo feito, para testar ali mesmo.
-Fontes: [Product Compass](https://www.productcompass.pm/p/claude-desktop-code-tab), [DEV Community](https://dev.to/hisashispace/claude-20-full-guide-12-changes-in-the-new-claude-desktop-app-and-the-ones-burning-your-usage-3nk4). Precisa de plano pago (Pro para cima). Nenhuma das duas fontes cita o `/init` no app: o Luis confirma num teste rápido antes de gravar.
+- **0 a 3 s com valor:** cinco nomes que todo iniciante já ouviu e a promessa com prazo ("em um minuto"). A lista é o próprio gancho visual: um nome novo a cada ~0,5 s.
+- **Retenção por lista:** quem ouviu "skill, conector, token" quer saber o que é o próximo; cada conceito leva ~4 s, então a tela troca o tempo todo.
+- **Virada no fim:** "parece muita coisa, mas existe um jeito simples", que joga para o material.
+- **Do original:** promessa de prazo curto e "comenta a palavra que eu te mando o guia".
 
 ## Onde estão os gatilhos
 
-- 0 a 3 s: objeção conhecida (medo do terminal) resolvida com prazo ("cinco minutos").
-- Passo a passo que dá vontade de salvar (salvamento e compartilhamento).
-- Loop aberto no meio: "o passo que quase ninguém faz".
-- Conceito com substância: o `/init` e o arquivo de memória, com analogia.
-- Fechamento que volta ao gancho: "o terminal nem abriu".
+- Lista de termos que a pessoa já ouviu e não entende (identificação).
+- Promessa com prazo: "em um minuto".
+- Uma frase por conceito: dá vontade de salvar.
+- Virada "parece muita coisa, mas..." levando ao material gratuito.
+- Seguir com motivo: "aqui tem dica todo dia".
 - Palavra para comentar com material prometido.
 
 ## O que vai aparecer na tela
 
 | Fala | Na tela | De onde vem a peça | Transição e som |
 |---|---|---|---|
-| "Usar o Claude Code" (0 a 1 s) | Terminal preto flat, cursor vermelho piscando (o elemento vermelho), linhas abstratas rolando; "Claude" vira a logo laranja girando | nova (terminal abstrato) + motor (logo) | drop no frame 0, glitch neon curto, sub_drop |
-| "sem essa tela preta" (1 a 2 s) | O terminal descasca como papel e cai; atrás, janela clara e arrumada do app | nova | tape_whirl, luz vazada |
-| "leva cinco minutos" (2 a 3 s) | O cursor vermelho vira um cronômetro 5:00 em Anton que bate com peso e começa a rolar | nova | soco de zoom, tick_wood |
+| "Skill, conector, token, projeto, modelo" (0 a 2 s) | Cada nome bate na tela numa fonte diferente (Anton, serif itálico, Inter 900, mono, Anton), um em cima do lugar do outro em slime; a bola vermelha pula de palavra em palavra | motor (palavras grandes, slime) | drop no frame 0, tick_wood por nome |
+| "em um minuto você entende todos" (2 a 3 s) | Os cinco nomes se empilham numa lista; a bola vira um cronômetro 1:00 que bate com peso | nova | soco de zoom, sub_drop |
 | "Dia doze dos trinta experimentos com Claude" | Calendário com dias riscados, o 12 circulado à caneta; logo do Claude | base Dia 10 (calendário) | selo DIA 12/30 com pop |
-| "Claude Code: mexendo nos arquivos do seu computador" | Pastas e arquivos flat abrindo em leque; a bola vermelha pula de um para o outro | nova | pluck por arquivo |
-| "site, planilha ou app e entrega pronto" | Três telinhas montando rápido (site, planilha com gráfico, app de celular), uma por palavra | nova | tick_wood em cada |
-| "Nasceu no terminal, e aquilo espanta" | Volta o terminal; um bonequinho minimalista dá um passo para trás | nova (bonequinho do Dia 9 como base) | vinheta que respira, tensão |
-| "a versão nova do app do Claude trouxe ele pra uma janela comum" | O terminal encolhe e vira uma aba dentro de uma janela clara do app (mockup genérico); selo "2.0" com mola | nova | power_down no terminal, glass_chime |
-| "Instala, entra na aba Code" | Abas Chat / Code; cursor branco clica em Code, zoom inclinado no clique | motor (cursor, zoom `foco()`) | keyclick |
-| "escolhe rodar na sua máquina e cria uma pasta pro projeto" | Opção "este computador" marcada; pasta nova "meu-projeto" nasce com mola | nova | relay |
-| "Conta o que você quer criar" | Pedido digitado no ritmo da fala (ex.: "um site pra minha confeitaria"), palavra-chave em vermelho | base Dia 10 (digitação) | keyclick no ritmo |
-| "monta os arquivos e abre o resultado num navegador dentro do próprio app" | Arquivos surgindo numa lista; ao lado, um navegador embutido abre e o site da confeitaria se monta em blocos; o cursor clica num botão e ele funciona | nova | build na trilha, tink por arquivo, bloom no site |
-| "o passo que quase ninguém faz: digita barra init" | "/init" gigante em JetBrains Mono, digitado; a bola vermelha vira o cursor | motor (palavras grandes, mono digitada) | silêncio curto e tape stop antes, drop no "init" |
-| "escreve um arquivo de memória do projeto" | Uma folha "CLAUDE.md" se escreve sozinha com linhas abstratas (nada legível) | nova | glass_chime |
-| "funcionário novo... anotando onde fica cada coisa" | Mapa de escritório flat; bonequinho de crachá anda, a caderneta vai ganhando marcações em cada sala | nova | passos tick_wood |
-| "ninguém precisa explicar de novo" | Dia 2 no calendário; o bonequinho já vai direto à sala certa, certinho verde | motor (calendário) + nova | bloom, certinho |
-| "Você fala, ele constrói, e o terminal nem abriu" | Onda de voz vira blocos que montam o site; o terminal aparece fechado com selo X ao lado (nunca por cima) | motor (selo X) + nova | sub_drop |
-| "Só precisa do plano Pro" | Pílula "Pro" sobe com mola | nova | pluck |
-| Chamada final | Padrão: foto + @cobaia.dev, + vira ✓, coração, caixa digitando CODE, card "guia de instalação", roxo e loop para o terminal do frame 0 | motor (chamada final padrão) | cheio na trilha, roxo sem fala |
-
-Loop: o último quadro volta para o cursor vermelho piscando no terminal preto do frame 0.
+| "despeja esses nomes de uma vez" | Bonequinho minimalista soterrado por uma chuva de palavras (retângulos-palavra) | nova (bonequinho do Dia 9 como base) | vinheta que respira |
+| "cada um cabe numa frase" | As palavras se arrumam numa fila organizada, a bola vermelha na frente | nova | glass_chime |
+| "Projeto é uma pasta..." | Pasta flat abre; arquivos e uma folha de instruções entram com mola | nova | relay |
+| "Skill é uma receita" | Caderno de receita abre; a mesma receita se carimba três vezes, igual | nova | tink a cada carimbo |
+| "Conector liga o Claude nos seus apps" | Tomada/cabo: a bola vermelha faz zigue-zague e liga a logo do Claude a uma agenda e um envelope genéricos | motor (ligação animada, seção 5.0) | pluck_bend |
+| "Token é o pedacinho de texto" | Uma frase quebra em blocos (pedacinhos); a barra do limite vai esvaziando conforme a conversa cresce | nova | keyclick por bloco, power_down no limite |
+| "Modelo é o motor" | Dois motores flat lado a lado, um girando rápido e leve, o outro mais pesado e caprichado; o cursor escolhe | nova | tape_whirl |
+| "Raciocínio é quanto ele pensa" | Balão de pensamento com um relógio; quanto mais o ponteiro anda, mais certinhos verdes aparecem na resposta | nova | tick_wood + bloom |
+| "o Claude Code é ele mexendo nos arquivos" | Notebook; arquivos se montam e viram um site e um app de celular | nova | build na trilha |
+| "Parece muita coisa, mas existe um jeito simples" | Os sete nomes voam e entram num único livrinho/guia | nova | silêncio curto, tape stop, drop |
+| "Juntei o básico... material gratuito" | O guia abre com páginas passando; selo verde "grátis" | nova + verde (regra 14) | caixa |
+| Chamada final | Padrão: foto + @cobaia.dev, + vira ✓, coração, caixa digitando GUIA, card do guia, roxo e loop para o primeiro nome do frame 0 | motor (chamada final padrão) | cheio na trilha, roxo sem fala |
 
 ## Pontos para o Luis confirmar
 
-- Ok usar o caminho do aplicativo do Claude no computador (aba Code) no lugar do Antigravity do vídeo original?
-- Palavra **CODE** está boa?
-- Este é o Dia 12, certo? (O plano antigo tinha Memória no Dia 12; este roteiro usa o `/init`, que é a memória do projeto.)
+- "Nível de verbalização" eu li como raciocínio (quanto ele pensa antes de responder). É isso?
+- Palavra **GUIA** está boa? O material seria um guia curto com uma página por conceito (no site, `cobaia-dev.vercel.app/guia`).
+- Ficou de fora: memória, Cowork e artifacts, para caber em 60 s. Quer trocar algum dos sete?
