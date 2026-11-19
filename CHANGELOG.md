@@ -2,6 +2,17 @@
 
 Entradas novas no topo. Formato: `## AAAA-MM-DD · conta · título`, o pedido do Luis e o que mudou. Nunca apague entradas.
 
+## 2026-11-19 · principal · Dia 12 (OmniRoute) e peças novas no motor
+
+Pedido do Luis: o Dia 12 virou o roteiro dele sobre o OmniRoute (Claude Code de graça com limite gigante), com o áudio inteiro do ElevenLabs e a última frase regravada para a palavra-chave CLAUDE. Ele aprovou o storyboard e pediu para produzir.
+
+O que mudou:
+- `producoes/dia12/`: roteiro, voz montada (frase corrigida colada no fim; pausas acima de 0,3 s encurtadas e atempo 1,03 para caber em 60 s), palavras grandes, corrente, mapa da música, cenas, trilha electro 124 BPM em lá menor, capa e textos do post. Os roteiros que o Luis descartou ficaram em `producoes/dia12/roteiros-descartados/`.
+- `motor/icons.js`: logo do GitHub (`GITHUB_PATH`, octicon mark-github).
+- `motor/folha.py`: rótulo dos quadros nomeados `tNNN.NN` (o `storyboard.cjs` grava assim) deixou de quebrar a folha.
+- `capas/capas.html`: capa do Dia 12.
+- `CLAUDE.md`: Dia 12 na tabela do que já foi feito.
+
 ## 2026-11-19 · principal · Como se sabe o texto falado sem whisper
 
 Pergunta do Luis (conta secundária sem reconhecimento de voz): como a conta principal lê o conteúdo de um áudio anexado e o que fazer quando vem só o áudio.

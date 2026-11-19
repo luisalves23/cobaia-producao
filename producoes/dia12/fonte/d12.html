@@ -220,7 +220,7 @@ S.local = (c, t, P) => {
   fan(c, LAP, 28.2, t); const k = sp(t, 28.3, 2.6, .5); if (k <= 0) return;
   c.save(); c.globalAlpha *= clamp(k * 2); c.translate(540, 300); c.scale(.94 + .06 * k, .94 + .06 * k); c.fillStyle = P.card; rr(c, -310, -190, 620, 380, 26); c.fill(); c.fillStyle = P.fg; rr(c, -380, 196, 760, 34, 14); c.fill(); c.globalAlpha *= .3; rr(c, -60, 196, 120, 12, 6); c.fillStyle = P.bg; c.fill(); c.restore();
   // keys -> dots -> padlock closes
-  if (t > 30.4) { const kk = sp(t, 30.46, 2.8, .45); const enc = ap(t, 31.1, .35); for (let i = 0; i < 3; i++) { const x = 360 + i * 180, y = 660; c.save(); c.globalAlpha *= clamp(kk * 2 - i * .3); c.translate(x, y); const kx = sp(t, 30.46 + i * .08, 3, .45); c.scale(kx, kx);
+  if (t > 30.4) { const kk = sp(t, 30.46, 2.8, .45); const enc = ap(t, 31.1, .35); for (let i = 0; i < 3; i++) { const x = 360 + i * 180, y = 730; c.save(); c.globalAlpha *= clamp(kk * 2 - i * .3); c.translate(x, y); const kx = sp(t, 30.46 + i * .08, 3, .45); c.scale(kx, kx);
       if (enc < 1) { c.save(); c.globalAlpha *= 1 - enc; c.strokeStyle = P.fg; c.lineWidth = 12; c.beginPath(); c.arc(-36, 0, 26, 0, 7); c.stroke(); c.lineCap = 'round'; c.beginPath(); c.moveTo(-10, 0); c.lineTo(56, 0); c.moveTo(40, 0); c.lineTo(40, 22); c.moveTo(56, 0); c.lineTo(56, 18); c.stroke(); c.restore(); }
       if (enc > 0) { c.save(); c.globalAlpha *= enc; c.fillStyle = P.fg; for (let d = 0; d < 4; d++) { c.beginPath(); c.arc(-48 + d * 32, 0, 10, 0, 7); c.fill(); } c.restore(); } c.restore(); } }
 };
@@ -252,11 +252,15 @@ S.press = (c, t, P) => {
 };
 // 11 · 18 mil -> 2 mil
 S.test = (c, t, P) => {
-  const base = 640, k = sp(t, 41.46, 2.6, .5), dn = easeInOutCubic(ap(t, 43.01, .5)); if (k <= 0) return; const h = lerp(460, 51, dn) * k;
-  c.save(); c.fillStyle = P.fg; c.globalAlpha *= .2; rr(c, 340, base - 460, 180, 460, 20); c.fill(); c.restore();
+  const base = 640, k0 = sp(t, 40.25, 2.6, .5), k = sp(t, 41.46, 2.6, .5), dn = easeInOutCubic(ap(t, 43.01, .5)); if (k0 <= 0) return; const h = lerp(460, 51, dn) * k;
+  // frasco de teste (o experimento do projeto) que borbulha
+  { const fx = 230, fy = 330, fk = sp(t, 40.3, 2.8, .45) * (1 - .5 * ap(t, 41.4, .4)); c.save(); c.translate(fx, fy); c.scale(fk, fk); c.strokeStyle = P.fg; c.lineWidth = 10; c.lineJoin = 'round'; c.beginPath(); c.moveTo(-26, -110); c.lineTo(-26, -30); c.lineTo(-90, 80); c.quadraticCurveTo(-96, 100, -74, 100); c.lineTo(74, 100); c.quadraticCurveTo(96, 100, 90, 80); c.lineTo(26, -30); c.lineTo(26, -110); c.stroke(); c.beginPath(); c.moveTo(-40, -110); c.lineTo(40, -110); c.stroke();
+    c.fillStyle = P.fg; c.globalAlpha *= .3; c.beginPath(); c.moveTo(-60, 30); c.lineTo(60, 30); c.lineTo(84, 88); c.lineTo(-84, 88); c.closePath(); c.fill(); c.globalAlpha /= .3;
+    for (let q = 0; q < 5; q++) { const u = ((t - 40.3) * .9 + q / 5) % 1; c.globalAlpha = (1 - u) * .8; c.beginPath(); c.arc(-14 + 26 * Math.sin(q * 2.1 + u * 5), 60 - 190 * u, 8 + 4 * q % 3, 0, 7); c.fill(); } c.restore(); }
+  c.save(); c.fillStyle = P.fg; c.globalAlpha *= .2 * clamp(k0 * 2); rr(c, 340, base - 460, 180, 460, 20); c.fill(); c.restore();
   c.save(); c.fillStyle = dn > .5 ? GN : P.fg; rr(c, 340, base - h, 180, h, 20); c.fill(); c.restore();
   c.save(); c.fillStyle = P.fg; c.globalAlpha *= .3; c.fillRect(260, base + 4, 560, 4); c.restore();
-  const v = lerp(18, 2, dn); c.save(); c.globalAlpha *= clamp(k * 2); const w = rollNum(c, v, 690, base - 60, '900 120px Inter', dn > .5 ? GN : P.fg, 2, 'left'); c.font = '800 54px Inter'; c.fillStyle = P.fg; c.fillText('mil', 690 + w + 16, base - 60); mono(c, 'tokens', 694, base, P.fg, 34, 700); c.restore();
+  const v = lerp(18, 2, dn) * k; c.save(); c.globalAlpha *= clamp(k * 2); const w = rollNum(c, v, 690, base - 60, '900 120px Inter', dn > .5 ? GN : P.fg, 2, 'left'); c.font = '800 54px Inter'; c.fillStyle = P.fg; c.fillText('mil', 690 + w + 16, base - 60); mono(c, 'tokens', 694, base, P.fg, 34, 700); c.restore();
   if (t > 44.26) { const q = sp(t, 44.26, 3, .4); c.save(); c.translate(720, 230); c.rotate(-.08); c.scale(q, q); c.fillStyle = RD; c.font = '150px Anton'; c.fillText('9×', -80, 50); c.font = '800 44px Inter'; c.fillStyle = P.fg; c.fillText('menos', -76, 110); c.restore(); }
 };
 // 12 · three commands
@@ -312,10 +316,11 @@ const HS = [
   { t0: 23.05, t1: 26.6, at: t => P2S(...quotaPos(t), t), draw: (c, t, x, y, g, s) => { const land = Math.exp(-Math.pow((t - 25.46) / .05, 2)); ball(c, x, y, 30 * s * g, HC, land * .7); } },
   { t0: 26.8, t1: 28.05, at: t => P2S(((3 * 130 + (t - 26.77) * 260) % 1170) - 40, 694, t), draw: (c, t, x, y, g, s) => { c.fillStyle = HC; c.beginPath(); c.arc(x, y, 20 * s * g, 0, 7); c.fill(); } },
   { t0: 28.35, t1: 30.25, at: L_(540, 300), draw: (c, t, x, y, g, s) => { c.save(); c.strokeStyle = HC; c.lineWidth = 14 * s; c.lineCap = 'round'; c.beginPath(); c.arc(x, y, 70 * s * g, t * 6, t * 6 + 4.2); c.stroke(); c.restore(); } },
-  { t0: 30.5, t1: 31.9, at: L_(540, 540), draw: (c, t, x, y, g, s) => { const cl = easeOutCubic(ap(t, 31.1, .25)); c.save(); c.translate(x, y); c.scale(g * s, g * s); c.strokeStyle = HC; c.lineWidth = 14; c.beginPath(); c.arc(0, -36 + 18 * cl, 34, Math.PI, 0); c.lineTo(34, -36 + 18 * cl + (1 - cl) * 0); c.stroke(); c.fillStyle = HC; rr(c, -52, -26, 104, 82, 16); c.fill(); c.fillStyle = HI; c.beginPath(); c.arc(0, 8, 10, 0, 7); c.fill(); c.fillRect(-4, 8, 8, 22); c.restore(); } },
+  { t0: 30.5, t1: 31.9, at: L_(540, 600), draw: (c, t, x, y, g, s) => { const cl = easeOutCubic(ap(t, 31.1, .25)); c.save(); c.translate(x, y); c.scale(g * s, g * s); c.strokeStyle = HC; c.lineWidth = 14; c.beginPath(); c.arc(0, -36 + 18 * cl, 34, Math.PI, 0); c.lineTo(34, -36 + 18 * cl + (1 - cl) * 0); c.stroke(); c.fillStyle = HC; rr(c, -52, -26, 104, 82, 16); c.fill(); c.fillStyle = HI; c.beginPath(); c.arc(0, 8, 10, 0, 7); c.fill(); c.fillRect(-4, 8, 8, 22); c.restore(); } },
   { t0: 32.7, t1: 36.2, at: t => P2S(...toolHop(t), t), draw: (c, t, x, y, g, s) => ball(c, x, y, 24 * s * g, HC, 0) },
   { t0: 36.55, t1: 37.55, at: L_(540, 470), draw: (c, t, x, y, g, s) => { c.fillStyle = HC; c.save(); c.translate(x, y); c.scale(g * s, g * s); rr(c, -26, -26, 52, 52, 12); c.fill(); c.restore(); } },
   { t0: 37.85, t1: 39.6, at: t => { const cp = easeInOutCubic(ap(t, 38.16, .55)); return P2S(540, lerp(110, 640 - 90 - 22, cp), t); }, draw: (c, t, x, y, g, s) => { c.save(); c.translate(x, y); c.scale(g * s, g * s); c.fillStyle = HC; rr(c, -260, -22, 520, 44, 16); c.fill(); rr(c, -14, -140, 28, 120, 10); c.fill(); c.restore(); } },
+  { t0: 40.45, t1: 41.3, at: L_(230, 330), draw: (c, t, x, y, g, s) => ball(c, x, y + 50, 26 * s * g, HC, 0) },
   { t0: 42.4, t1: 44.15, at: L_(430, 260), draw: (c, t, x, y, g, s) => { const bob = 10 * Math.sin(t * 8); c.save(); c.translate(x, y + bob); c.scale(g * s, g * s); c.fillStyle = HC; rr(c, -12, -70, 24, 80, 12); c.fill(); c.beginPath(); c.moveTo(-40, 0); c.lineTo(40, 0); c.lineTo(0, 46); c.closePath(); c.fill(); c.restore(); } },
   { t0: 47.4, t1: 52.3, screen: 0, at: t => P2S(...cmdCur(t), t), draw: (c, t, x, y, g, s) => { c.fillStyle = HC; c.save(); c.translate(x, y); c.scale(g * s, g * s); c.fillRect(-10, -22, 22, 44); c.restore(); } },
   { t0: 52.95, t1: 54.25, at: t => P2S(540, 520 - 40 * Math.abs(Math.sin((t - 52.95) * 5)), t), draw: (c, t, x, y, g, s) => ball(c, x, y, 30 * s * g, HC, 0, null) },
