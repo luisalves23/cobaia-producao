@@ -236,8 +236,8 @@ Resultado dos dois caminhos: a voz tratada e as palavras com tempo, que viram os
 - Volume base −11 dB, ducking pela voz (até −55%, ataque 20 ms, release 280 ms), −20 dB em silêncio dramático, −10 dB em tensão. A voz fica ~17 dB acima. Nada abaixo de ~−40 dBFS (confira no relatório do `mix` do `synth.py`).
 
 **Trilha dinâmica, mas suave (pedidos do Luis em 19/11/2026):** a música não pode ficar estática, numa linha reta do começo ao fim. Ela acompanha a narrativa e o motion: sobe nas revelações, baixa no problema, cresce até a chamada final. **Mas toda mudança é gradual.** O Luis reprovou a primeira tentativa (`motor/trilha.py`, Dia 12) porque ficou "cheia de degrau": trocava de música de uma vez e o volume pulava de baixo para alto num corte seco.
-- Troca de trecho ou de instrumento: fade-out de um e fade-in do outro (crossfade de 1 a 2 s), nunca corte seco.
-- Volume e filtro mudam em rampa de pelo menos 1 s. Nada de degrau de volume entre cenas.
+- Troca de trecho ou de instrumento: fade-out de um e fade-in do outro, nunca corte seco. **O fade combina com o vídeo:** dura o mesmo que a transição da cena (em geral 0,2 a 0,5 s, o tempo do voo da bola) e termina junto com ela. Fade longo (1 s ou mais) o Luis reprovou.
+- Volume e filtro mudam em rampa curta, colada na transição da cena (0,2 a 0,5 s), nunca em degrau seco. Crescendo longo só em build (riser até um drop).
 - Uma base musical só, que evolui (camadas entrando e saindo aos poucos, filtro abrindo e fechando). Não pular de uma música para outra.
 - Silêncio ou parada só com fade curto na entrada e na saída, e só em momento forte do roteiro.
 - `motor/trilha.py` não está aprovado como está: antes de reusar, suavize as transições (rampas e crossfades) e mande uma amostra de áudio para o Luis ouvir antes de montar no vídeo.

@@ -2,6 +2,13 @@
 
 Entradas novas no topo. Formato: `## AAAA-MM-DD · conta · título`, o pedido do Luis e o que mudou. Nunca apague entradas.
 
+## 2026-11-19 · principal · Fade da trilha no tempo da transição
+
+Pedido do Luis: o fade-in e fade-out de 1 a 2 s está grande demais; tem que ser menor e combinar com o vídeo.
+
+O que mudou:
+- `skill/SKILL.md`, seção 9: o fade e as rampas de volume e filtro duram o mesmo que a transição da cena (0,2 a 0,5 s) e terminam junto com ela; crescendo longo só em build.
+
 ## 2026-11-19 · principal · Trilha dinâmica com fades, sem degraus
 
 Pedido do Luis: não gostou das três opções da trilha montanha-russa. Ficaram "cheias de degrau", trocando de música de uma vez e com o volume cortando de baixo para alto. Deveria ter fade-in e fade-out nas trocas. O Dia 12 fica com a música original. Nos próximos vídeos a trilha tem que ser dinâmica, mas com transições suaves.
