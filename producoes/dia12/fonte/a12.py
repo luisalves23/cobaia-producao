@@ -25,31 +25,77 @@ def sec(t):
     if t < 52.8: return 'build'
     if t < 54.2: return 'pause'
     return 'big'
+# ---- versão suave (regra de 19/11): a mesma base do Dia 12 inteira, camadas e filtro mudando
+# em rampas curtas (0,3 s) que terminam no corte de cada cena; sem degrau, sem troca de música.
 nb = int(PURP / BAR) + 1
+L = {k: buf(TEND) for k in ('pad', 'drum', 'k1', 'shk', 'bass', 'plk', 'kal')}
 for bar in range(nb):
-    t0 = bar * BAR; ch = prog[bar % 4]; root = roots[bar % 4]; s = sec(t0 + .1)
-    cut = {'drop': 3500, 'vin': 900, 'groove': 2200, 'dark': 800, 'groove2': 2600, 'mid': 1800, 'build': 1400 + 2400 * (t0 - 45.5) / 7.3, 'pause': 700, 'big': 4200}[s]
-    add(mus, pad(ch, BAR, cut, .02, .25), t0, .5 if s != 'dark' else .7)
+    t0 = bar * BAR; ch = prog[bar % 4]; root = roots[bar % 4]
+    add(L['pad'], pad(ch, BAR, 6000, .02, .25), t0, .5)
     for k in range(4):
         tb = t0 + k * BEAT
         if tb >= PURP: break
-        if s in ('vin', 'pause'): continue
-        if s == 'dark' and k: continue
-        add(mus, kick(f0=115, punch=.8), tb, 1)
-        add(mus, hat(.05, .02), tb + BEAT / 2, .5)
-        if k in (1, 3): add(mus, snap(), tb, .55)
-    if s in ('vin', 'pause', 'dark'): continue
+        add(L['drum'], kick(f0=115, punch=.8), tb, 1); add(L['drum'], hat(.05, .02), tb + BEAT / 2, .5)
+        if k in (1, 3): add(L['drum'], snap(), tb, .55)
+        if k == 0: add(L['k1'], kick(f0=115, punch=.8), tb, 1)
     for k in range(16):
         tb = t0 + k * BEAT / 4
-        if tb < PURP: add(mus, shaker(), tb, .18 if k % 2 else .08)
+        if tb < PURP: add(L['shk'], shaker(), tb, .18 if k % 2 else .08)
     for k, off in enumerate([0, .5, 1.5, 2, 3, 3.5]):
-        if t0 + off * BEAT < PURP: add(mus, sqbass(root + (12 if k in (2, 5) else 0), cut=600 if s != 'big' else 1100), t0 + off * BEAT, .7)
-    if s in ('drop', 'groove2', 'big'):
-        for k in range(8): add(mus, pluck_bend(midi(ch[(k * 3) % 4] + 12), .3, 0, .12), t0 + k * BEAT / 2, .22)
-    if s == 'build':
-        for k in range(8): add(mus, kalimba(midi(ch[k % 4] + 12), .4) * .5, t0 + k * BEAT / 2, .3)
-add(mus, swell(1.4, 300, 7000), 52.85, .5)          # riser até o drop da chamada
-add(mus, swell(1.2, 300, 6000), 25.6, .35)          # sobe para o "não para"
+        if t0 + off * BEAT < PURP: add(L['bass'], sqbass(root + (12 if k in (2, 5) else 0), cut=900), t0 + off * BEAT, .7)
+    for k in range(8): add(L['plk'], pluck_bend(midi(ch[(k * 3) % 4] + 12), .3, 0, .12), t0 + k * BEAT / 2, .22)
+    for k in range(8): add(L['kal'], kalimba(midi(ch[k % 4] + 12), .4) * .5, t0 + k * BEAT / 2, .3)
+# estado de cada cena: camadas (0 a 1), ganho geral em dB e filtro (Hz). '~' = sobe aos poucos até a próxima cena (build).
+ST = [  # t,   drum k1  shk bass plk kal   dB    filtro
+    (0,     1,  0,  1,  1,   1,  0,    0,   4000),
+    (4.1,   0,  0,  0,  0,   0, .5,   -6,   1100),   # vinheta: respira
+    (6.8,   1,  0, .6,  1,   0,  0,   -3,   2000),   # GitHub
+    (10.45, 1,  0,  1,  1,  .5,  0,   -2,   2600),   # estrela
+    (13.72, 1,  0,  1,  1,   1,  0,    0,   4200),   # 352 provedores: cheio
+    (17.5,  1,  0,  1,  1,  .6,  0,   -1,   3200),   # grátis / 1 bilhão
+    (22.92, 0,  1,  0, .5,   0,  0,   -5,   1000),   # a cota acabando: só um bumbo por compasso
+    (24.2,  0,  0,  0,  0,   0,  0,  -40,   1000),   # "acaba": a música some (fade curto)
+    (24.67, 0,  0,  0,  0,   0, .4,  -12,    900),   # "ela pula": volta baixinho e cresce até o drop (riser)
+    (26.77, 1,  0,  1,  1,   1,  0,    0,   4200),   # "o seu trabalho não para": drop
+    (28.18, 1,  0, .5,  1,   0,  0,   -3,   2200),   # no seu computador
+    (32.05, 1,  0,  1,  1,  .7,  0,   -1.5, 3200),   # ferramentas
+    (37.64, 0,  1,  0,  1,   0,  0,   -4,   1200),   # prensa: aperta
+    (40.18, 1,  0,  1,  1,   0, .5,   -3,   1800),   # teste: build até o 9 vezes
+    (44.26, 1,  0,  1,  1,   1,  0,    0,   3800),   # 9 vezes
+    (45.55, 1,  0,  1,  1,   0,  1,   -2,   2200),   # três comandos: build
+    (52.85, 0,  0,  0,  0,   0,  0,   -7,    900),   # "quer saber mais": vale + riser
+    (54.28, 1,  0,  1,  1,   1,  0,   1.5,  4800),   # chamada final: o mais cheio
+]
+BUILD = {40.18: 44.26, 45.55: 52.85, 24.67: 26.77}   # trechos que crescem aos poucos (filtro e volume)
+RAMP = .3
+def curve(col, t_arr):
+    v = np.zeros_like(t_arr)
+    for i, row in enumerate(ST):
+        c = row[0]; val = row[col]
+        if i == 0: v[:] = val; continue
+        prev = ST[i - 1]
+        r = np.clip((t_arr - (c - RAMP)) / RAMP, 0, 1) if c not in (24.2,) else np.clip((t_arr - (c - .12)) / .12, 0, 1)
+        if prev[0] in BUILD and col in (7, 8):   # build: sobe devagar desde o começo da cena anterior
+            b0 = prev[0]; tgt = val
+            rb = np.clip((t_arr - b0) / (c - RAMP - b0), 0, 1) ** 1.5
+            v = np.where((t_arr >= b0) & (t_arr < c - RAMP), prev[col] + (tgt - prev[col]) * .75 * rb, v)
+            base = prev[col] + (tgt - prev[col]) * .75
+            v = np.where(t_arr >= c - RAMP, base + (val - base) * r, v); continue
+        v = v * (1 - r) + val * r if True else v
+    return v
+tg = np.arange(0, TEND, .005)
+G = {k: np.interp(np.arange(len(mus)) / SR, tg, curve(i + 1, tg)).astype(np.float32) for i, k in enumerate(['drum', 'k1', 'shk', 'bass', 'plk', 'kal'])}
+gdb = np.interp(np.arange(len(mus)) / SR, tg, curve(7, tg)); cut = np.interp(np.arange(len(mus)) / SR, tg, curve(8, tg))
+inner = L['drum'] * G['drum'] + L['k1'] * G['k1'] + L['shk'] * G['shk'] + L['bass'] * G['bass'] + L['plk'] * G['plk'] + L['kal'] * G['kal']
+padf = np.zeros_like(L['pad']); zi = None; Bk = 480
+from scipy.signal import butter, sosfilt, sosfilt_zi
+for i in range(0, len(padf), Bk):
+    sos = butter(2, float(cut[i]), 'lowpass', fs=SR, output='sos'); zi = sosfilt_zi(sos) * 0 if zi is None else zi
+    padf[i:i + Bk], zi = sosfilt(sos, L['pad'][i:i + Bk], zi=zi)
+mus += ((padf * .9 + inner) * 10 ** (gdb / 20)).astype(np.float32)
+add(mus, swell(2.0, 300, 7000), 26.77 - 2.0, .45)   # "ela pula" → drop
+add(mus, swell(1.4, 300, 7000), 54.28 - 1.4, .5)    # riser até a chamada
+add(mus, swell(1.2, 300, 6000), 13.72 - 1.2, .3)    # sobe para os 352
 mus = reverb(mus, 1.0, .14)
 i1 = int(PURP * SR) - int(.5 * SR); i2 = int(PURP * SR); mus[i1:i2] = tapestop(mus[i1:i2].copy(), .5); mus[i2:] = 0
 add(mus, pad([57, 64, 69, 72], LOOP - PURP + .3, 900, .2, .6), PURP + .05, .35)
@@ -117,5 +163,5 @@ for i in range(len(HS) - 1):
 for tl in (0.94, 6.24, 14.48, 50.96, 53.73, 56.29): add(sfx, swell(.3, 1500, 8000) * .6, tl + .05, .3); add(sfx, glass(midi(90), .9, .01) * .3, tl + .3, .6)
 sfx = reverb(sfx, .5, .1)
 synth.DROP = 54.28
-mix(mus, sfx, voice, 'd12.wav', duck=.5, music_db=-6, sfx_db=-7, post=1.15, comp=.25, report=False)
+mix(mus, sfx, voice, 'd12.wav', duck=.5, music_db=-6, sfx_db=-7, post=1.0, comp=.25, report=False)
 print('ok', TEND)

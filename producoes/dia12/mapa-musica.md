@@ -27,3 +27,7 @@ A trilha acima ficou estática. Agora ela vem do `motor/trilha.py` com a narrati
 - vale no "Quer saber mais", drop na chamada final (54,28), fita parando antes do roxo.
 
 O Luis não gostou: as mudanças eram em degrau, com trocas secas e volume pulando. O `a12.py` voltou para a trilha original.
+
+## Versão final aprovada (19/11): trilha suave
+
+O Luis aprovou e ela está no vídeo final. É a mesma base do Dia 12 (electro em lá menor, 124 BPM), mas as camadas (bateria, baixo, shaker, plucks, kalimba), o volume e o filtro mudam por cena em rampas de 0,3 s que terminam no corte. Tabela `ST` no `a12.py`. Builds longos só no "ela pula" (até o drop de 26,77), no teste (até o "9 vezes") e nos comandos (até a chamada). Na cota "acaba" (24,2) a música some num fade de 0,12 s.

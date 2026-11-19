@@ -2,6 +2,15 @@
 
 Entradas novas no topo. Formato: `## AAAA-MM-DD · conta · título`, o pedido do Luis e o que mudou. Nunca apague entradas.
 
+## 2026-11-19 · principal · Dia 12 com a trilha suave aprovada
+
+Pedido do Luis: aprovou o áudio com a trilha suave (mesma base, mudanças em rampa de 0,3 s no corte de cada cena) e pediu para trocar no vídeo. Salvou a skill atualizada na conta.
+
+O que mudou:
+- `producoes/dia12/fonte/a12.py`: agora é a versão suave (tabela `ST` por cena); vídeo final reencodado.
+- `producoes/dia12/mapa-musica.md`: versão final descrita.
+- `skill/SKILL.md`, seção 9: o `a12.py` do Dia 12 vira o modelo aprovado de trilha dinâmica.
+
 ## 2026-11-19 · principal · Fade da trilha no tempo da transição
 
 Pedido do Luis: o fade-in e fade-out de 1 a 2 s está grande demais; tem que ser menor e combinar com o vídeo.

@@ -240,6 +240,7 @@ Resultado dos dois caminhos: a voz tratada e as palavras com tempo, que viram os
 - Volume e filtro mudam em rampa curta, colada na transição da cena (0,2 a 0,5 s), nunca em degrau seco. Crescendo longo só em build (riser até um drop).
 - Uma base musical só, que evolui (camadas entrando e saindo aos poucos, filtro abrindo e fechando). Não pular de uma música para outra.
 - Silêncio ou parada só com fade curto na entrada e na saída, e só em momento forte do roteiro.
+- **Modelo aprovado:** `producoes/dia12/fonte/a12.py` (tabela `ST`: estado das camadas, volume e filtro por cena, rampas de 0,3 s no corte, builds só antes de drop).
 - `motor/trilha.py` não está aprovado como está: antes de reusar, suavize as transições (rampas e crossfades) e mande uma amostra de áudio para o Luis ouvir antes de montar no vídeo.
 
 **Som do elemento vermelho:** squish na compressão, pluck no voo, pop com tink na abertura, **30% mais baixo que no Dia 10 v3** (×0,7, cerca de −3 dB).
