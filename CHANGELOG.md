@@ -2,6 +2,13 @@
 
 Entradas novas no topo. Formato: `## AAAA-MM-DD · conta · título`, o pedido do Luis e o que mudou. Nunca apague entradas.
 
+## 2026-11-19 · principal · Como se sabe o texto falado sem whisper
+
+Pergunta do Luis (conta secundária sem reconhecimento de voz): como a conta principal lê o conteúdo de um áudio anexado e o que fazer quando vem só o áudio.
+
+O que mudou:
+- `motor/voz/LEIAME.md`: seção "Como se sabe o que está sendo dito". O Claude não ouve o anexo. O whisper também está bloqueado na conta principal (huggingface.co recusado). O texto sempre vem do roteiro aprovado, e o `align.py` acha os tempos. Também explica o que fazer quando vem só o áudio, como ligar a transcrição se a rede liberar e onde está o Dia 8 (não transcrito, não guardado aqui).
+
 ## 2026-11-19 · principal · Fluxo real de áudio e montagem das palavras grandes
 
 Pedido do Luis (dúvidas da conta secundária): o áudio da fala sempre vem pronto dele (ElevenLabs com a voz clonada ou celular), anexado e junto com o texto aprovado; o Claude nunca gera voz e só pergunta se o arquivo não vier. Documentar a receita de tratamento, o volume de entrada do `a10.py`, como montar o `dNNchunks.js` e o plano B sem faster-whisper. Orientação dele: entregar o que já fazemos, sem mudar o processo.

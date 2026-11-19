@@ -71,3 +71,16 @@ Conferido em 19/11: as 177 palavras do Dia 11 saíram em média a 0,13 s (no má
 3. Rode o `align.py` sobre o áudio já limpo, com o roteiro aprovado no `texto.txt`.
 4. Converta `align.json` → lista `W` e rode o `cut3.py` com `drop` vazio para cortar os silêncios e tratar.
 5. Confira os pontos de corte em quadros curtos do storyboard antes de seguir.
+
+### Como se sabe o que está sendo dito (resposta de 19/11)
+
+Conferido no ambiente da conta principal em 19/11/2026:
+- **O Claude não ouve o áudio anexado.** Nenhuma das duas contas tem como "escutar" um mp3 ou wav. O anexo só serve para medir (duração, volume, trechos de fala por energia) e para entrar no mix.
+- **O faster-whisper também não roda aqui.** O pacote instala pelo pip, mas o modelo vem do huggingface.co, e a rede deste ambiente recusa esse endereço (`CONNECT tunnel failed, 403`). Foi o mesmo bloqueio do Dia 11. Nos Dias 9, 10 e 11 nenhum áudio foi transcrito.
+- **O texto falado sempre veio do roteiro aprovado.** O Claude escreve o roteiro, o Luis aprova e gera a voz no ElevenLabs a partir desse texto. Por isso o texto é conhecido antes do áudio chegar, e o `align.py` só descobre **quando** cada palavra é dita.
+
+Por isso:
+1. **O roteiro aprovado é obrigatório junto com o áudio.** Ele fica em `producoes/diaNN/roteiro.md`, salvo no momento da aprovação.
+2. **Chegou só o áudio, sem o texto:** procure o roteiro aprovado em `producoes/diaNN/roteiro.md` ou na conversa. Se não achar, peça ao Luis o texto que ele colou no ElevenLabs. Sem whisper, não existe jeito confiável de tirar o texto do áudio.
+3. **Quer transcrição de verdade (gravação de celular, improviso):** o ambiente precisa liberar `pypi.org` e `huggingface.co` no acesso à rede. Com isso: `pip install faster-whisper` e `python3 motor/voz/transcribe.py small voz48.wav palavras.json` (na primeira vez o modelo `small` baixa sozinho para `~/.cache/huggingface/`). Sem rede, use o plano B acima.
+4. **Áudio do Dia 8 (`video_08.mp3`):** não foi transcrito nesta conta e o texto não está guardado aqui. O Dia 8 foi feito antes deste repositório, e o arquivo não está entre os anexos deste projeto. O texto é o roteiro do Dia 8 que o Luis usou no ElevenLabs.
