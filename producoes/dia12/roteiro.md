@@ -1,123 +1,13 @@
-# Dia 12 · Os nomes do Claude em um minuto · GUIA
+# Dia 12 · OmniRoute: Claude Code de graça · CLAUDE
 
-Status: **aguardando aprovação do Luis** (roteiro v4, 19/11/2026). As versões 1 a 3 (Claude Code sem terminal) ficaram em `roteiro-v3-claude-code-sem-terminal.md`.
+Roteiro do Luis (19/11/2026), gravado no ElevenLabs. Substitui os roteiros anteriores do Dia 12 (guardados em `roteiros-descartados/`). A última frase foi regravada à parte para trocar a palavra-chave para CLAUDE.
 
-## Pedido do Luis (19/11)
+## Texto (como foi para o ElevenLabs)
 
-Em vez do roteiro do Claude Code sem terminal, um roteiro que cita os conceitos principais do Claude (skill, conector, token, modelos, nível de raciocínio, projeto, Claude Code) e passa a ideia: parece difícil, mas existe um jeito simples de aprender tudo isso e começar agora. Fecha com o guia gratuito do básico de tudo o que foi falado e com "segue o perfil, que aqui tem dica de Claude todo dia, direta e rápida".
+[excited] Dá pra usar o Claude Code de graça, com um limite GIGANTE! [short pause] Dia 12 dos trinta experimentos com Claude. [thoughtful] Um dev publicou no GitHub uma ferramenta chamada OmniRoute, e quase 89 mil pessoas já deram estrela. Ela liga o Claude Code a 352 provedores de iá. Mais de 90 têm plano gratuito, e juntos passam de 1 bilhão de tokens por mês! [chuckles] Quando a cota de um acaba, ela pula SOZINHA pro próximo. O seu trabalho não para. Tudo roda no seu computador, e as suas chaves ficam criptografadas. Funciona com Cursor, Codex, Copilot e mais de 30 ferramentas, e roda até no celular! [thoughtful] E ainda comprime o contexto antes de enviar. Num teste do projeto, 18 mil tokens viraram 2 mil, cerca de NOVE vezes menos. [excited] Pra ligar, são três comandos: instalar pelo npm, rodar o omniroute e abrir o Claude Code com omniroute launch. Quer saber mais sobre o Claude? [excited] Segue o cobaia, curte e comenta CLAUDE que eu te mando o guia!
 
-Leitura que fiz: "nível de verbalização" = o quanto o Claude raciocina antes de responder (raciocínio/esforço). Cada conceito ganha uma frase curta, para o vídeo entregar valor e não ficar só na lista.
+## Voz
 
-## O que veio do vídeo viral
-
-- Gancho que tira o medo logo de cara e promete resolver rápido ("easiest way... in less than 5 minutes" virou "em um minuto você entende todos").
-- O Claude Code entra como um dos conceitos.
-- Fechamento "comenta a palavra que eu te mando o guia completo".
-
-## Texto para gravar (194 palavras, ~58 s)
-
-Skill, conector, token, projeto, modelo: em um minuto você entende todos.
-
-Dia doze dos trinta experimentos com Claude.
-
-Mexer com o Claude parece difícil quando alguém despeja esses nomes de uma vez. Só que cada um cabe numa frase.
-
-Projeto é uma pasta onde ficam seus arquivos e instruções, pra você não explicar tudo de novo.
-
-Skill é uma receita: você ensina o seu jeito uma vez e ele repete sempre.
-
-Conector liga o Claude nos seus apps, tipo agenda e e-mail.
-
-Token é o pedacinho de texto que ele lê. Conversa longa gasta mais, e o limite acaba antes.
-
-Modelo é o motor: tem um ligeiro e um caprichado, e você escolhe pra cada tarefa.
-
-Raciocínio é quanto ele pensa antes de responder. Demora um pouco, mas a resposta sai melhor.
-
-E o Claude Code é ele mexendo nos arquivos do seu computador, criando site e app pra você.
-
-Parece muita coisa, mas existe um jeito simples de aprender isso tudo e começar hoje.
-
-Juntei o básico de cada um num material gratuito, curto e direto.
-
-Quer aprender o Claude sem enrolação? Segue o cobaia, que aqui tem dica todo dia, curte e comenta GUIA que eu te mando agora.
-
-## Texto para a IA de voz (ElevenLabs)
-
-[excited] Skill, conector, token, projeto, modelo: em um minuto você entende todos.
-
-[excited] Dia doze dos trinta experimentos com Claude.
-
-Mexer com o Claude parece difícil quando alguém despeja esses nomes de uma vez. [curious] Só que cada um cabe numa frase.
-
-Projeto é uma pasta onde ficam seus arquivos e instruções, pra você não explicar tudo de novo.
-
-Skill é uma receita: você ensina o seu jeito uma vez e ele repete sempre.
-
-Conector liga o Claude nos seus apps, tipo agenda e e-mail.
-
-Token é o pedacinho de texto que ele lê. Conversa longa gasta mais, e o limite acaba antes.
-
-Modelo é o motor: tem um ligeiro e um caprichado, e você escolhe pra cada tarefa.
-
-Raciocínio é quanto ele pensa antes de responder. Demora um pouco, mas a resposta sai melhor.
-
-E o Claude Code é ele mexendo nos arquivos do seu computador, criando site e app pra você.
-
-[excited] Parece muita coisa, mas existe um jeito simples de aprender isso tudo e começar hoje.
-
-Juntei o básico de cada um num material gratuito, curto e direto.
-
-Quer aprender o Claude sem enrolação? Segue o cobaia, que aqui tem dica todo dia, curte e comenta GUIA que eu te mando agora.
-
-(Se preferir sem tags, é só apagar os colchetes: o texto é o mesmo.)
-
-## Como gravar
-
-- Os cinco nomes do gancho em metralhadora, quase sem respiro, e "em um minuto você entende todos" firme. Tudo em ~3 s.
-- Cada conceito no mesmo ritmo: o nome com peso, a explicação leve, como quem conta pra um amigo.
-- "Skill", "token" e "Code" em inglês.
-- "Parece muita coisa, mas..." é a virada: respiro antes, voz sobe.
-- Chamada final sem pressa, com "GUIA" destacado.
-
-## Passada de viralização
-
-- **0 a 3 s com valor:** cinco nomes que todo iniciante já ouviu e a promessa com prazo ("em um minuto"). A lista é o próprio gancho visual: um nome novo a cada ~0,5 s.
-- **Retenção por lista:** quem ouviu "skill, conector, token" quer saber o que é o próximo; cada conceito leva ~4 s, então a tela troca o tempo todo.
-- **Virada no fim:** "parece muita coisa, mas existe um jeito simples", que joga para o material.
-- **Do original:** promessa de prazo curto e "comenta a palavra que eu te mando o guia".
-
-## Onde estão os gatilhos
-
-- Lista de termos que a pessoa já ouviu e não entende (identificação).
-- Promessa com prazo: "em um minuto".
-- Uma frase por conceito: dá vontade de salvar.
-- Virada "parece muita coisa, mas..." levando ao material gratuito.
-- Seguir com motivo: "aqui tem dica todo dia".
-- Palavra para comentar com material prometido.
-
-## O que vai aparecer na tela
-
-| Fala | Na tela | De onde vem a peça | Transição e som |
-|---|---|---|---|
-| "Skill, conector, token, projeto, modelo" (0 a 2 s) | Cada nome bate na tela numa fonte diferente (Anton, serif itálico, Inter 900, mono, Anton), um em cima do lugar do outro em slime; a bola vermelha pula de palavra em palavra | motor (palavras grandes, slime) | drop no frame 0, tick_wood por nome |
-| "em um minuto você entende todos" (2 a 3 s) | Os cinco nomes se empilham numa lista; a bola vira um cronômetro 1:00 que bate com peso | nova | soco de zoom, sub_drop |
-| "Dia doze dos trinta experimentos com Claude" | Calendário com dias riscados, o 12 circulado à caneta; logo do Claude | base Dia 10 (calendário) | selo DIA 12/30 com pop |
-| "despeja esses nomes de uma vez" | Bonequinho minimalista soterrado por uma chuva de palavras (retângulos-palavra) | nova (bonequinho do Dia 9 como base) | vinheta que respira |
-| "cada um cabe numa frase" | As palavras se arrumam numa fila organizada, a bola vermelha na frente | nova | glass_chime |
-| "Projeto é uma pasta..." | Pasta flat abre; arquivos e uma folha de instruções entram com mola | nova | relay |
-| "Skill é uma receita" | Caderno de receita abre; a mesma receita se carimba três vezes, igual | nova | tink a cada carimbo |
-| "Conector liga o Claude nos seus apps" | Tomada/cabo: a bola vermelha faz zigue-zague e liga a logo do Claude a uma agenda e um envelope genéricos | motor (ligação animada, seção 5.0) | pluck_bend |
-| "Token é o pedacinho de texto" | Uma frase quebra em blocos (pedacinhos); a barra do limite vai esvaziando conforme a conversa cresce | nova | keyclick por bloco, power_down no limite |
-| "Modelo é o motor" | Dois motores flat lado a lado, um girando rápido e leve, o outro mais pesado e caprichado; o cursor escolhe | nova | tape_whirl |
-| "Raciocínio é quanto ele pensa" | Balão de pensamento com um relógio; quanto mais o ponteiro anda, mais certinhos verdes aparecem na resposta | nova | tick_wood + bloom |
-| "o Claude Code é ele mexendo nos arquivos" | Notebook; arquivos se montam e viram um site e um app de celular | nova | build na trilha |
-| "Parece muita coisa, mas existe um jeito simples" | Os sete nomes voam e entram num único livrinho/guia | nova | silêncio curto, tape stop, drop |
-| "Juntei o básico... material gratuito" | O guia abre com páginas passando; selo verde "grátis" | nova + verde (regra 14) | caixa |
-| Chamada final | Padrão: foto + @cobaia.dev, + vira ✓, coração, caixa digitando GUIA, card do guia, roxo e loop para o primeiro nome do frame 0 | motor (chamada final padrão) | cheio na trilha, roxo sem fala |
-
-## Pontos para o Luis confirmar
-
-- "Nível de verbalização" eu li como raciocínio (quanto ele pensa antes de responder). É isso?
-- Palavra **GUIA** está boa? O material seria um guia curto com uma página por conceito (no site, `cobaia-dev.vercel.app/guia`).
-- Ficou de fora: memória, Cowork e artifacts, para caber em 60 s. Quer trocar algum dos sete?
+- `audio-1737.mp3` (60,6 s, −18,1 LUFS): roteiro inteiro. `audio-1738.mp3` (3,7 s): "Segue o cobaia, curte e comenta CLAUDE que eu te mando o guia!".
+- Montagem (`fonte/voz.wav`): áudio inteiro até o fim de "Quer saber mais sobre o Claude?" (56,98 s), 0,22 s de silêncio e a frase corrigida. Nove pausas acima de 0,3 s encurtadas para 0,28 s e atempo 1,03 para o vídeo caber em 60 s (fala termina em 57,7 s; vídeo com 59,9 s).
+- Palavras com tempo pelo `align.py` (texto acima, números por extenso).
