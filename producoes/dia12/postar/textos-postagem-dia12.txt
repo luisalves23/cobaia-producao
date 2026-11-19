@@ -1,6 +1,6 @@
 @cobaia.dev · DIA 12/30 · palavra CLAUDE
 Postagem: hoje, 19/11
-Link para mandar a quem comentar: https://cobaia-dev.vercel.app/claude/  (página ainda não publicada: sai por PR no cobaia-site, só com o seu ok)
+Link para mandar a quem comentar: https://cobaia-dev.vercel.app/omniroute/
 
 ========================================
 INSTAGRAM (Reels)
@@ -42,14 +42,14 @@ Claude Code de graça com limite gigante #shorts
 
 Descrição:
 O OmniRoute liga o Claude Code a 352 provedores de IA e pula sozinho pro próximo quando a cota acaba.
-O guia com os três comandos está aqui: https://cobaia-dev.vercel.app/claude/
+O guia com os três comandos está aqui: https://cobaia-dev.vercel.app/omniroute/
 Inscreva-se: amanhã sai o Dia 13, e cada dia é um experimento novo com o Claude.
 
 #claudeai #claudecode #inteligenciaartificial
 
 ----------------------------------------
 Comentário para fixar (YouTube):
-O guia com os três comandos pra ligar o OmniRoute no Claude Code está aqui: https://cobaia-dev.vercel.app/claude/
+O guia com os três comandos pra ligar o OmniRoute no Claude Code está aqui: https://cobaia-dev.vercel.app/omniroute/
 Se inscreve pra não perder o Dia 13 amanhã, que esse eu testei antes de você 🧪
 
 ========================================
@@ -57,6 +57,6 @@ DM (para quem comentar CLAUDE)
 ========================================
 Aqui o guia do OmniRoute com o Claude Code, com os três comandos 👇
 
-https://cobaia-dev.vercel.app/claude/
+https://cobaia-dev.vercel.app/omniroute/
 
 Atalho de resposta salva: claude
