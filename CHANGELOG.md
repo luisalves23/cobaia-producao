@@ -2,6 +2,15 @@
 
 Entradas novas no topo. Formato: `## AAAA-MM-DD · conta · título`, o pedido do Luis e o que mudou. Nunca apague entradas.
 
+## 2026-11-19 · principal · Trilha dinâmica com fades, sem degraus
+
+Pedido do Luis: não gostou das três opções da trilha montanha-russa. Ficaram "cheias de degrau", trocando de música de uma vez e com o volume cortando de baixo para alto. Deveria ter fade-in e fade-out nas trocas. O Dia 12 fica com a música original. Nos próximos vídeos a trilha tem que ser dinâmica, mas com transições suaves.
+
+O que mudou:
+- `skill/SKILL.md`, seção 9: a regra virou "trilha dinâmica, mas suave" (crossfade de 1 a 2 s, rampas de volume e filtro de pelo menos 1 s, uma base que evolui, amostra de áudio antes de montar no vídeo).
+- `motor/LEIAME.md`: `trilha.py` marcado como experimental e reprovado.
+- `producoes/dia12/fonte/a12.py` voltou para a trilha original; `mapa-musica.md` registra a tentativa reprovada.
+
 ## 2026-11-19 · principal · Trilha montanha-russa
 
 Pedido do Luis: a música do Dia 12 estava boa, mas estática, "mais do mesmo", numa linha reta. Ele quer a trilha como uma montanha-russa, acompanhando a narrativa e o motion, e músicas mais eletrônicas. Pediu opções para ouvir. No mesmo dia: a etiqueta de $20 do gancho passou a ficar pendurada no ícone do Claude (só neste vídeo).

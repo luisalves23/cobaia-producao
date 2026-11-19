@@ -15,7 +15,7 @@ Trilha sintetizada no `a12.py`: electro em lá menor, 124 BPM, Am F C G (os Dias
 | cheio | 54,2 a 57,8 | drop na chamada final; fita parando antes do roxo |
 | roxo | 57,8 a 59,9 | pad e duas notas de vidro, bumbo na queda da bola |
 
-## Versão montanha-russa (19/11, pedido do Luis)
+## Tentativa montanha-russa (19/11, reprovada; o vídeo final ficou com a trilha original acima)
 
 A trilha acima ficou estática. Agora ela vem do `motor/trilha.py` com a narrativa no `a12.py`, em três estilos para o Luis escolher (`ESTILO=electro|dnb|futurebass`):
 - pico no gancho, parada de 0,15 s antes do "GIGANTE" e impacto nele;
@@ -25,3 +25,5 @@ A trilha acima ficou estática. Agora ela vem do `motor/trilha.py` com a narrati
 - meio-tempo no computador, sobe nas ferramentas, aperta na prensa (impacto no "comprime");
 - build no teste até o impacto do "9 vezes", tom sobe dois semitons nos comandos;
 - vale no "Quer saber mais", drop na chamada final (54,28), fita parando antes do roxo.
+
+O Luis não gostou: as mudanças eram em degrau, com trocas secas e volume pulando. O `a12.py` voltou para a trilha original.
