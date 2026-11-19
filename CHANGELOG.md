@@ -2,6 +2,60 @@
 
 Entradas novas no topo. Formato: `## AAAA-MM-DD · conta · título`, o pedido do Luis e o que mudou. Nunca apague entradas.
 
+## 2026-11-19 · principal · Dia 12: gancho mais viral
+
+Pedido do Luis: os 3 primeiros segundos ficaram fracos; reformular o que aparece para ficar mais viral. Ele aprovou o storyboard novo e pediu o vídeo fechado para postar.
+
+O que mudou:
+- `producoes/dia12/fonte/d12.html`: gancho v2. O Claude abre acorrentado com um cadeado de $200/mês (a bola vermelha é a fechadura), a bola vira um corte que estoura as correntes no "de graça", o cadeado cai e entra o $0 verde; soco de zoom no frame 0, no corte e no "GIGANTE" (barra engrossa e atravessa a tela com linhas de velocidade). Loop volta para o Claude acorrentado.
+- `producoes/dia12/fonte/a12.py`: sons do gancho (correntes, corte, elos estourando, cadeado, $0 carimbado).
+
+## 2026-11-19 · principal · Dia 12 com a trilha suave aprovada
+
+Pedido do Luis: aprovou o áudio com a trilha suave (mesma base, mudanças em rampa de 0,3 s no corte de cada cena) e pediu para trocar no vídeo. Salvou a skill atualizada na conta.
+
+O que mudou:
+- `producoes/dia12/fonte/a12.py`: agora é a versão suave (tabela `ST` por cena); vídeo final reencodado.
+- `producoes/dia12/mapa-musica.md`: versão final descrita.
+- `skill/SKILL.md`, seção 9: o `a12.py` do Dia 12 vira o modelo aprovado de trilha dinâmica.
+
+## 2026-11-19 · principal · Fade da trilha no tempo da transição
+
+Pedido do Luis: o fade-in e fade-out de 1 a 2 s está grande demais; tem que ser menor e combinar com o vídeo.
+
+O que mudou:
+- `skill/SKILL.md`, seção 9: o fade e as rampas de volume e filtro duram o mesmo que a transição da cena (0,2 a 0,5 s) e terminam junto com ela; crescendo longo só em build.
+
+## 2026-11-19 · principal · Trilha dinâmica com fades, sem degraus
+
+Pedido do Luis: não gostou das três opções da trilha montanha-russa. Ficaram "cheias de degrau", trocando de música de uma vez e com o volume cortando de baixo para alto. Deveria ter fade-in e fade-out nas trocas. O Dia 12 fica com a música original. Nos próximos vídeos a trilha tem que ser dinâmica, mas com transições suaves.
+
+O que mudou:
+- `skill/SKILL.md`, seção 9: a regra virou "trilha dinâmica, mas suave" (crossfade de 1 a 2 s, rampas de volume e filtro de pelo menos 1 s, uma base que evolui, amostra de áudio antes de montar no vídeo).
+- `motor/LEIAME.md`: `trilha.py` marcado como experimental e reprovado.
+- `producoes/dia12/fonte/a12.py` voltou para a trilha original; `mapa-musica.md` registra a tentativa reprovada.
+
+## 2026-11-19 · principal · Trilha montanha-russa
+
+Pedido do Luis: a música do Dia 12 estava boa, mas estática, "mais do mesmo", numa linha reta. Ele quer a trilha como uma montanha-russa, acompanhando a narrativa e o motion, e músicas mais eletrônicas. Pediu opções para ouvir. No mesmo dia: a etiqueta de $20 do gancho passou a ficar pendurada no ícone do Claude (só neste vídeo).
+
+O que mudou:
+- `motor/trilha.py` (novo): curva de energia, drops com riser, paradas, impactos, subida de tom; estilos electro, dnb e futurebass.
+- `skill/SKILL.md`, seção 9: regra da trilha montanha-russa reescrita (mínimo de drops, parada e vale; três estilos; mandar as três quando o Luis não escolher).
+- `motor/LEIAME.md`: linha do `trilha.py`.
+- `producoes/dia12/fonte/a12.py`: música trocada pelo `trilha.py` com a narrativa do Dia 12 (`ESTILO=` escolhe a versão); `d12.html`: etiqueta pendurada no ícone do Claude.
+
+## 2026-11-19 · principal · Dia 12 (OmniRoute) e peças novas no motor
+
+Pedido do Luis: o Dia 12 virou o roteiro dele sobre o OmniRoute (Claude Code de graça com limite gigante), com o áudio inteiro do ElevenLabs e a última frase regravada para a palavra-chave CLAUDE. Ele aprovou o storyboard e pediu para produzir.
+
+O que mudou:
+- `producoes/dia12/`: roteiro, voz montada (frase corrigida colada no fim; pausas acima de 0,3 s encurtadas e atempo 1,03 para caber em 60 s), palavras grandes, corrente, mapa da música, cenas, trilha electro 124 BPM em lá menor, capa e textos do post. Os roteiros que o Luis descartou ficaram em `producoes/dia12/roteiros-descartados/`.
+- `motor/icons.js`: logo do GitHub (`GITHUB_PATH`, octicon mark-github).
+- `motor/folha.py`: rótulo dos quadros nomeados `tNNN.NN` (o `storyboard.cjs` grava assim) deixou de quebrar a folha.
+- `capas/capas.html`: capa do Dia 12.
+- `CLAUDE.md`: Dia 12 na tabela do que já foi feito.
+
 ## 2026-11-19 · principal · Como se sabe o texto falado sem whisper
 
 Pergunta do Luis (conta secundária sem reconhecimento de voz): como a conta principal lê o conteúdo de um áudio anexado e o que fazer quando vem só o áudio.

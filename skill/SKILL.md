@@ -230,12 +230,18 @@ Referência atual: Dia 10 v3 (`referencia/dia10-v3/postar/cobaia-dia10-final-lev
 Resultado dos dois caminhos: a voz tratada e as palavras com tempo, que viram os blocos de palavras grandes em `fonte/dNNchunks.js` (formato no `motor/LEIAME.md`).
 
 **Música:**
-- Animada, instrumental, sem voz, ~120 a 130 BPM (EDM, tech house, electro pop). **Música do primeiro ao último quadro** (no Dia 5 v1 metade ficou sem música).
+- Animada, instrumental, sem voz, eletrônica com pegada (electro, drum & bass, future bass, tech house). **Música do primeiro ao último quadro** (no Dia 5 v1 metade ficou sem música).
 - **Não repita a faixa de nenhum dos três dias anteriores.** Dias 3, 4 e 5 usaram "Cat Walk": os Dias 9 e 10 usaram trilha sintetizada no `synth.py` (house lo-fi); o Dia 11 usou a faixa enviada pelo Luis. Faixa nova entra no `CREDITOS.txt` do dia.
-- **Trilha que acompanha a narrativa**, remontada compasso a compasso (lista `SEGS` no `aNN.py`, crossfade de 12 a 30 ms; ou sintetizada por trecho, como no `a10.py`): drop no gancho; breakdown no problema do dia a dia e build depois; compasso de pausa + tape stop antes da virada e drop na palavra-chave; build na digitação e cheio no resultado; breakdown + riser até o drop na prova; cheio na chamada final. Ganho por trecho (breakdown +4,5 dB, build +2,5 dB).
+- **Trilha que acompanha a narrativa**, remontada compasso a compasso (lista `SEGS` no `aNN.py`, crossfade de 12 a 30 ms; ou sintetizada por trecho, como no `a10.py`): drop no gancho; breakdown no problema do dia a dia e build depois; compasso de pausa + tape stop antes da virada e drop na palavra-chave; build na digitação e cheio no resultado; breakdown + riser até o drop na prova; cheio na chamada final. Ganho por trecho (breakdown +4,5 dB, build +2,5 dB), sempre em rampa, nunca em degrau (regra abaixo).
 - Volume base −11 dB, ducking pela voz (até −55%, ataque 20 ms, release 280 ms), −20 dB em silêncio dramático, −10 dB em tensão. A voz fica ~17 dB acima. Nada abaixo de ~−40 dBFS (confira no relatório do `mix` do `synth.py`).
 
-**Trilha montanha-russa:** trechos de faixas diferentes montados por cena no `aNN.py`: groove no gancho, escuro e sem batida no problema, vazio antes da virada, drop na revelação, respiro na emoção, drop de novo na chamada final.
+**Trilha dinâmica, mas suave (pedidos do Luis em 19/11/2026):** a música não pode ficar estática, numa linha reta do começo ao fim. Ela acompanha a narrativa e o motion: sobe nas revelações, baixa no problema, cresce até a chamada final. **Mas toda mudança é gradual.** O Luis reprovou a primeira tentativa (`motor/trilha.py`, Dia 12) porque ficou "cheia de degrau": trocava de música de uma vez e o volume pulava de baixo para alto num corte seco.
+- Troca de trecho ou de instrumento: fade-out de um e fade-in do outro, nunca corte seco. **O fade combina com o vídeo:** dura o mesmo que a transição da cena (em geral 0,2 a 0,5 s, o tempo do voo da bola) e termina junto com ela. Fade longo (1 s ou mais) o Luis reprovou.
+- Volume e filtro mudam em rampa curta, colada na transição da cena (0,2 a 0,5 s), nunca em degrau seco. Crescendo longo só em build (riser até um drop).
+- Uma base musical só, que evolui (camadas entrando e saindo aos poucos, filtro abrindo e fechando). Não pular de uma música para outra.
+- Silêncio ou parada só com fade curto na entrada e na saída, e só em momento forte do roteiro.
+- **Modelo aprovado:** `producoes/dia12/fonte/a12.py` (tabela `ST`: estado das camadas, volume e filtro por cena, rampas de 0,3 s no corte, builds só antes de drop).
+- `motor/trilha.py` não está aprovado como está: antes de reusar, suavize as transições (rampas e crossfades) e mande uma amostra de áudio para o Luis ouvir antes de montar no vídeo.
 
 **Som do elemento vermelho:** squish na compressão, pluck no voo, pop com tink na abertura, **30% mais baixo que no Dia 10 v3** (×0,7, cerca de −3 dB).
 

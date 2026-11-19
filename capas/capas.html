@@ -118,7 +118,15 @@ const ILL={
   const x=540,y=CY+380;c.lineCap='round';[[260,OW],[180,OW],[100,RD]].forEach(([r,col],i)=>{c.strokeStyle=i<1?'rgba(242,238,230,.25)':col;c.lineWidth=42;c.beginPath();c.arc(x,y,r,Math.PI*1.25,Math.PI*1.75);c.stroke();});
   c.fillStyle=RD;c.beginPath();c.arc(x,y-8,30,0,7);c.fill();
   c.font=F.i(120);c.fillStyle=RD;c.textAlign='right';c.fillText('247',x+60,y+200);c.font=F.i(44);c.fillStyle=OW;c.textAlign='left';c.fillText('Mega',x+80,y+200);
-  c.fillStyle='rgba(242,238,230,.1)';rr(x-220,y+240,440,56,28);c.fill();c.font=F.m(26);c.fillStyle='rgba(242,238,230,.7)';c.textAlign='center';c.fillText('plano: 500 Mega',x,y+277);}
+  c.fillStyle='rgba(242,238,230,.1)';rr(x-220,y+240,440,56,28);c.fill();c.font=F.m(26);c.fillStyle='rgba(242,238,230,.7)';c.textAlign='center';c.fillText('plano: 500 Mega',x,y+277);},
+12(){card();// etiqueta $20 riscada vira $0 + barra de limite estourando
+  c.save();c.translate(540,CY+250);c.rotate(-.05);c.fillStyle=OW;c.beginPath();c.moveTo(-180,-120);c.lineTo(260,-120);c.arcTo(300,-120,300,-80,40);c.lineTo(300,80);c.arcTo(300,120,260,120,40);c.lineTo(-180,120);c.lineTo(-300,30);c.quadraticCurveTo(-312,0,-300,-30);c.closePath();c.fill();
+  c.fillStyle='rgba(12,12,12,.12)';c.beginPath();c.arc(-220,0,36,0,7);c.fill();c.fillStyle=RD;c.beginPath();c.arc(-220,0,24,0,7);c.fill();
+  c.font=F.i(80);c.fillStyle='rgba(12,12,12,.4)';c.textAlign='left';c.fillText('$20',-110,-20);c.strokeStyle=RD;c.lineWidth=10;c.lineCap='round';c.beginPath();c.moveTo(-120,-45);c.lineTo(20,-50);c.stroke();
+  c.font=F.i(130);c.fillStyle=GR;c.fillText('$0',60,90);c.restore();
+  const y=CY+540;c.fillStyle='rgba(242,238,230,.12)';rr(CX+60,y,CW-120,64,32);c.fill();c.fillStyle=OW;rr(CX+60,y,CW-60,64,32);c.fill();dot(CX+CW-40,y+32,26);
+  c.font=F.m(26);c.fillStyle='rgba(242,238,230,.6)';c.textAlign='left';c.fillText('LIMITE',CX+60,y-18);
+  c.font=F.mr(26);c.fillStyle='rgba(242,238,230,.55)';c.fillText('352 provedores · 1 bilhão de tokens/mês',CX+60,CY+665);}
 };
 const DAYS={
 1:{l1:[['ninguém','s']],l2:[['EDITOU','a'],['ESSE','a'],['VÍDEO','a',RD]],kw:null},
@@ -131,6 +139,7 @@ const DAYS={
 8:{l1:[['ressuscitei','s'],['um','s']],l2:[['TABLET','a',RD],['ABANDONADO','a']],kw:'TABLET'},
 9:{l1:[['o','s'],['Claude','s',OR],['virou','s']],l2:[['MEU','a'],['PROFESSOR','a',RD]],kw:'PROFESSOR'},
 10:{l1:[['quem tá','s'],['roubando','s',RD]],l2:[['SEU','a'],['WI-FI?','a',RD]],kw:'WIFI'},
+12:{l1:[['Claude Code','s',OR]],l2:[['DE','a'],['GRAÇA','a',GR]],kw:'CLAUDE'},
 };
 function capa(n){const D=DAYS[n];c.clearRect(0,0,1080,1920);bg();hud(n);dia(n);line(D.l1,560,104);line(D.l2,720,150);ILL[n]();foot(D.kw);}
 function destaque(kind){c.clearRect(0,0,1080,1920);bg();
