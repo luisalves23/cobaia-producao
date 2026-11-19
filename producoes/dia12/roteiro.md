@@ -1,6 +1,6 @@
 # Dia 12 · Claude Code sem terminal · CODE
 
-Status: **aguardando aprovação do Luis** (roteiro v1, 19/11/2026)
+Status: **aguardando aprovação do Luis** (roteiro v2 com a passada de viralização, 19/11/2026)
 
 ## Referência viral (de onde vem)
 
@@ -24,47 +24,43 @@ O que mudamos para o jeito do cobaia:
 
 Palavra: **CODE** → guia de instalação do Claude Code sem terminal, passo a passo (página do site).
 
-## Texto para gravar (194 palavras, ~58 s)
+## Texto para gravar (179 palavras, ~55 s)
 
-Essa tela preta assusta quem não programa, e é atrás dela que fica a parte mais forte do Claude.
+Usar o Claude Code sem essa tela preta leva cinco minutos.
 
 Dia doze dos trinta experimentos com Claude.
 
-Ela se chama Claude Code: o Claude mexendo nos arquivos do seu computador e entregando site, planilha ou app funcionando. Só que ele nasceu no terminal, e aquela tela espanta muita gente boa.
+É o Claude mexendo nos arquivos do seu computador: ele cria site, planilha ou app e entrega funcionando. Só que nasceu no terminal, e aquilo espanta muita gente boa.
 
-Em cinco minutos dá pra pular essa parte.
+Baixa o aplicativo do Claude no computador. Do lado do chat tem uma aba chamada Code. Clica, escolhe uma pasta pro seu projeto e pronto: é o mesmo Claude Code, numa janela comum.
 
-Baixa o aplicativo do Claude no computador. Do lado do chat tem uma aba chamada Code. Clica nela, escolhe uma pasta pro seu projeto e você já está dentro, numa janela comum.
+Conta o que você quer criar e ele vai montando os arquivos ali mesmo.
 
-Agora conta o que você quer criar. Ele vai montando os arquivos ali mesmo.
+Agora, o passo que quase ninguém faz: digita barra init.
 
-Quando sair a primeira versão, digita barra init. Ele lê tudo o que tem na pasta e escreve um arquivo de memória do projeto.
+Ele lê tudo o que tem na pasta e escreve um arquivo de memória do projeto. É o funcionário novo que, no primeiro dia, anda pela empresa anotando onde fica cada coisa. No dia seguinte, ninguém precisa explicar de novo.
 
-É o funcionário novo que, no primeiro dia, anda pela empresa anotando onde fica cada coisa. No dia seguinte, ninguém precisa explicar de novo.
-
-Você não abriu o terminal nenhuma vez. Só precisa do plano Pro.
+Você fala, ele constrói, e o terminal nem abriu. Só precisa do plano Pro.
 
 Quer saber mais sobre o Claude? Segue o cobaia, curte e comenta CODE que eu te mando o guia de instalação, passo a passo.
 
 ## Texto para a IA de voz (ElevenLabs)
 
-[curious] Essa tela preta assusta quem não programa, e é atrás dela que fica a parte mais forte do Claude.
+[excited] Usar o Claude Code sem essa tela preta leva cinco minutos.
 
-[excited] Dia doze dos trinta experimentos com Claude.
+Dia doze dos trinta experimentos com Claude.
 
-Ela se chama Claude Code: o Claude mexendo nos arquivos do seu computador e entregando site, planilha ou app funcionando. Só que ele nasceu no terminal, e aquela tela espanta muita gente boa.
+É o Claude mexendo nos arquivos do seu computador: ele cria site, planilha ou app e entrega funcionando. Só que nasceu no terminal, e aquilo espanta muita gente boa.
 
-[excited] Em cinco minutos dá pra pular essa parte.
+Baixa o aplicativo do Claude no computador. Do lado do chat tem uma aba chamada Code. Clica, escolhe uma pasta pro seu projeto e pronto: é o mesmo Claude Code, numa janela comum.
 
-Baixa o aplicativo do Claude no computador. Do lado do chat tem uma aba chamada Code. Clica nela, escolhe uma pasta pro seu projeto e você já está dentro, numa janela comum.
+Conta o que você quer criar e ele vai montando os arquivos ali mesmo.
 
-Agora conta o que você quer criar. Ele vai montando os arquivos ali mesmo.
+[curious] Agora, o passo que quase ninguém faz: digita barra init.
 
-Quando sair a primeira versão, digita barra init. Ele lê tudo o que tem na pasta e escreve um arquivo de memória do projeto.
+Ele lê tudo o que tem na pasta e escreve um arquivo de memória do projeto. É o funcionário novo que, no primeiro dia, anda pela empresa anotando onde fica cada coisa. No dia seguinte, ninguém precisa explicar de novo.
 
-[curious] É o funcionário novo que, no primeiro dia, anda pela empresa anotando onde fica cada coisa. No dia seguinte, ninguém precisa explicar de novo.
-
-[excited] Você não abriu o terminal nenhuma vez. Só precisa do plano Pro.
+[excited] Você fala, ele constrói, e o terminal nem abriu. Só precisa do plano Pro.
 
 Quer saber mais sobre o Claude? Segue o cobaia, curte e comenta CODE que eu te mando o guia de instalação, passo a passo.
 
@@ -72,44 +68,55 @@ Quer saber mais sobre o Claude? Segue o cobaia, curte e comenta CODE que eu te m
 
 ## Como gravar
 
-- "Essa tela preta" com peso, quase em segredo, e o resto da frase subindo: o gancho é a virada "atrás dela que fica a parte mais forte".
-- "Em cinco minutos dá pra pular essa parte" é a promessa: fala animada, com respiro antes.
+- O gancho inteiro em um fôlego só, em ~3 s, batendo em "cinco minutos".
+- Vinheta logo em seguida, sem pausa.
 - Passos (baixa, aba Code, pasta) em ritmo de instrução, rápido e seguro.
-- "barra init" devagar e claro, é a palavra que a pessoa vai digitar.
-- "Code" e "init" em inglês ("côud", "inít").
-- Chamada final sem pressa, com "CODE" destacado.
+- "o passo que quase ninguém faz" com respiro antes, como quem conta um segredo; "barra init" devagar e claro.
+- "Você fala, ele constrói" com sorriso na voz.
+- "Code" e "init" em inglês ("côud", "inít"). Chamada final sem pressa, com "CODE" destacado.
+
+## Passada de viralização (19/11)
+
+Pedido do Luis: gancho forte nos 3 primeiros segundos, entregar valor logo de cara, reter a atenção e trazer o melhor do original.
+
+- **0 a 3 s, valor já no gancho:** a primeira frase entrega a promessa inteira do vídeo original ("less than 5 minutes", "nobody wants to touch the terminal"): dá pra usar sem terminal e leva cinco minutos. São 11 palavras, cabem em ~3 s. A v1 gastava o gancho só na curiosidade ("atrás dela fica a parte mais forte").
+- **Problema antes da solução, em uma frase:** o que o Claude Code faz e por que assusta, logo depois da vinheta (no original, 2 s).
+- **Passos sem enrolação:** do original, um clique por batida. Cortei "Em cinco minutos dá pra pular essa parte", que repetia o gancho.
+- **Loop aberto no meio (~30 s):** "o passo que quase ninguém faz", padrão "por que ninguém ensina isso?" do banco de ganchos (2,5 mi somados), segura quem já aprendeu a instalar.
+- **Fechamento do original:** "just speak to it and it builds" virou "Você fala, ele constrói, e o terminal nem abriu", amarrando com o gancho.
+- **Densidade no gancho (tela):** uma coisa nova por segundo (tabela abaixo, linhas 0 a 3 s).
 
 ## Onde estão os gatilhos
 
-- 0 a 2 s: objeção conhecida (medo do terminal) + curiosidade ("atrás dela").
-- Promessa com prazo: "em cinco minutos".
+- 0 a 3 s: objeção conhecida (medo do terminal) resolvida com prazo ("cinco minutos").
 - Passo a passo que dá vontade de salvar (salvamento e compartilhamento).
+- Loop aberto no meio: "o passo que quase ninguém faz".
 - Conceito com substância: o `/init` e o arquivo de memória, com analogia.
-- Quebra da objeção no fim: "não abriu o terminal nenhuma vez".
+- Fechamento que volta ao gancho: "o terminal nem abriu".
 - Palavra para comentar com material prometido.
 
 ## O que vai aparecer na tela
 
 | Fala | Na tela | De onde vem a peça | Transição e som |
 |---|---|---|---|
-| "Essa tela preta assusta quem não programa" | Janela de terminal flat, cursor piscando; o cursor é o elemento vermelho; linhas abstratas (retângulos, nada legível) rolando rápido; a janela treme | nova (terminal abstrato) | drop no frame 0, glitch neon curto, sub_drop |
-| "atrás dela que fica a parte mais forte do Claude" | O terminal racha ao meio como porta e, atrás, a palavra "Claude" vira a logo laranja girando | motor (logo girando) | luz vazada na revelação, bloom |
+| "Usar o Claude Code" (0 a 1 s) | Terminal preto flat, cursor vermelho piscando (o elemento vermelho), linhas abstratas rolando; "Claude" vira a logo laranja girando | nova (terminal abstrato) + motor (logo) | drop no frame 0, glitch neon curto, sub_drop |
+| "sem essa tela preta" (1 a 2 s) | O terminal descasca como papel e cai; atrás, janela clara e arrumada do app | nova | tape_whirl, luz vazada |
+| "leva cinco minutos" (2 a 3 s) | O cursor vermelho vira um cronômetro 5:00 em Anton que bate com peso e começa a rolar | nova | soco de zoom, tick_wood |
 | "Dia doze dos trinta experimentos com Claude" | Calendário com dias riscados, o 12 circulado à caneta; logo do Claude | base Dia 10 (calendário) | selo DIA 12/30 com pop |
 | "Claude Code: mexendo nos arquivos do seu computador" | Pastas e arquivos flat abrindo em leque; a bola vermelha pula de um para o outro | nova | pluck por arquivo |
 | "site, planilha ou app funcionando" | Três telinhas montando rápido (site, planilha com gráfico, app de celular), uma por palavra | nova | tick_wood em cada |
-| "nasceu no terminal, e aquela tela espanta" | Volta o terminal; um bonequinho minimalista dá um passo para trás | nova (bonequinho do Dia 9 como base) | vinheta que respira, tensão |
-| "Em cinco minutos dá pra pular essa parte" | Cronômetro 5:00 em JetBrains Mono; o bonequinho pula por cima do terminal | nova | breakdown + riser, drop no "pular" |
+| "nasceu no terminal, e aquilo espanta" | Volta o terminal; um bonequinho minimalista dá um passo para trás | nova (bonequinho do Dia 9 como base) | vinheta que respira, tensão |
 | "Baixa o aplicativo do Claude no computador" | Notebook flat; o ícone do app desce com mola e encaixa no dock | nova | glass_chime |
 | "aba chamada Code. Clica nela" | Janela do app simulada (mockup genérico), abas Chat / Code; cursor branco clica em Code, zoom inclinado no clique | motor (cursor, zoom `foco()`) | keyclick |
 | "escolhe uma pasta pro seu projeto" | Seletor de pasta, a pasta "meu-projeto" é escolhida | nova | relay |
 | "numa janela comum" | Janela clara e arrumada ao lado do terminal, que encolhe e some | nova | power_down no terminal |
 | "conta o que você quer criar" | Pedido digitado no ritmo da fala (ex.: "um site pra minha confeitaria"), palavra-chave em vermelho | base Dia 10 (digitação) | keyclick no ritmo |
 | "vai montando os arquivos ali mesmo" | Arquivos surgindo numa lista; ao lado, o site da confeitaria se monta em blocos | nova | build na trilha, tink por arquivo |
-| "digita barra init" | "/init" gigante em JetBrains Mono, digitado; a bola vermelha vira o cursor | motor (palavras grandes, mono digitada) | silêncio curto e tape stop antes, drop no "init" |
+| "o passo que quase ninguém faz: digita barra init" | "/init" gigante em JetBrains Mono, digitado; a bola vermelha vira o cursor | motor (palavras grandes, mono digitada) | silêncio curto e tape stop antes, drop no "init" |
 | "escreve um arquivo de memória do projeto" | Uma folha "CLAUDE.md" se escreve sozinha com linhas abstratas (nada legível) | nova | glass_chime |
 | "funcionário novo... anotando onde fica cada coisa" | Mapa de escritório flat; bonequinho de crachá anda, a caderneta vai ganhando marcações em cada sala | nova | passos tick_wood |
 | "ninguém precisa explicar de novo" | Dia 2 no calendário; o bonequinho já vai direto à sala certa, certinho verde | motor (calendário) + nova | bloom, certinho |
-| "não abriu o terminal nenhuma vez" | O terminal aparece riscado num selo X ao lado (nunca por cima) | motor (selo X) | sub_drop |
+| "Você fala, ele constrói, e o terminal nem abriu" | Onda de voz vira blocos que montam o site; o terminal aparece fechado com selo X ao lado (nunca por cima) | motor (selo X) + nova | sub_drop |
 | "Só precisa do plano Pro" | Pílula "Pro" sobe com mola | nova | pluck |
 | Chamada final | Padrão: foto + @cobaia.dev, + vira ✓, coração, caixa digitando CODE, card "guia de instalação", roxo e loop para o terminal do frame 0 | motor (chamada final padrão) | cheio na trilha, roxo sem fala |
 
