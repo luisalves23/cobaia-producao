@@ -32,6 +32,21 @@ const CHUNKS=[{"f":"anton","t":0.44,"w":[["roubando",0.44,1]]}, ...]
 - `w`: palavras `[texto, tempo, destaque, fonte opcional]`. Destaque: 0 normal, 1 vermelho, 2 "Claude" (laranja, vira a logo), 3 verde (positivo).
 - Uma palavra ou frase curta por bloco; a fonte alterna entre blocos e pode mudar dentro da frase ("de 30" em Inter, "experimentos" em serif).
 
+### Como montar (não há script: os blocos são escritos à mão a partir das palavras com tempo)
+Feito assim no Dia 10 (66 blocos, conferir em `referencia/dia10-v3/fonte/d10chunks.js`):
+1. Pegue as palavras com tempo da voz (`align.json` ou `palavras.json`, seção 5 do `motor/voz/LEIAME.md`), com a grafia do roteiro aprovado.
+2. **Agrupe em blocos de 1 a 4 palavras** (no Dia 10: 16 de uma, 25 de duas, 18 de três, 7 de quatro), cortando nas unidades naturais da fala: "Isso tá" / "roubando" / "metade" / "do seu Wi-Fi". A palavra de impacto fica sozinha no bloco.
+3. **`t` do bloco = início da primeira palavra**; o tempo de cada palavra é o início dela (`s`).
+4. **Fonte por bloco**, alternando para nunca ficar igual por muito tempo (no Dia 10: 26 serif, 20 inter, 17 anton, 3 mono):
+   - `anton`: impacto, números e marcos ("Dia 10", "Um:", "Dois:", "operadora", "brigam", "pro ralo");
+   - `serif` (Instrument Serif itálico): emoção, ligação e pergunta ("mas eu", "nesse vídeo", "quase sempre", "a cereja do bolo");
+   - `inter` (900): frase neutra de ação ("do seu Wi-Fi", "mede a velocidade");
+   - `mono`: termo técnico ou de tela, digitado ("um prompt", "escondido", "testa de novo").
+5. **Duas fontes na mesma frase:** 4º campo na palavra (`["de",5.7,0,"inter"],["30",5.92,0,"inter"],["experimentos",6.28,1,"serif"]`).
+6. **Destaques:** `1` vermelho em no máximo uma ideia-chave por bloco (cerca de 1 bloco a cada 3); `2` só em "Claude" (e "Code" em "Claude Code"), que vira a logo; `3` verde só no que é positivo ("aprovar", "subir").
+7. **A chamada final não entra nos blocos:** entre `CTA0` e `RALO` as palavras ficam escondidas (`hideWords` no `dNN.html`) e a chamada tem a animação própria. O último bloco é a frase de fechamento antes do roxo.
+8. Confira no storyboard que cada bloco acende no tempo da fala.
+
 ## Verificar uma instalação nova
 ```bash
 cd referencia/dia10-v3/fonte

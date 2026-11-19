@@ -2,6 +2,16 @@
 
 Entradas novas no topo. Formato: `## AAAA-MM-DD · conta · título`, o pedido do Luis e o que mudou. Nunca apague entradas.
 
+## 2026-11-19 · principal · Fluxo real de áudio e montagem das palavras grandes
+
+Pedido do Luis (dúvidas da conta secundária): o áudio da fala sempre vem pronto dele (ElevenLabs com a voz clonada ou celular), anexado e junto com o texto aprovado; o Claude nunca gera voz e só pergunta se o arquivo não vier. Documentar a receita de tratamento, o volume de entrada do `a10.py`, como montar o `dNNchunks.js` e o plano B sem faster-whisper. Orientação dele: entregar o que já fazemos, sem mudar o processo.
+
+O que mudou:
+- `motor/voz/LEIAME.md` (novo): entrada, ElevenLabs (como chegou, sem corte, sem atempo; medidas do Dia 10: −18,4 LUFS, pico −0,9 dBFS, fala de 0,06 a 52,26 s), cadeia do `aNN.py` → `mix()` → `enc.sh`, volume de entrada, receita de celular com "corrigindo", entradas e saídas de `transcribe.py`, `align.py`, `cut.py` e `cut3.py`, e o plano B testado na voz do Dia 11.
+- `motor/LEIAME.md`: passo a passo de como os blocos do `dNNchunks.js` são escritos (agrupamento, fonte por bloco, destaques 1/2/3), tirado do Dia 10.
+- `skill/SKILL.md`: seção 1 (voz) e seção 9 (entrada e ElevenLabs), seção 10 item 2.
+- `CLAUDE.md`: etapas 3 e 4 do pipeline, "Como trabalhar com o Luis" e a ordem de leitura.
+
 ## 2026-11-19 · principal · Histórico de pedidos e protocolo de mudança
 
 Pedido do Luis: tudo o que ele pediu e mudou até hoje precisa estar no repositório, para a outra conta partir de onde a principal está, e ela precisa saber o que fazer quando receber um pedido de mudança.

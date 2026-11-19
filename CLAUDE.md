@@ -33,7 +33,7 @@ Se o pedido for só para um vídeo ("neste vídeo, faz assim"), aplique no víde
 ## Como trabalhar com o Luis
 
 - Português do Brasil, frases simples, resposta primeiro.
-- Um roteiro por vez, do próximo dia. Roteiro passa pela skill `humanizer` antes de ir para ele. Pergunte se a voz vai ser gravada por ele ou gerada na IA.
+- Um roteiro por vez, do próximo dia. Roteiro passa pela skill `humanizer` antes de ir para ele. O áudio da fala sempre vem pronto dele (ElevenLabs com a voz dele clonada ou celular), junto com o texto aprovado; você nunca gera voz e só pergunta se o arquivo não vier.
 - Nunca renderize sem roteiro e storyboard estático aprovados, a não ser que ele avise antes que vai estar ausente e quer receber pronto.
 - Ajustes de um vídeo: junte numa lista única antes de refazer.
 - Formato, ângulo, gancho e edição não se perguntam: quem decide é a pesquisa de referências virais.
@@ -46,7 +46,7 @@ Se o pedido for só para um vídeo ("neste vídeo, faz assim"), aplique no víde
 2. `skill/SKILL.md` inteira (regras, identidade, motion, roteiro, áudio, QA).
 3. `CHANGELOG.md` (o que mudou recentemente) e `skill/historico-pedidos.md` (todos os pedidos do Luis desde 01/11, para entender por que cada regra existe).
 4. `referencia/dia10-v3/`: assista `postar/cobaia-dia10-final-leve.mp4` e leia `fonte/d10.html`. É o padrão aprovado.
-5. `motor/LEIAME.md`.
+5. `motor/LEIAME.md` e `motor/voz/LEIAME.md`.
 6. Quando for roteirizar: `roteiro/banco-ganchos-virais.md` e `roteiro/plano-30-dias.md`.
 
 ## Instalação (uma vez por ambiente)
@@ -70,8 +70,8 @@ Voz → mapa da música → corrente do elemento vermelho → storyboard → ren
 | 0 | Sincronizar | `git pull`, ler o CHANGELOG | |
 | 1 | Roteiro | Gancho do banco com referência viral citada, vinheta "Dia N dos trinta experimentos com Claude" logo depois, até 60 s (170 a 195 palavras), humanizer, texto para gravar e texto para IA de voz. **Aprovação do Luis.** | `producoes/diaNN/roteiro.md` |
 | 2 | Pasta do dia | `bash motor/novo-dia.sh NN` | `producoes/diaNN/` |
-| 3 | Voz | Gravada: `motor/voz/transcribe.py` + `cut3.py` + tratamento (skill seção 9). IA ou sem whisper: `align.py` + `cut.py`. Corrigir a transcrição pelo roteiro. | `fonte/voz.mp3`, palavras com tempo |
-| 4 | Palavras grandes | Montar `fonte/dNNchunks.js` (formato no `motor/LEIAME.md`): uma palavra ou frase curta por bloco, fonte alternando, destaques 1/2/3 | `fonte/dNNchunks.js` |
+| 3 | Voz | O Luis manda o áudio pronto + o texto aprovado. Copie o upload para `fonte/voz.mp3` (ou `.wav`, ajustando `VOZ` no `aNN.py`). ElevenLabs: entra como chegou, palavras com tempo pelo `align.py`. Celular: `transcribe.py` (ou `align.py`) + `cut3.py`. Receita, volumes e plano B sem whisper: `motor/voz/LEIAME.md`. | `fonte/voz.*`, palavras com tempo |
+| 4 | Palavras grandes | Escrever à mão o `fonte/dNNchunks.js` a partir das palavras com tempo (passo a passo no `motor/LEIAME.md`): uma palavra ou frase curta por bloco, fonte alternando, destaques 1/2/3 | `fonte/dNNchunks.js` |
 | 5 | Mapa da música | Trilha sintetizada no `aNN.py` (como no Dia 10) ou faixa medida com `medir-musica.py` e remontada por trechos (como no Dia 11). Drop no gancho, respiro antes da virada, drop na revelação, cheio na chamada final. | `mapa-musica.md` |
 | 6 | Corrente do elemento vermelho | Tabela tempo · fala · "veio de → vira" · cena, batida por batida, até o loop | `corrente.md` |
 | 7 | Cenas | Reescrever as cenas do `fonte/dNN.html` (a base do Dia 10 já traz paleta, palavras, leque, bola vermelha, chamada final, roxo e loop) | `fonte/dNN.html` |

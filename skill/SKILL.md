@@ -29,7 +29,7 @@ Tudo o que se repete entre os vídeos mora no repositório privado `luisalves23/
 - **Exemplo da vida real (a régua do Luis):** o pão de queijo. Duas clientes querem o último pão de queijo; se as duas "compram" ao mesmo tempo, o estoque fica em −1, e por isso o banco de dados precisa de controle. Todo conceito ganha uma analogia assim: do dia a dia, visual, brasileira e fácil de lembrar.
 - Série atual: **"30 dias, 30 experimentos com Claude"**. Ensina sem cara de aula: nada de "curso chato" nem "30 aulas". O plano dos 30 dias fica no Doc da série "30 dias de Claude".
 - Formato: o Claude faz o vídeo inteiro (motion, legendas, música e efeitos). Toda tela do Claude é **simulada**, nunca gravação de tela.
-- **Voz: dois caminhos, o Luis escolhe por vídeo.** Todo roteiro sai pronto para os dois: o texto para ele gravar e o texto para a IA de voz (ElevenLabs). Pergunte qual vai usar quando o roteiro for aprovado.
+- **Voz: o Luis sempre manda o áudio pronto** (ElevenLabs com a voz dele clonada, ou gravação de celular), anexado na conversa, junto com o texto aprovado do roteiro. O Claude nunca gera nem clona voz. Todo roteiro sai pronto para os dois jeitos (texto para gravar e texto para a IA de voz). Com o arquivo em mãos, não pergunte "gravada ou IA"; só pergunte se o áudio não vier.
 - Mascote: rato de laboratório branco **de brinquedo**, com cara de impresso em 3D (4 cores de filamento), estilo miniatura de desenho animado antigo. O avatar do perfil é esse rato.
 - Nunca revelar que algum cenário foi gerado por IA.
 - Inspiração de ritmo: canal Sanji Chien (cortes ~3,7 s, ~190 palavras/min, zero silêncio vazio). Inspiração, nunca cópia.
@@ -212,7 +212,11 @@ Referência atual: Dia 10 v3 (`referencia/dia10-v3/postar/cobaia-dia10-final-lev
 
 ## 9. Áudio
 
-**Voz gravada pelo Luis:**
+**Entrada:** o arquivo do Luis (mp3 ou wav) e o texto aprovado. Trabalhe sempre numa cópia (`producoes/diaNN/fonte/voz.*`). Receita completa, medida nos Dias 9 a 11, em `motor/voz/LEIAME.md`.
+
+**Áudio do ElevenLabs (padrão dos Dias 9, 10 e 11):** entra no `aNN.py` como chegou: sem corte de silêncio, sem atempo e sem normalização antes. O `aNN.py` aplica highpass 80, EQ 3,5 kHz +1,5 dB e compressor −20 dB 2,5:1, o `mix()` iguala a voz pelo RMS e o `enc.sh` fecha em −14 LUFS. A voz começa no tempo 0 do vídeo. Palavras com tempo pelo `align.py` (texto aprovado + áudio).
+
+**Gravação de celular:**
 1. WAV 48 kHz. Transcrição com faster-whisper (`motor/voz/transcribe.py`: modelo small, cpu int8, `language="pt"`, tempos por palavra, `initial_prompt` com os termos do canal). Se o download do modelo for bloqueado na rede, use o alinhamento pelo texto (abaixo).
 2. Corte de silêncios (`motor/voz/cut3.py`): limiar relativo ao ruído (−32 dB quando o fundo está em ~−40 dB), janelas de 10 ms, junta falas com intervalo < 0,12 s, margens de 0,05 s antes e 0,09 s depois, fades de 8 ms. **O fim de cada frase vem do envelope de energia**, não do fim da palavra do whisper: sílabas finais fracas ("grá-tis", "impor-tam") somem com limiar alto. Não comprima pausas de vírgula em listas.
 3. Tratamento: `highpass=f=80, afftdn=nf=-30, equalizer 250 Hz −2 dB, equalizer 4 kHz +2 dB, acompressor thr −20 dB ratio 3, atempo (até ~1,18 em gravação limpa), loudnorm I=-16`.
@@ -245,7 +249,7 @@ Resultado dos dois caminhos: a voz tratada e as palavras com tempo, que viram os
 
 O passo a passo com comandos está no `CLAUDE.md`. Resumo:
 1. `git pull` e leitura do `CHANGELOG.md`.
-2. Roteiro aprovado (seção 8); o Luis escolhe a voz e grava (ou gera na IA de voz).
+2. Roteiro aprovado (seção 8); o Luis manda o áudio pronto (ElevenLabs ou celular) com o texto aprovado.
 3. `bash motor/novo-dia.sh NN` → `producoes/diaNN/` (fonte, postar e CREDITOS).
 4. **Voz** (seção 9) → palavras com tempo → `fonte/dNNchunks.js` (palavras grandes: fonte por bloco, palavra-chave 1 = vermelho, 2 = "Claude" laranja, 3 = verde).
 5. **Mapa da música:** medir a faixa (ou planejar a sintetizada) e escrever o mapa de trechos contra a fala (`mapa-musica.md`, modelo no Dia 11).
