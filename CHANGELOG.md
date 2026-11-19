@@ -2,6 +2,16 @@
 
 Entradas novas no topo. Formato: `## AAAA-MM-DD · conta · título`, o pedido do Luis e o que mudou. Nunca apague entradas.
 
+## 2026-11-19 · principal · Trilha montanha-russa
+
+Pedido do Luis: a música do Dia 12 estava boa, mas estática, "mais do mesmo", numa linha reta. Ele quer a trilha como uma montanha-russa, acompanhando a narrativa e o motion, e músicas mais eletrônicas. Pediu opções para ouvir. No mesmo dia: a etiqueta de $20 do gancho passou a ficar pendurada no ícone do Claude (só neste vídeo).
+
+O que mudou:
+- `motor/trilha.py` (novo): curva de energia, drops com riser, paradas, impactos, subida de tom; estilos electro, dnb e futurebass.
+- `skill/SKILL.md`, seção 9: regra da trilha montanha-russa reescrita (mínimo de drops, parada e vale; três estilos; mandar as três quando o Luis não escolher).
+- `motor/LEIAME.md`: linha do `trilha.py`.
+- `producoes/dia12/fonte/a12.py`: música trocada pelo `trilha.py` com a narrativa do Dia 12 (`ESTILO=` escolhe a versão); `d12.html`: etiqueta pendurada no ícone do Claude.
+
 ## 2026-11-19 · principal · Dia 12 (OmniRoute) e peças novas no motor
 
 Pedido do Luis: o Dia 12 virou o roteiro dele sobre o OmniRoute (Claude Code de graça com limite gigante), com o áudio inteiro do ElevenLabs e a última frase regravada para a palavra-chave CLAUDE. Ele aprovou o storyboard e pediu para produzir.

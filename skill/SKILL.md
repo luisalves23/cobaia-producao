@@ -230,12 +230,15 @@ Referência atual: Dia 10 v3 (`referencia/dia10-v3/postar/cobaia-dia10-final-lev
 Resultado dos dois caminhos: a voz tratada e as palavras com tempo, que viram os blocos de palavras grandes em `fonte/dNNchunks.js` (formato no `motor/LEIAME.md`).
 
 **Música:**
-- Animada, instrumental, sem voz, ~120 a 130 BPM (EDM, tech house, electro pop). **Música do primeiro ao último quadro** (no Dia 5 v1 metade ficou sem música).
+- Animada, instrumental, sem voz, eletrônica com pegada (electro, drum & bass, future bass, tech house). **Música do primeiro ao último quadro** (no Dia 5 v1 metade ficou sem música).
 - **Não repita a faixa de nenhum dos três dias anteriores.** Dias 3, 4 e 5 usaram "Cat Walk": os Dias 9 e 10 usaram trilha sintetizada no `synth.py` (house lo-fi); o Dia 11 usou a faixa enviada pelo Luis. Faixa nova entra no `CREDITOS.txt` do dia.
 - **Trilha que acompanha a narrativa**, remontada compasso a compasso (lista `SEGS` no `aNN.py`, crossfade de 12 a 30 ms; ou sintetizada por trecho, como no `a10.py`): drop no gancho; breakdown no problema do dia a dia e build depois; compasso de pausa + tape stop antes da virada e drop na palavra-chave; build na digitação e cheio no resultado; breakdown + riser até o drop na prova; cheio na chamada final. Ganho por trecho (breakdown +4,5 dB, build +2,5 dB).
 - Volume base −11 dB, ducking pela voz (até −55%, ataque 20 ms, release 280 ms), −20 dB em silêncio dramático, −10 dB em tensão. A voz fica ~17 dB acima. Nada abaixo de ~−40 dBFS (confira no relatório do `mix` do `synth.py`).
 
-**Trilha montanha-russa:** trechos de faixas diferentes montados por cena no `aNN.py`: groove no gancho, escuro e sem batida no problema, vazio antes da virada, drop na revelação, respiro na emoção, drop de novo na chamada final.
+**Trilha montanha-russa (pedido do Luis em 19/11/2026):** a música nunca fica numa linha reta. Ela acompanha a narrativa e o motion cena a cena: sobe, cai, para, explode. Música que só "existe" no fundo, com o mesmo groove e o mesmo volume do começo ao fim, não serve, mesmo que seja boa.
+- Use `motor/trilha.py`: escreva no `aNN.py` a curva de energia do roteiro (um ponto por cena e por palavra forte), os drops (riser que termina no corte, buraco de 0,14 s e impacto), as paradas (silêncio no "acabou", no "mas"), os impactos (números e revelações) e a subida de tom no último terço. O motor liga e desliga camadas, abre e fecha o filtro e muda o volume em até 14 dB entre vale e pico.
+- Pelo menos 3 drops, 1 parada de verdade e 1 vale fundo por vídeo. Picos nas revelações e na chamada final; vales no problema e antes da virada.
+- Estilos eletrônicos com mais pegada: `electro` (126 BPM), `dnb` (drum & bass, 172), `futurebass` (150, meio-tempo com 808 e acordes em wobble). Quando o Luis não escolher, mande as três no vídeo para ele ouvir e escolher.
 
 **Som do elemento vermelho:** squish na compressão, pluck no voo, pop com tink na abertura, **30% mais baixo que no Dia 10 v3** (×0,7, cerca de −3 dB).
 

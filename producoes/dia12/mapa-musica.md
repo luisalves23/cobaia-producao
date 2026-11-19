@@ -14,3 +14,14 @@ Trilha sintetizada no `a12.py`: electro em lá menor, 124 BPM, Am F C G (os Dias
 | pausa | 52,8 a 54,2 | sem batida, riser até a chamada |
 | cheio | 54,2 a 57,8 | drop na chamada final; fita parando antes do roxo |
 | roxo | 57,8 a 59,9 | pad e duas notas de vidro, bumbo na queda da bola |
+
+## Versão montanha-russa (19/11, pedido do Luis)
+
+A trilha acima ficou estática. Agora ela vem do `motor/trilha.py` com a narrativa no `a12.py`, em três estilos para o Luis escolher (`ESTILO=electro|dnb|futurebass`):
+- pico no gancho, parada de 0,15 s antes do "GIGANTE" e impacto nele;
+- vale fundo na vinheta, drop no GitHub (6,8);
+- sobe na estrela, drop nos 352 provedores (13,72), impacto no "1 bilhão";
+- cai quando a cota acaba e para de vez em 24,2 até o "ela pula", riser e drop no "o seu trabalho não para" (26,77);
+- meio-tempo no computador, sobe nas ferramentas, aperta na prensa (impacto no "comprime");
+- build no teste até o impacto do "9 vezes", tom sobe dois semitons nos comandos;
+- vale no "Quer saber mais", drop na chamada final (54,28), fita parando antes do roxo.

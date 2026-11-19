@@ -10,6 +10,7 @@ O que renderizou o Dia 10 v3 aprovado. Tudo é determinístico: o quadro `f` é 
 | `fonts.css` + `fonts/` | Inter 400/800/900, Anton, Instrument Serif (normal e itálico), JetBrains Mono 400/700, Permanent Marker, Dela Gothic One (OFL). |
 | `perfil.jpg` | Foto de perfil do canal (chamada final, capas, site). |
 | `synth.py` | Áudio sem samples: instrumentos (`kick`, `hat`, `shaker`, `snap`, `ks`, `pluck_bend`, `kalimba`, `pizz`, `glass`, `tink`, `pad`, `subdrop`, `swell`, `tapestop`), foley (`waterdrop`, `pencil`, `marble`, `splat`, `paperflutter`, `keyclick`, `ratchet`, `relay`, `clunk`, `crackle`, `card`), `reverb`, `follower` (ducking) e `mix(...)`. |
+| `trilha.py` | Trilha montanha-russa: `Narr(energia, drops, paradas, impactos, subida_tom, fim)` + `render(estilo, narr, dur)` com estilos `electro`, `dnb` e `futurebass`. Camadas, filtro e volume seguem a curva de energia; riser e caixa acelerando terminam no drop. Exemplo no `producoes/dia12/fonte/a12.py` (`ESTILO=dnb python3 a12.py`). |
 | `render.cjs` | Render completo num processo: `node render.cjs dNN.html frames`. |
 | `render-paralelo.cjs` | Render em fatias: `node render-paralelo.cjs dNN.html frames I N` (rode I = 0..N−1 ao mesmo tempo). |
 | `storyboard.cjs` | Quadros estáticos em tempos escolhidos: `node storyboard.cjs dNN.html sb 0.5 2.1 4.0 ...`. |

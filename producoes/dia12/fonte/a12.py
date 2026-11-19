@@ -10,48 +10,20 @@ raw = subprocess.run(['ffmpeg', '-v', 'error', '-i', VOZ, '-af', 'highpass=f=80,
                       '-ac', '1', '-ar', str(SR), '-f', 's16le', '-'], capture_output=True).stdout
 x = np.frombuffer(raw, np.int16).astype(np.float32) / 32768; voice = buf(TEND); voice[:min(len(x), len(voice))] = x[:len(voice)]
 CH = json.loads(open('d12chunks.js').read().split('=', 1)[1].strip().rstrip(';'))
-def sqbass(n, d=.3, cut=700):
-    t = tt(d); f = midi(n); s = np.sign(np.sin(2 * np.pi * f * t)) * .6 + .4 * np.sin(2 * np.pi * f / 2 * t); return lp((s * np.exp(-t / .16) * np.minimum(1, t / .003)).astype(np.float32), cut)
-def rim(): d = .06; t = tt(d); return (bp(noise(d), 1500, 4000) * np.exp(-t / .006) + .5 * np.sin(2 * np.pi * 820 * t) * np.exp(-t / .01)).astype(np.float32)
-# Am F C G (mais aceso que o Dia 10)
-prog = [[69, 72, 76, 79], [65, 69, 72, 76], [64, 67, 72, 76], [62, 67, 71, 74]]; roots = [33, 29, 36, 31]
-def sec(t):
-    if t < 4.1: return 'drop'
-    if t < 6.8: return 'vin'
-    if t < 22.9: return 'groove'
-    if t < 26.7: return 'dark'
-    if t < 37.6: return 'groove2'
-    if t < 45.5: return 'mid'
-    if t < 52.8: return 'build'
-    if t < 54.2: return 'pause'
-    return 'big'
-nb = int(PURP / BAR) + 1
-for bar in range(nb):
-    t0 = bar * BAR; ch = prog[bar % 4]; root = roots[bar % 4]; s = sec(t0 + .1)
-    cut = {'drop': 3500, 'vin': 900, 'groove': 2200, 'dark': 800, 'groove2': 2600, 'mid': 1800, 'build': 1400 + 2400 * (t0 - 45.5) / 7.3, 'pause': 700, 'big': 4200}[s]
-    add(mus, pad(ch, BAR, cut, .02, .25), t0, .5 if s != 'dark' else .7)
-    for k in range(4):
-        tb = t0 + k * BEAT
-        if tb >= PURP: break
-        if s in ('vin', 'pause'): continue
-        if s == 'dark' and k: continue
-        add(mus, kick(f0=115, punch=.8), tb, 1)
-        add(mus, hat(.05, .02), tb + BEAT / 2, .5)
-        if k in (1, 3): add(mus, snap(), tb, .55)
-    if s in ('vin', 'pause', 'dark'): continue
-    for k in range(16):
-        tb = t0 + k * BEAT / 4
-        if tb < PURP: add(mus, shaker(), tb, .18 if k % 2 else .08)
-    for k, off in enumerate([0, .5, 1.5, 2, 3, 3.5]):
-        if t0 + off * BEAT < PURP: add(mus, sqbass(root + (12 if k in (2, 5) else 0), cut=600 if s != 'big' else 1100), t0 + off * BEAT, .7)
-    if s in ('drop', 'groove2', 'big'):
-        for k in range(8): add(mus, pluck_bend(midi(ch[(k * 3) % 4] + 12), .3, 0, .12), t0 + k * BEAT / 2, .22)
-    if s == 'build':
-        for k in range(8): add(mus, kalimba(midi(ch[k % 4] + 12), .4) * .5, t0 + k * BEAT / 2, .3)
-add(mus, swell(1.4, 300, 7000), 52.85, .5)          # riser até o drop da chamada
-add(mus, swell(1.2, 300, 6000), 25.6, .35)          # sobe para o "não para"
-mus = reverb(mus, 1.0, .14)
-i1 = int(PURP * SR) - int(.5 * SR); i2 = int(PURP * SR); mus[i1:i2] = tapestop(mus[i1:i2].copy(), .5); mus[i2:] = 0
+# Trilha montanha-russa (motor/trilha.py): a energia sobe e desce com o roteiro, cena a cena.
+import os, sys; sys.path.insert(0, '../../../motor'); import trilha
+ESTILO = os.environ.get('ESTILO', 'electro')     # electro · dnb · futurebass
+NARR = trilha.Narr(
+    energia=[(0, .88), (3.3, .88), (3.35, 1), (4.05, 1), (4.1, .28), (6.75, .42), (6.8, .55), (10.4, .62), (10.45, .68), (13.6, .74), (13.72, .96),
+             (17.4, .92), (17.5, .8), (22.85, .84), (22.92, .42), (24.2, .25), (24.67, .35), (26.7, .6), (26.77, 1), (28.1, 1), (28.18, .48),
+             (31.95, .6), (32.05, .78), (37.55, .8), (37.64, .4), (38.58, .3), (40.1, .42), (40.18, .5), (44.2, .86), (44.26, 1), (45.45, .95),
+             (45.55, .58), (52.75, .88), (52.85, .15), (54.2, .25), (54.28, 1), (57.78, 1)],
+    drops=[6.8, 13.72, 26.77, 54.28],            # vinheta→GitHub, 352 provedores, "o seu trabalho não para", chamada final
+    paradas=[(3.2, .15), (24.2, .47)],           # respiro antes do "GIGANTE"; a cota "acaba" e a música para até o "ela pula"
+    impactos=[3.35, 20.99, 38.58, 44.26],        # GIGANTE, 1 bilhão, comprime, 9 vezes
+    subida_tom=45.55, fim=PURP)
+mus = trilha.render(ESTILO, NARR, TEND)
+if os.environ.get('MUS_OUT'): np.save(os.environ['MUS_OUT'], mus); raise SystemExit   # só a música, para medir
 add(mus, pad([57, 64, 69, 72], LOOP - PURP + .3, 900, .2, .6), PURP + .05, .35)
 add(mus, glass(midi(81), 1.4, .02) * .4, PURP + .02, 1); add(mus, glass(midi(88), 1.4, .02) * .4, PURP + .28, 1)
 add(mus, kick(.4, 120, 40, 1), LOOP + .2, .6)       # a bola cai na etiqueta e emenda no começo
@@ -117,5 +89,5 @@ for i in range(len(HS) - 1):
 for tl in (0.94, 6.24, 14.48, 50.96, 53.73, 56.29): add(sfx, swell(.3, 1500, 8000) * .6, tl + .05, .3); add(sfx, glass(midi(90), .9, .01) * .3, tl + .3, .6)
 sfx = reverb(sfx, .5, .1)
 synth.DROP = 54.28
-mix(mus, sfx, voice, 'd12.wav', duck=.5, music_db=-6, sfx_db=-7, post=1.15, comp=.25, report=False)
+mix(mus, sfx, voice, os.environ.get('SAIDA', 'd12.wav'), duck=.5, music_db=-6, sfx_db=-7, post=1.15, comp=.25, report=False)
 print('ok', TEND)
