@@ -14,11 +14,37 @@ Este repositório é a fonte única de como o @cobaia.dev produz vídeos hoje. Q
 
 Prioridade em caso de conflito: o que o Luis disser na conversa, depois `skill/SKILL.md`, depois este arquivo, depois o resto.
 
+## Quando o Luis pedir uma mudança
+
+Vale para qualquer pedido que altere o jeito de produzir (visual, roteiro, áudio, processo, regra), mesmo dito de passagem durante um vídeo.
+1. `git pull`.
+2. Aplique no vídeo em andamento, se for o caso.
+3. Leve para o lugar certo, substituindo a regra antiga que conflite (nunca deixe duas regras contraditórias):
+   - regra, identidade, motion, roteiro, áudio ou post → `skill/SKILL.md`, na seção certa;
+   - peça ou função reaproveitável → `motor/` + linha no `motor/LEIAME.md`;
+   - passo do processo, setup ou sincronia → este `CLAUDE.md`;
+   - regra só de vídeo com rosto → `formatos/face-cam/`.
+4. Entrada no topo do `CHANGELOG.md` com as palavras do Luis resumidas fielmente e a lista do que mudou.
+5. Commit, `git pull --rebase`, push.
+6. Atualize a skill instalada na sua conta (`skill/COMO-INSTALAR.md`) e diga ao Luis, em uma linha, o que mudou e onde.
+
+Se o pedido for só para um vídeo ("neste vídeo, faz assim"), aplique no vídeo e não mude a regra. Na dúvida, pergunte se vale para os próximos.
+
+## Como trabalhar com o Luis
+
+- Português do Brasil, frases simples, resposta primeiro.
+- Um roteiro por vez, do próximo dia. Roteiro passa pela skill `humanizer` antes de ir para ele. Pergunte se a voz vai ser gravada por ele ou gerada na IA.
+- Nunca renderize sem roteiro e storyboard estático aprovados, a não ser que ele avise antes que vai estar ausente e quer receber pronto.
+- Ajustes de um vídeo: junte numa lista única antes de refazer.
+- Formato, ângulo, gancho e edição não se perguntam: quem decide é a pesquisa de referências virais.
+- PDF do material só quando ele pedir.
+- Publicar o site só com o ok escrito dele.
+
 ## Ordem de leitura
 
 1. Este arquivo.
 2. `skill/SKILL.md` inteira (regras, identidade, motion, roteiro, áudio, QA).
-3. `CHANGELOG.md` (o que mudou recentemente).
+3. `CHANGELOG.md` (o que mudou recentemente) e `skill/historico-pedidos.md` (todos os pedidos do Luis desde 01/11, para entender por que cada regra existe).
 4. `referencia/dia10-v3/`: assista `postar/cobaia-dia10-final-leve.mp4` e leia `fonte/d10.html`. É o padrão aprovado.
 5. `motor/LEIAME.md`.
 6. Quando for roteirizar: `roteiro/banco-ganchos-virais.md` e `roteiro/plano-30-dias.md`.
@@ -99,7 +125,7 @@ Mantenha esta tabela atualizada a cada vídeo novo.
 
 | Pasta | O que é |
 |---|---|
-| `skill/` | Skill `cobaia-dev-videos` e como instalar |
+| `skill/` | Skill `cobaia-dev-videos`, como instalar e o histórico de pedidos do Luis |
 | `motor/` | Código que renderiza: animação, áudio, fontes, ícones, render, encode, voz |
 | `referencia/` | Dia 10 v3 (padrão) e Dia 9 |
 | `capas/` | Gerador das capas e destaques na identidade nova |

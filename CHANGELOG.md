@@ -2,6 +2,15 @@
 
 Entradas novas no topo. Formato: `## AAAA-MM-DD · conta · título`, o pedido do Luis e o que mudou. Nunca apague entradas.
 
+## 2026-11-19 · principal · Histórico de pedidos e protocolo de mudança
+
+Pedido do Luis: tudo o que ele pediu e mudou até hoje precisa estar no repositório, para a outra conta partir de onde a principal está, e ela precisa saber o que fazer quando receber um pedido de mudança.
+
+O que mudou:
+- `skill/historico-pedidos.md`: todos os pedidos desde 01/11, com o que foi substituído pela identidade nova.
+- `CLAUDE.md`: seções "Quando o Luis pedir uma mudança" e "Como trabalhar com o Luis"; histórico na ordem de leitura.
+- `PROMPT-NOVA-CONTA.md`: o prompt de entrada para uma conta nova.
+
 ## 2026-11-19 · principal · Criação do repositório
 
 Pedido do Luis: juntar tudo o que aprendemos e melhoramos na produção (identidade nova, skill, arquivos) num repositório privado, para que a conta secundária produza com o mesmo resultado e as duas contas sigam sincronizadas. Deixar de fora a identidade antiga; o Dia 11 (GTA VI) entra só como exemplo de troca de paleta; preparar espaço para vídeos com rosto.
