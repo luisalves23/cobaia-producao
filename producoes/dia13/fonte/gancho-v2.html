@@ -1,0 +1,170 @@
+<!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="fonts.css">
+<style>html,body{margin:0;background:#000}canvas{display:block}</style></head><body><canvas id="c"></canvas>
+<script src="lib.js"></script><script src="d13chunks.js"></script><script src="icons.js"></script>
+<script>
+// DIA 13 v2 — gancho: o carimbo de IA que quica
+const TEND = 3.3; window.NFRAMES = Math.round(TEND * 30);
+const BK = '#0C0C0C', OW = '#F2EEE6', RD = '#FF2D2D', GR = '#1D1D21', PU = '#0B0820', OR = '#D97757', GN = '#22C063';
+const CTA0 = 54.15, RALO = 56.95, PURP = 56.95, LOOP = 58.65;
+const OY = 620; const [CV, cc] = mk(1080, 1100), [TX, tc] = mk(1080, 520), [BL, bc] = mk(1080, 1920);
+const CLP = new Path2D(CLAUDE_PATH);
+let PHOTO = null; const photoP = new Promise(res => { const im = new Image(); im.onload = () => { PHOTO = im; res(); }; im.onerror = res; im.src = 'perfil.jpg'; }); window.ready = Promise.all([window.ready, photoP]);
+const sp = (t, t0, f = 2.4, z = .45) => spring(t - t0, f, z), ap = (t, t0, d = .15) => clamp((t - t0) / d);
+// ---------- palette flips ----------
+const FL = [[0, 'B'], [2.45, 'R'], [3.0, 'B']];
+const MODES = { B: { bg: BK, fg: OW, acc: RD, card: GR, g: RD }, R: { bg: RD, fg: BK, acc: OW, card: BK, g: OW }, O: { bg: OW, fg: BK, acc: RD, card: '#E4DFD5', g: RD } };
+function pal(t) { let m = 'B'; FL.forEach(([tt, k]) => { if (t >= tt) m = k; }); return MODES[m]; }
+const BEATL = 60 / 128; const beats = t => (t < CTA0 && !(t > 6.1 && t < 9.25)) ? Math.exp(-((t % BEATL) / .06)) : 0;
+// ---------- big words: per-word font, per-font entrance, slime morph ----------
+const FONTS = { inter: s => `900 ${s}px Inter`, serif: s => `italic ${s}px "Instrument Serif"`, anton: s => `${s}px Anton`, mono: s => `700 ${s}px "JetBrains Mono"` };
+const BASE = { inter: 150, serif: 200, anton: 190, mono: 130 };
+const wf = (ch, w) => w[3] || ch.f;
+let CUR = null, PEN = null, LOGO = null;
+function chunkScale(ch) { const sp_ = textW(tc, FONTS.inter(BASE.inter * .3), ' '); let tot = 0; ch.w.forEach(w => tot += textW(tc, FONTS[wf(ch, w)](BASE[wf(ch, w)]), w[0])); tot += sp_ / .3 * (ch.w.length - 1); return Math.min(1, 930 / tot); }
+function drawChunk(c, ch, alpha, t, P) {
+  if (!ch || alpha <= 0) return; const s0 = chunkScale(ch); c.save(); const gap = 46 * s0;
+  const ws = ch.w.map(w => textW(c, FONTS[wf(ch, w)](Math.floor(BASE[wf(ch, w)] * s0)), w[0])); const tot = ws.reduce((a, b) => a + b, 0) + gap * (ws.length - 1);
+  const s = 1 + .025 * beats(t); c.translate(540, 300); c.scale(s, s); let x = -tot / 2;
+  ch.w.forEach((w, i) => { const [str, tw, key] = w; const f = wf(ch, w); const on = t >= tw - .03; const k = sp(t, tw - .03, 3, .5);
+    c.save(); c.font = FONTS[f](Math.floor(BASE[f] * s0)); c.globalAlpha = alpha * (on ? 1 : .28);
+    c.fillStyle = key === 2 ? OR : key === 3 ? GN : key === 1 ? P.acc : P.fg; if (key === 2 && on) { c.shadowColor = OR; c.shadowBlur = 34; }
+    let txt = str; const cx = x + ws[i] / 2;
+    if (on && f === 'anton') { const sc = 1 + .3 * (1 - k); c.translate(cx, -40); c.scale(sc, sc); c.translate(-cx, 40); }
+    if (on && f === 'inter') c.translate(0, 26 * (1 - k));
+    if (f === 'mono') { const n = on ? Math.min(str.length, Math.floor((t - tw + .03) / .045) + 1) : str.length; txt = str.slice(0, n); if (!on) c.globalAlpha = alpha * .22;
+      const heroCur = false; if (on && heroCur && alpha > .5) { const cw = c.measureText(txt).width, fz = Math.floor(BASE.mono * s0); CUR = [540 + (x + cw + 6 + fz * .25) * s, 590 + (-fz * .31) * s, fz * .5 * s, fz * .82 * s]; }
+      const nxt = ch.w[i + 1] && wf(ch, ch.w[i + 1]) === 'mono' && t >= ch.w[i + 1][1] - .03; if (!heroCur && !nxt && (on && n < str.length || (on && t - tw < .5 && Math.floor(t * 6) % 2 === 0))) { const cw = c.measureText(txt).width; c.fillStyle = RD; c.fillRect(x + cw + 6, -Math.floor(BASE.mono * s0) * .72, Math.floor(BASE.mono * s0) * .5, Math.floor(BASE.mono * s0) * .82); c.fillStyle = key === 1 ? P.acc : P.fg; } }
+    const mk_ = key === 2 && on && str === 'Claude' ? easeInOutCubic(ap(t, tw + .1, .28)) : 0; const fs = Math.floor(BASE[f] * s0);
+    if (mk_ > 0) { c.save(); c.globalAlpha = alpha * (1 - mk_); c.filter = `blur(${(8 * mk_).toFixed(1)}px)`; c.translate(cx, -fs * .33); c.rotate(mk_ * .9); c.scale(1 - .55 * mk_, 1 - .55 * mk_); c.translate(-cx, fs * .33); c.fillText(txt, x, 0); c.restore();
+      const lk = spring(t - tw - .14, 3, .5); c.save(); c.globalAlpha = alpha * clamp(mk_ * 1.6); c.shadowBlur = 0; claude(c, cx, -fs * .33, fs * 1.0 * Math.max(0, lk), (1 - clamp(lk)) * -3.2 + .15 * Math.sin(t * 2), 1.1); c.restore(); }
+    else if (key === 2 && str === 'Claude' && tw > 12 && on && t < tw + .2) { const r = ap(t, tw - .03, .16); c.save(); c.beginPath(); c.rect(x - 10, -fs * 1.2, (ws[i] + 20) * r, fs * 1.6); c.clip(); c.fillText(txt, x, 0); c.restore(); PEN = [540 + (x + ws[i] * r) * s, 590 - fs * .3 * s]; }
+    else c.fillText(txt, x, 0); if (mk_ > 0 && alpha > .3) LOGO = [540 + cx * s, 590 - fs * .33 * s]; c.restore(); x += ws[i] + gap; });
+  c.restore();
+}
+const hideWords = t => (t >= CTA0 - .02 && t < RALO + .12) || t >= PURP - .02;
+function words(t, P) {
+  if (hideWords(t)) return;
+  let i = 0; for (let q = 0; q < CHUNKS.length; q++) if (t >= CHUNKS[q].t - .08) i = q;
+  const cur = CHUNKS[i], prev = CHUNKS[i - 1]; const k = (i === 0 || (prev && prev.t < CTA0 && cur.t > RALO)) ? 1 : clamp((t - cur.t + .08) / .17);
+  tc.clearRect(0, 0, TX.width, TX.height);
+  if (k >= 1) { drawChunk(tc, cur, 1, t, P); ctx.drawImage(TX, 0, WY); return; }
+  const b = 15 * Math.sin(Math.PI * k) + 1; tc.filter = `blur(${b.toFixed(1)}px)`; drawChunk(tc, prev, 1 - k, t, P); drawChunk(tc, cur, k, t, P); tc.filter = 'none';
+  const im = tc.getImageData(0, 0, TX.width, TX.height), d = im.data; const hx = h => [1, 3, 5].map(j => parseInt(h.slice(j, j + 2), 16));
+  const cols = [hx(P.fg), hx(P.acc), hx(OR), hx(GN)];
+  for (let p = 0; p < d.length; p += 4) { const a = d[p + 3]; if (!a) continue; let best = cols[0], bd = 1e9; for (const cl of cols) { const dd = Math.abs(d[p] - cl[0]) + Math.abs(d[p + 1] - cl[1]) + Math.abs(d[p + 2] - cl[2]); if (dd < bd) { bd = dd; best = cl; } }
+    d[p] = best[0]; d[p + 1] = best[1]; d[p + 2] = best[2]; d[p + 3] = Math.max(0, Math.min(255, (a - 70) * 5)); }
+  tc.putImageData(im, 0, 0); ctx.drawImage(TX, 0, WY);
+}
+// ---------- shapes + fan contour (3 reds, opening at bottom-left) ----------
+const FAN = ['#FF2D2D', '#D23A3F', '#8C2429'];
+const circPts = (x, y, r, n = 120) => [...Array(n)].map((_, i) => [x + r * Math.cos(i / n * 6.2832), y + r * Math.sin(i / n * 6.2832)]);
+const rrPts = (cx, cy, w, h, r) => { r = Math.min(r, w / 2, h / 2); const L = cx - w / 2, R = cx + w / 2, T = cy - h / 2, B = cy + h / 2, P = [[cx, T]];
+  const arc = (ox, oy, a0) => { for (let j = 0; j <= 12; j++) { const a = a0 + Math.PI / 2 * j / 12; P.push([ox + r * Math.cos(a), oy + r * Math.sin(a)]); } };
+  P.push([R - r, T]); arc(R - r, T + r, -Math.PI / 2); P.push([R, B - r]); arc(R - r, B - r, 0); P.push([L + r, B]); arc(L + r, B - r, Math.PI / 2); P.push([L, T + r]); arc(L + r, T + r, Math.PI); return P; };
+const FANC = new Map();
+function fanPts(pts) { const key = pts; if (FANC.has(key)) return FANC.get(key); let bi = 0, bv = 1e9; pts.forEach((p, i) => { const v = p[0] - p[1]; if (v < bv) { bv = v; bi = i; } }); const r = pts.slice(bi).concat(pts.slice(0, bi)); r.push(r[0]); const o = resample(r, 220); FANC.set(key, o); return o; }
+function fan(c, pts, t0, t, o = {}) {
+  const lt = t - t0; if (lt < 0 || lt > 1.3) return; const P = fanPts(pts); let cx = 0, cy = 0; P.forEach(p => { cx += p[0]; cy += p[1]; }); cx /= P.length; cy /= P.length;
+  const fade = 1 - clamp((lt - .8) / .35), base = c.globalAlpha;
+  for (let i = 2; i >= 0; i--) { const d = i * .07; const k = easeOutCubic(clamp((lt - d) / (.4 + i * .1))); if (k <= 0) continue;
+    const s = 1 + (i + 1) * .05 * (1 - spring(lt - d, 2.2, .5)); const n = Math.max(2, Math.floor(k * .985 * P.length));
+    c.save(); c.strokeStyle = o.light && i === 0 ? OW : FAN[i]; c.globalAlpha = base * fade; c.lineWidth = [8, 6, 5][i] * (o.w ?? 1); c.lineCap = 'round'; c.lineJoin = 'round'; c.beginPath();
+    for (let j = 0; j < n; j++) { const x = cx + (P[j][0] - cx) * s, y = cy + (P[j][1] - cy) * s; j ? c.lineTo(x, y) : c.moveTo(x, y); } c.stroke();
+    if (i === 0 && k < 1) { const q = P[n - 1]; c.fillStyle = FAN[0]; c.beginPath(); c.arc(cx + (q[0] - cx) * s, cy + (q[1] - cy) * s, 10, 0, 7); c.fill(); }
+    c.restore(); }
+}
+// ---------- helpers ----------
+function claude(c, x, y, size, rot = 0, glow = 1) { c.save(); c.translate(x, y); c.rotate(rot); const s = size / 24; c.scale(s, s); c.translate(-12, -12); c.fillStyle = OR; if (glow) { c.shadowColor = OR; c.shadowBlur = 30 * glow / s; } c.fill(CLP); c.shadowBlur = 0; c.fill(CLP); c.restore(); }
+function rollNum(c, v, x, y, font, col, nd, align = 'center') {
+  v = Math.max(0, v); c.save(); c.font = font; const dw = c.measureText('0').width, h = parseInt(font.match(/(\d+)px/)[1]) * 1.05;
+  let lead = true, digs = []; for (let p = nd - 1; p >= 0; p--) { const P10 = Math.pow(10, p); const dv = v / P10; const d0 = Math.floor(dv) % 10; let fr = p === 0 ? dv % 1 : clamp((v % P10) - (P10 - 1)); if (lead && p > 0 && v < P10 - 1 + 1e-6 && v < P10) { continue; } lead = false; digs.push([d0, fr]); }
+  const W = dw * digs.length; let x0 = align === 'center' ? x - W / 2 : align === 'right' ? x - W : x;
+  c.beginPath(); c.rect(x0 - 10, y - h * .82, W + 20, h); c.clip(); c.fillStyle = col;
+  digs.forEach(([d0, fr], i) => { c.fillText(String(d0), x0 + i * dw, y - fr * h); if (fr > .001) c.fillText(String((d0 + 1) % 10), x0 + i * dw, y + (1 - fr) * h); });
+  c.restore(); return W;
+}
+function badge(c, n, x, y, k, P) { if (k <= 0) return; c.save(); c.translate(x, y); c.scale(k, k); c.fillStyle = P.g; c.beginPath(); c.arc(0, 0, 56, 0, 7); c.fill(); c.fillStyle = P.bg === RD ? RD : OW; c.font = '72px Anton'; const w = c.measureText(n).width; c.fillText(n, -w / 2, 26); c.restore(); }
+function checkB(c, x, y, k, bg = GN, fg = OW, r = 30) { if (k <= 0) return; c.save(); c.translate(x, y); c.scale(k, k); c.fillStyle = bg; c.beginPath(); c.arc(0, 0, r, 0, 7); c.fill(); c.strokeStyle = fg; c.lineWidth = r * .24; c.lineCap = 'round'; c.lineJoin = 'round'; c.beginPath(); c.moveTo(-r * .42, 0); c.lineTo(-r * .1, r * .32); c.lineTo(r * .45, -r * .35); c.stroke(); c.restore(); }
+function bars(c, x, y, ws, col, h = 18, gap = 34) { ws.forEach((w, i) => { c.fillStyle = col; rr(c, x, y + i * gap, w, h, h / 2); c.fill(); }); }
+function mono(c, s, x, y, col, size = 26, w = 400) { c.font = `${w} ${size}px "JetBrains Mono"`; c.fillStyle = col; c.fillText(s, x, y); }
+function cursor(c, x, y, press = 0, col = OW) { c.save(); c.translate(x, y); const s = 1.5 * (1 - .15 * press); c.scale(s, s); c.fillStyle = col; c.strokeStyle = BK; c.lineWidth = 2.5; c.beginPath(); c.moveTo(0, 0); c.lineTo(0, 34); c.lineTo(9, 26); c.lineTo(16, 41); c.lineTo(22, 38); c.lineTo(15, 23); c.lineTo(26, 23); c.closePath(); c.fill(); c.stroke(); c.restore(); }
+function heart(c, x, y, s, fill, stroke) { c.save(); c.translate(x, y); c.scale(s, s); c.beginPath(); c.moveTo(0, 40); c.bezierCurveTo(-90, -20, -50, -100, 0, -55); c.bezierCurveTo(50, -100, 90, -20, 0, 40); if (fill) { c.fillStyle = fill; c.fill(); } if (stroke) { c.strokeStyle = stroke; c.lineWidth = 7 / s; c.stroke(); } c.restore(); }
+function ball(c, x, y, r, col, sq = 0, shY = null, shCol = 'rgba(0,0,0,.35)') { if (shY !== null) { const hgt = Math.max(0, shY - (y + r)); const s = 1 - clamp(hgt / 400) * .6; c.save(); c.fillStyle = shCol; c.globalAlpha *= .5 * s + .2; c.beginPath(); c.ellipse(x, shY, r * s * 1.1, r * .22 * s, 0, 0, 7); c.fill(); c.restore(); }
+  c.save(); c.translate(x, y + r * sq * .3); c.scale(1 + .35 * sq, 1 - .3 * sq); c.fillStyle = col; c.beginPath(); c.arc(0, 0, r, 0, 7); c.fill(); c.restore(); }
+function spray(c, x, y, r, col, amt, seed) { if (amt <= .05) return; const R_ = rng(seed); c.save(); c.fillStyle = col; for (let q = 0; q < 500 * amt; q++) { const a = R_() * 6.283, d = r * (1 + Math.pow(R_(), 2.2) * .6 * amt); c.globalAlpha = .5 * (1 - (d - r) / (r * .6)); c.fillRect(x + Math.cos(a) * d, y + Math.sin(a) * d, 2.2, 2.2); } c.restore(); }
+// Wi-Fi symbol: dot + 3 arcs. cut: right half offset {dx,dy,rot}; vis: arcs visible fraction (0..3)
+function wifi(c, x, y, sc, col, dotCol, o = {}) {
+  const arcs = (side) => { c.lineCap = 'round'; c.strokeStyle = col; c.lineWidth = 46 * sc; [95, 180, 265].forEach((r, i) => { const v = clamp((o.vis ?? 3) - i); if (v <= 0) return; const a0 = -Math.PI * .75, a1 = -Math.PI * .25; const m = (a0 + a1) / 2, hw = (a1 - a0) / 2 * v;
+      c.save(); if (o.pulse !== undefined) c.globalAlpha *= .55 + .45 * clamp(1 - Math.abs(((o.pulse * 2.2) % 1.4) - i * .3) * 2.5); c.beginPath(); c.arc(x, y, r * sc, m - hw, m + hw); c.stroke(); c.restore(); }); };
+  if (o.cut) { const { dx, dy, rot } = o.cut; c.save(); c.beginPath(); c.rect(0, -400, x, 2000); c.clip(); arcs(); c.restore();
+    c.save(); c.translate(x + dx, y + dy); c.rotate(rot); c.translate(-x, -y); c.beginPath(); c.rect(x, -400, 2000, 2000); c.clip(); arcs(); c.restore(); }
+  else arcs();
+  if (dotCol) { c.fillStyle = dotCol; c.beginPath(); c.arc(x, y, 34 * sc, 0, 7); c.fill(); }
+}
+const WY = 170; // palavras mais altas neste vídeo: o carimbo precisa de espaço
+// ---------- GANCHO v2: o carimbo de IA que quica ----------
+const imp = (t, t0, d = .18) => t < t0 ? 0 : Math.exp(-(t - t0) / d);
+const PG = { y: 1130, w: 520, h: 540 }; const SS = .78;
+const HITS = [0, .47, .94], TB = 2.45;
+// esteira de folhas: cada folha chega no centro, leva o carimbo e sai pela esquerda
+function pageX(i, t) { if (i === 3) return lerp(1500, 540, easeOutCubic(ap(t, 1.12, .32))) + 18 * Math.sin((t - 1.44) * 20) * imp(t, 1.44, .12);
+  const h = HITS[i]; const inn = i === 0 ? 1 : easeOutCubic(ap(t, h - .2, .16)); const out = easeInCubic(ap(t, h + .2, .2)); return lerp(1500, 540, inn) - 1050 * out; }
+const PAGE_ROWS = (() => { const R_ = rng(13); return [...Array(10)].map(() => .55 + .45 * R_()); })();
+function sheet(c, x, y, t, i, P, o = {}) {
+  const { w, h } = PG; const jig = HITS.concat([TB]).reduce((a, hh) => a + 10 * imp(t, hh, .07) * Math.sin((t - hh) * 70), 0);
+  c.save(); c.translate(x, y + jig * .4); c.rotate(-.035 + .02 * Math.sin(i * 2.1) + jig * .002);
+  c.save(); c.shadowColor = 'rgba(0,0,0,.45)'; c.shadowBlur = 50; c.shadowOffsetY = 22; c.fillStyle = OW; rr(c, -w / 2, -h / 2, w, h, 20); c.fill(); c.restore();
+  const m = o.m || 0; // 0 linhas de robô, 1 escrita humana
+  for (let r = 0; r < 9; r++) { const yy = -h / 2 + 62 + r * 52; const L0 = w - 110, L1 = (w - 110) * PAGE_ROWS[r]; const rv = o.rev === undefined ? 1 : clamp(o.rev * 10 - r);
+    // linha de robô (some de trás pra frente enquanto a humana é escrita por cima)
+    if (m === 0 || rv < 1) { c.fillStyle = 'rgba(12,12,12,.42)'; const keep = m === 0 ? 1 : 1 - rv; if (keep > 0) { rr(c, -w / 2 + 55 + L0 * (1 - keep), yy - 8, L0 * keep, 16, 3); c.fill(); } }
+    if (m > 0 && rv > 0) { c.strokeStyle = 'rgba(12,12,12,.62)'; c.lineWidth = 13; c.lineCap = 'round'; c.beginPath(); const len = L1 * rv; for (let q = 0; q <= 24; q++) { const v = q / 24; const px = -w / 2 + 55 + len * v, py = yy + 5 * noise1(v * 5 + r * 3.1 + t * .9, r + 2) + 3 * Math.sin(v * 9 + r); q ? c.lineTo(px, py) : c.moveTo(px, py); } c.stroke(); } }
+  if (o.mark) inkMark(c, 20, 70, o.mark, i);
+  c.restore();
+}
+// marca de tinta "IA" deixada pelo carimbo (preta, áspera, nunca vermelha: o vermelho é só o carimbo)
+const [MK, mkc] = mk(420, 220);
+function inkMark(c, x, y, k, seed) { if (k <= 0) return; mkc.clearRect(0, 0, 420, 220); mkc.save(); mkc.translate(210, 110); mkc.strokeStyle = BK; mkc.lineWidth = 12; rr(mkc, -190, -92, 380, 184, 22); mkc.stroke(); mkc.font = '150px Anton'; mkc.fillStyle = BK; const s = 'IA'; mkc.fillText(s, -mkc.measureText(s).width / 2 - 40, 58); mkc.font = '700 46px "JetBrains Mono"'; mkc.fillText('98%', 46, 50); mkc.restore();
+  const R_ = rng(seed * 31 + 7); mkc.globalCompositeOperation = 'destination-out'; for (let q = 0; q < 900; q++) { const r = Math.pow(R_(), 3) * 7 + .6; mkc.beginPath(); mkc.arc(R_() * 420, R_() * 220, r, 0, 7); mkc.fill(); } mkc.globalCompositeOperation = 'source-over';
+  c.save(); c.globalAlpha *= .9 * clamp(k * 3); c.translate(x, y); c.rotate(-.12 + .08 * Math.sin(seed * 3)); const s2 = 1 + .25 * (1 - clamp(k)); c.scale(s2 * .9, s2 * .9); c.drawImage(MK, -210, -110); c.restore(); }
+// o carimbo (o elemento vermelho): sobe, desce com tudo, amassa no impacto
+const UP = PG.y - PG.h / 2 - 50, DOWN = PG.y - 20;
+function stampState(t) {
+  if (t >= TB - .2) { // a batida final: sobe alto, desce com tudo, quica e sai girando
+    if (t < TB) { const u = easeInCubic(ap(t, TB - .2, .2)); return { x: 540, y: lerp(UP - 40, DOWN, u), rot: 0, sq: 0, v: u }; }
+    const lt = t - TB; const u = easeOutCubic(clamp(lt / .55)); const sq = .55 * Math.exp(-lt / .05) * Math.cos(lt * 60); return { x: 540 + 900 * u, y: DOWN - 520 * u + 360 * u * u, rot: 5.2 * u, sq: lt < .12 ? sq : 0, v: 0 }; }
+  let st = { x: 540, y: UP, rot: 0, sq: 0, v: 0 };
+  const lastH = HITS.filter(h => t >= h - .12).pop();
+  if (lastH !== undefined) { if (t < lastH) { const u = easeInCubic(ap(t, lastH - .12, .12)); st.y = lerp(UP, DOWN, u); st.v = u; } else { const lt = t - lastH; st.y = lerp(DOWN, UP, spring(lt - .04, 2.6, .55)); st.sq = .4 * Math.exp(-lt / .045); } }
+  if (t > 1.2 && t < TB - .2) { const w = ap(t, 1.62, .5); st.y = UP - 40 * easeInOutCubic(w) + 8 * Math.sin(t * 9); st.rot = .06 * Math.sin(t * 7) * w; } // espera, mira e prepara
+  return st; }
+function drawStamp(c, s, col, dark) { c.save(); c.translate(s.x, s.y); c.rotate(s.rot); c.scale(SS, SS); c.scale(1 + .4 * s.sq, 1 - .32 * s.sq);
+  c.fillStyle = col; c.beginPath(); c.ellipse(0, -250, 88, 64, 0, 0, 7); c.fill(); rr(c, -40, -220, 80, 130, 18); c.fill(); rr(c, -180, -100, 360, 72, 20); c.fill();
+  c.fillStyle = dark; rr(c, -170, -36, 340, 36, 10); c.fill(); c.fillStyle = 'rgba(255,255,255,.22)'; c.beginPath(); c.ellipse(-28, -272, 30, 16, -.4, 0, 7); c.fill(); rr(c, -160, -92, 120, 14, 7); c.fill();
+  c.restore(); }
+function splat(c, t, h, seed) { const lt = t - h; if (lt < 0 || lt > .4) return; const R_ = rng(seed); c.save(); c.fillStyle = BK; for (let q = 0; q < 26; q++) { const a = Math.PI * (1.05 + .9 * R_()) + (R_() < .5 ? 0 : Math.PI * .0); const sd = R_() < .5 ? -1 : 1; const d = (220 + 260 * R_()) * easeOutCubic(lt / .3); const x = 540 + sd * (140 + d * .9 * Math.abs(Math.cos(a))), y = DOWN + 10 - d * .35 * R_() + 300 * lt * lt; c.globalAlpha = 1 - lt / .4; c.beginPath(); c.arc(x, y, (4 + 9 * R_()) * (1 - lt), 0, 7); c.fill(); } c.restore(); }
+function speed(c, t, s) { if (s.v <= .05 || s.v >= 1) return; c.save(); c.strokeStyle = 'rgba(242,238,230,.35)'; c.lineWidth = 5; c.lineCap = 'round'; for (let q = 0; q < 6; q++) { const x = 540 - 150 + q * 60; c.beginPath(); c.moveTo(x, s.y - 280); c.lineTo(x, s.y - 280 - 110 * s.v); c.stroke(); } c.restore(); }
+function scene(t, P) {
+  const c = ctx;
+  // anel de borracha no quique
+  if (t > TB && t < TB + .6) { const r = ap(t, TB, .5); c.save(); c.globalAlpha = (1 - r) * .9; c.strokeStyle = OW; c.lineWidth = 10 * (1 - r) + 2; c.beginPath(); c.ellipse(540, DOWN + 20, 200 + 500 * easeOutCubic(r), 60 + 160 * easeOutCubic(r), 0, 0, 7); c.stroke(); c.restore(); }
+  for (let i = 0; i < 3; i++) { const x = pageX(i, t); if (x < -400 || x > 1500) continue; sheet(c, x, PG.y, t, i, P, { mark: t >= HITS[i] ? 1 + 0 * ap(t, HITS[i], .1) : 0 }); }
+  if (t > 1.1) { const rv = ap(t, 2.15, .45); sheet(c, pageX(3, t), PG.y, t, 3, P, { m: rv > 0 ? 1 : 0, rev: rv }); }
+  const s = stampState(t); speed(c, t, s);
+  HITS.forEach((h, i) => splat(c, t, h, 40 + i));
+  const col = P.bg === RD ? OW : RD, dark = P.bg === RD ? '#D8D2C8' : '#B81F24'; drawStamp(c, s, col, dark);
+  // o quique: o carimbo bate e não pega; linhas de borracha
+  if (t > TB && t < TB + .35) { const r = ap(t, TB, .35); c.save(); c.strokeStyle = OW; c.lineCap = 'round'; c.lineWidth = 7; c.globalAlpha = 1 - r; [[-1, -.6], [1, -.6], [-1, .2], [1, .2]].forEach(([sx, a]) => { c.beginPath(); c.moveTo(540 + sx * (210 + 60 * r), DOWN - 40 + a * 60); c.lineTo(540 + sx * (280 + 120 * r), DOWN - 60 + a * 120); c.stroke(); }); c.restore(); }
+}
+function cam(t) { const z = 1 + .18 * imp(t, 0, .16) + .07 * imp(t, .47, .12) + .08 * imp(t, .94, .12) + .2 * imp(t, TB, .18); const sh = 30 * imp(t, 0, .1) + 14 * imp(t, .47, .08) + 16 * imp(t, .94, .08) + 34 * imp(t, TB, .12);
+  ctx.translate(540, 1000); ctx.scale(z, z); ctx.translate(-540 + sh * Math.sin(t * 90), -1000 + sh * .6 * Math.cos(t * 77)); }
+function hud(t, P) { ctx.save(); ctx.font = '400 24px "JetBrains Mono"'; ctx.fillStyle = P.fg; ctx.globalAlpha = .55; const fr = Math.floor(t * 30);
+  ctx.fillText('DIA 13 / 30', 90, 230); const tc_ = `00:${String(Math.floor(t)).padStart(2, '0')}:${String(fr % 30).padStart(2, '0')}`; ctx.fillText(tc_, 990 - ctx.measureText(tc_).width, 230); const s2 = '@cobaia.dev'; ctx.fillText(s2, 990 - ctx.measureText(s2).width, 264);
+  ctx.globalAlpha = .4; ctx.strokeStyle = P.fg; ctx.lineWidth = 2; [[70, 195, 1, 1], [1010, 195, -1, 1], [70, 1760, 1, -1], [1010, 1760, -1, -1]].forEach(([x, y, sx, sy]) => { ctx.beginPath(); ctx.moveTo(x + 40 * sx, y); ctx.lineTo(x, y); ctx.lineTo(x, y + 40 * sy); ctx.stroke(); }); ctx.restore(); }
+function draw(t) {
+  const P = pal(t); ctx.fillStyle = P.bg; ctx.fillRect(0, 0, W_, H_);
+  ctx.save(); cam(t); words(t, P); scene(t, P); ctx.restore();
+  const fl = .22 * imp(t, TB, .07); if (fl > .01) { ctx.save(); ctx.globalAlpha = fl; ctx.fillStyle = OW; ctx.fillRect(0, 0, 1080, 1920); ctx.restore(); }
+  hud(t, P); grain(ctx, t, .07);
+}
+</script></body></html>

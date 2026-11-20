@@ -2,6 +2,15 @@
 
 Entradas novas no topo. Formato: `## AAAA-MM-DD · conta · título`, o pedido do Luis e o que mudou. Nunca apague entradas.
 
+## 2026-11-20 · principal · Cada vídeo nasce do zero
+
+Pedido do Luis: o Dia 13 v1 não foi aprovado porque usou muitos elementos dos vídeos anteriores (gancho do robô virando rosto, velocímetro do 0%, música "batida"). "Todo vídeo que você fizer, eu quero que você esquece totalmente como é que você fez o vídeo anterior e cria algo totalmente novo, dinâmico e orgânico", com base no próprio roteiro. Também pediu fala mais enérgica no ElevenLabs e "IA" escrito de um jeito que o v3 não leia "A-I-E".
+
+O que mudou:
+- `skill/SKILL.md`, seção 2: regra 16 (cada vídeo nasce do zero: gancho, cenas, transições, música e efeitos novos a partir do roteiro; só a identidade se mantém). Seção 6: o Dia 10 v3 é referência de nível, não molde.
+- `skill/SKILL.md`, seção 8: texto para a IA de voz sai enérgico (frases curtas, exclamações, ênfase em maiúsculas) e escreve "IA" como "í-á" ou "inteligência artificial".
+- `producoes/dia13/fonte/gancho-v2.html`: gancho novo "o carimbo que quica" (em aprovação).
+
 ## 2026-11-20 · principal · Dia 13 (Anti-Robô) e trilha sempre para cima
 
 Pedido do Luis: fazer o vídeo do Dia 13 com o áudio e o roteiro dele (humanizador Anti-Robô, palavra HUMANO), com capa, legendas e comentários; os 3 primeiros segundos com motion caprichado para viralizar; trilha que avança junto com o texto, sempre com o clima lá em cima, nunca depressiva, descendo e subindo de forma suave e orgânica. Palavra do vídeo: orgânico. Pediu o vídeo pronto para postar.

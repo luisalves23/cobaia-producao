@@ -56,6 +56,10 @@ Tudo o que se repete entre os vídeos mora no repositório privado `luisalves23/
 13. **Vídeo em loop.** O último frame emenda no primeiro.
 14. **Verde só para o que é positivo:** acertou, certinhos do gabarito, grátis, R$ 0, dinheiro. "Nota máxima" e destaques de ênfase continuam vermelhos.
 15. **Laranja é do Claude.** O laranja (`--or`) só aparece no ícone do Claude, na palavra "Claude" e no brilho dele. Nenhuma cena pode ser dominada por laranja, amarelo, azul ou verde: o vídeo é preto, off-white e vermelho (com fundo vermelho permitido nas inversões de ritmo), e cores de terceiros ficam dentro das telas simuladas. Exceção: o roxo escuro da chamada final padrão (seção 7).
+16. **Cada vídeo nasce do zero (pedido do Luis em 20/11/2026).** Palavras dele: "Todo vídeo que você fizer, eu quero que você esquece totalmente como é que você fez o vídeo anterior e cria algo totalmente novo, dinâmico e orgânico." O Dia 13 v1 foi recusado por repetir elementos dos vídeos anteriores. Antes de desenhar as cenas, esqueça como os outros vídeos foram montados e invente tudo a partir do roteiro do dia:
+   - gancho, metáforas visuais, cenas, transições e movimentos de câmera novos, tirados do que a fala diz (ex.: "0% de IA" vira uma lupa varrendo o texto sem achar vestígio e o carimbo de aprovado, não um velocímetro);
+   - música em estilo novo a cada vídeo (nunca repetir gênero, timbre ou progressão do vídeo anterior; o Luis chamou a repetida de "batida") e efeitos novos;
+   - o que continua igual é só a identidade (paleta, fontes, regras desta seção, logo do Claude, chamada final e roxo do loop). O Dia 10 v3 é referência de nível de qualidade, não molde de cenas.
 
 ## 3. Identidade visual
 
@@ -165,7 +169,7 @@ Referência aprovada: teste "07 · Síntese" (`estudos/sintese-07/`, na versão 
 
 ## 6. Cenas aprovadas (referência de nível)
 
-Referência atual: Dia 10 v3 (`referencia/dia10-v3/postar/cobaia-dia10-final-leve.mp4`, fonte em `referencia/dia10-v3/fonte/`). Também na nova estética: Dia 9 (`referencia/dia09/`) e o teste "07 · Síntese" (`estudos/sintese-07/`). Reaproveite a ideia com elemento novo; nunca repita o exemplo ou o app de um vídeo anterior. Temas já usados nos Dias 1 a 11 estão no `CLAUDE.md`.
+Referência atual: Dia 10 v3 (`referencia/dia10-v3/postar/cobaia-dia10-final-leve.mp4`, fonte em `referencia/dia10-v3/fonte/`). Também na nova estética: Dia 9 (`referencia/dia09/`) e o teste "07 · Síntese" (`estudos/sintese-07/`). Ela mostra o nível de qualidade, não um molde: as cenas de cada vídeo são inventadas do zero a partir do roteiro (seção 2, regra 16), e nunca se repete exemplo, app, cena ou música de um vídeo anterior. Temas já usados nos Dias 1 a 11 estão no `CLAUDE.md`.
 
 ## 7. Chamada final e material de quem comenta
 
@@ -200,7 +204,7 @@ Referência atual: Dia 10 v3 (`referencia/dia10-v3/postar/cobaia-dia10-final-lev
 - **Motion junto com o roteiro:** cada frase tem um evento visual forte, com transição e som.
 - **Humanizer sempre:** todo roteiro e todo plano de roteiro passam pela skill `humanizer` antes de ir para o Luis.
 - **Um roteiro por vez**, do próximo dia. Quando o dia depende de um teste, o texto final só sai com o resultado na mão.
-- **Entrega do roteiro:** texto para o Luis gravar e texto para a IA de voz (sem tags, ou com tags animadas como [excited], [curious], [laughs]; nada de tom baixo astral), mais "Como gravar", "Onde estão os gatilhos" e "O que vai aparecer na tela" (Fala | Na tela | De onde vem a peça | Transição e som).
+- **Entrega do roteiro:** texto para o Luis gravar e texto para a IA de voz (sem tags, ou com tags animadas como [excited], [curious], [laughs]; nada de tom baixo astral; fala enérgica e para cima, com frases curtas, exclamações e as palavras de ênfase em MAIÚSCULAS, porque o Luis achou a voz calma demais no Dia 13; a sigla "IA" se escreve "í-á" ou "inteligência artificial", porque o ElevenLabs v3 lê "IA" como "A-I-E"), mais "Como gravar", "Onde estão os gatilhos" e "O que vai aparecer na tela" (Fala | Na tela | De onde vem a peça | Transição e som).
 - **Textos de postagem do dia num único pedido:** legendas das 3 redes e comentário fixado.
   - **Instagram:** 1ª linha é um segundo gancho com emoji; 3 a 5 linhas que ensinam; "comenta PALAVRA"; 5 hashtags (1 grande, 2 médias, 2 de nicho).
   - **TikTok:** gancho com a palavra que as pessoas buscam, 1 ou 2 linhas, "comenta PALAVRA", uma pergunta e 3 a 5 hashtags.
