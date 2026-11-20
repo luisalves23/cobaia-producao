@@ -2,6 +2,90 @@
 
 Entradas novas no topo. Formato: `## AAAA-MM-DD · conta · título`, o pedido do Luis e o que mudou. Nunca apague entradas.
 
+## 2026-11-20 · principal · Dia 13 refeito do zero
+
+Pedido do Luis: refazer o Dia 13 inteiro sem repetir os vídeos anteriores. Aprovou o gancho novo (chat com o Claude: arquivo anexado, pedido digitado, envio, o texto se transforma e passa pelo detector com sirene). Recusou a amostra afro-pop e pediu trilha mais enérgica e eletrônica. Pediu para manter a vinheta do calendário validada nos últimos vídeos.
+
+O que mudou:
+- `producoes/dia13/`: voz nova (a antiga ficou como `voz-v1.mp3`), `d13.html` novo (a v1 ficou em `d13-v1.html`), palavras novas, trilha `musica13.py` (drum and bass em ré maior a 172 BPM, drops no "ZERO", no "truque" e no segundo "ZERO"), `a13.py` novo, storyboard e texto enviado ao ElevenLabs.
+- Cenas novas: lupa que não acha vestígio e carimbo verde "APROVADO 0% IA", pedido no chat, mergulho de pesquisa profunda com gancho puxando os 5 padrões, fragmentadora, placas de proibido, carta do truque e tecla da barra, cartão do Anti-Robô com zíper, caixa com laço instalando, "/anti-robô", três folhas aprovadas, guia folheado; chamada final com segue, curte e comenta HUMANO.
+- `skill/SKILL.md`, seção 2, regra 16: a vinheta do calendário é padrão fixo e não muda.
+- `capas/capas.html`: ilustração do Dia 13 trocada (folha, lupa vermelha e carimbo aprovado).
+
+## 2026-11-20 · principal · Cada vídeo nasce do zero
+
+Pedido do Luis: o Dia 13 v1 não foi aprovado porque usou muitos elementos dos vídeos anteriores (gancho do robô virando rosto, velocímetro do 0%, música "batida"). "Todo vídeo que você fizer, eu quero que você esquece totalmente como é que você fez o vídeo anterior e cria algo totalmente novo, dinâmico e orgânico", com base no próprio roteiro. Também pediu fala mais enérgica no ElevenLabs e "IA" escrito de um jeito que o v3 não leia "A-I-E".
+
+O que mudou:
+- `skill/SKILL.md`, seção 2: regra 16 (cada vídeo nasce do zero: gancho, cenas, transições, música e efeitos novos a partir do roteiro; só a identidade se mantém). Seção 6: o Dia 10 v3 é referência de nível, não molde.
+- `skill/SKILL.md`, seção 8: texto para a IA de voz sai enérgico (frases curtas, exclamações, ênfase em maiúsculas) e escreve "IA" como "í-á" ou "inteligência artificial".
+- `producoes/dia13/fonte/gancho-v2.html`: gancho novo "o carimbo que quica" (em aprovação).
+
+## 2026-11-20 · principal · Dia 13 (Anti-Robô) e trilha sempre para cima
+
+Pedido do Luis: fazer o vídeo do Dia 13 com o áudio e o roteiro dele (humanizador Anti-Robô, palavra HUMANO), com capa, legendas e comentários; os 3 primeiros segundos com motion caprichado para viralizar; trilha que avança junto com o texto, sempre com o clima lá em cima, nunca depressiva, descendo e subindo de forma suave e orgânica. Palavra do vídeo: orgânico. Pediu o vídeo pronto para postar.
+
+O que mudou:
+- `producoes/dia13/`: roteiro, palavras grandes, corrente, mapa da música, cenas (gancho: robô quadrado imprimindo texto de robô, o pedido entra na boca dele e no "humanizar" ele derrete num rosto humano, as linhas rígidas viram ondas e sai um anel de onda), trilha future bass em fá maior a 128 BPM, capa e textos do post. Link do guia usado: https://cobaia-dev.vercel.app/humano/ (página ainda não estava no ar quando o vídeo foi feito).
+- `motor/synth.py`: instrumento `supersaw` (acorde de serras desafinadas); linha no `motor/LEIAME.md`.
+- `skill/SKILL.md`, seção 9: regra "clima sempre para cima".
+- `capas/capas.html`: capa do Dia 13.
+- `CLAUDE.md`: Dia 13 na tabela do que já foi feito.
+
+## 2026-11-19 · principal · Dia 12: gancho mais viral
+
+Pedido do Luis: os 3 primeiros segundos ficaram fracos; reformular o que aparece para ficar mais viral. Ele aprovou o storyboard novo e pediu o vídeo fechado para postar.
+
+O que mudou:
+- `producoes/dia12/fonte/d12.html`: gancho v2. O Claude abre acorrentado com um cadeado de $200/mês (a bola vermelha é a fechadura), a bola vira um corte que estoura as correntes no "de graça", o cadeado cai e entra o $0 verde; soco de zoom no frame 0, no corte e no "GIGANTE" (barra engrossa e atravessa a tela com linhas de velocidade). Loop volta para o Claude acorrentado.
+- `producoes/dia12/fonte/a12.py`: sons do gancho (correntes, corte, elos estourando, cadeado, $0 carimbado).
+
+## 2026-11-19 · principal · Dia 12 com a trilha suave aprovada
+
+Pedido do Luis: aprovou o áudio com a trilha suave (mesma base, mudanças em rampa de 0,3 s no corte de cada cena) e pediu para trocar no vídeo. Salvou a skill atualizada na conta.
+
+O que mudou:
+- `producoes/dia12/fonte/a12.py`: agora é a versão suave (tabela `ST` por cena); vídeo final reencodado.
+- `producoes/dia12/mapa-musica.md`: versão final descrita.
+- `skill/SKILL.md`, seção 9: o `a12.py` do Dia 12 vira o modelo aprovado de trilha dinâmica.
+
+## 2026-11-19 · principal · Fade da trilha no tempo da transição
+
+Pedido do Luis: o fade-in e fade-out de 1 a 2 s está grande demais; tem que ser menor e combinar com o vídeo.
+
+O que mudou:
+- `skill/SKILL.md`, seção 9: o fade e as rampas de volume e filtro duram o mesmo que a transição da cena (0,2 a 0,5 s) e terminam junto com ela; crescendo longo só em build.
+
+## 2026-11-19 · principal · Trilha dinâmica com fades, sem degraus
+
+Pedido do Luis: não gostou das três opções da trilha montanha-russa. Ficaram "cheias de degrau", trocando de música de uma vez e com o volume cortando de baixo para alto. Deveria ter fade-in e fade-out nas trocas. O Dia 12 fica com a música original. Nos próximos vídeos a trilha tem que ser dinâmica, mas com transições suaves.
+
+O que mudou:
+- `skill/SKILL.md`, seção 9: a regra virou "trilha dinâmica, mas suave" (crossfade de 1 a 2 s, rampas de volume e filtro de pelo menos 1 s, uma base que evolui, amostra de áudio antes de montar no vídeo).
+- `motor/LEIAME.md`: `trilha.py` marcado como experimental e reprovado.
+- `producoes/dia12/fonte/a12.py` voltou para a trilha original; `mapa-musica.md` registra a tentativa reprovada.
+
+## 2026-11-19 · principal · Trilha montanha-russa
+
+Pedido do Luis: a música do Dia 12 estava boa, mas estática, "mais do mesmo", numa linha reta. Ele quer a trilha como uma montanha-russa, acompanhando a narrativa e o motion, e músicas mais eletrônicas. Pediu opções para ouvir. No mesmo dia: a etiqueta de $20 do gancho passou a ficar pendurada no ícone do Claude (só neste vídeo).
+
+O que mudou:
+- `motor/trilha.py` (novo): curva de energia, drops com riser, paradas, impactos, subida de tom; estilos electro, dnb e futurebass.
+- `skill/SKILL.md`, seção 9: regra da trilha montanha-russa reescrita (mínimo de drops, parada e vale; três estilos; mandar as três quando o Luis não escolher).
+- `motor/LEIAME.md`: linha do `trilha.py`.
+- `producoes/dia12/fonte/a12.py`: música trocada pelo `trilha.py` com a narrativa do Dia 12 (`ESTILO=` escolhe a versão); `d12.html`: etiqueta pendurada no ícone do Claude.
+
+## 2026-11-19 · principal · Dia 12 (OmniRoute) e peças novas no motor
+
+Pedido do Luis: o Dia 12 virou o roteiro dele sobre o OmniRoute (Claude Code de graça com limite gigante), com o áudio inteiro do ElevenLabs e a última frase regravada para a palavra-chave CLAUDE. Ele aprovou o storyboard e pediu para produzir.
+
+O que mudou:
+- `producoes/dia12/`: roteiro, voz montada (frase corrigida colada no fim; pausas acima de 0,3 s encurtadas e atempo 1,03 para caber em 60 s), palavras grandes, corrente, mapa da música, cenas, trilha electro 124 BPM em lá menor, capa e textos do post. Os roteiros que o Luis descartou ficaram em `producoes/dia12/roteiros-descartados/`.
+- `motor/icons.js`: logo do GitHub (`GITHUB_PATH`, octicon mark-github).
+- `motor/folha.py`: rótulo dos quadros nomeados `tNNN.NN` (o `storyboard.cjs` grava assim) deixou de quebrar a folha.
+- `capas/capas.html`: capa do Dia 12.
+- `CLAUDE.md`: Dia 12 na tabela do que já foi feito.
+
 ## 2026-11-19 · principal · Como se sabe o texto falado sem whisper
 
 Pergunta do Luis (conta secundária sem reconhecimento de voz): como a conta principal lê o conteúdo de um áudio anexado e o que fazer quando vem só o áudio.

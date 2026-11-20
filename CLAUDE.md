@@ -118,6 +118,8 @@ Os MP4 finais não vão para o git. Entregue-os ao Luis pela própria conversa o
 | 9 | O Claude virou meu professor | PROFESSOR |
 | 10 | Quem tá roubando seu Wi-Fi? (**padrão atual**) | WIFI |
 | 11 | Cortes de live de GTA VI (paleta especial, não é padrão) | GTA |
+| 12 | Claude Code de graça com o OmniRoute (352 provedores) | CLAUDE |
+| 13 | Anti-Robô: o Claude humaniza seu texto (skill pelo skill creator) | HUMANO |
 
 Mantenha esta tabela atualizada a cada vídeo novo.
 

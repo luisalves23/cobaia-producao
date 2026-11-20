@@ -56,6 +56,10 @@ Tudo o que se repete entre os vídeos mora no repositório privado `luisalves23/
 13. **Vídeo em loop.** O último frame emenda no primeiro.
 14. **Verde só para o que é positivo:** acertou, certinhos do gabarito, grátis, R$ 0, dinheiro. "Nota máxima" e destaques de ênfase continuam vermelhos.
 15. **Laranja é do Claude.** O laranja (`--or`) só aparece no ícone do Claude, na palavra "Claude" e no brilho dele. Nenhuma cena pode ser dominada por laranja, amarelo, azul ou verde: o vídeo é preto, off-white e vermelho (com fundo vermelho permitido nas inversões de ritmo), e cores de terceiros ficam dentro das telas simuladas. Exceção: o roxo escuro da chamada final padrão (seção 7).
+16. **Cada vídeo nasce do zero (pedido do Luis em 20/11/2026).** Palavras dele: "Todo vídeo que você fizer, eu quero que você esquece totalmente como é que você fez o vídeo anterior e cria algo totalmente novo, dinâmico e orgânico." O Dia 13 v1 foi recusado por repetir elementos dos vídeos anteriores. Antes de desenhar as cenas, esqueça como os outros vídeos foram montados e invente tudo a partir do roteiro do dia:
+   - gancho, metáforas visuais, cenas, transições e movimentos de câmera novos, tirados do que a fala diz (ex.: "0% de IA" vira uma lupa varrendo o texto sem achar vestígio e o carimbo de aprovado, não um velocímetro);
+   - música em estilo novo a cada vídeo (nunca repetir gênero, timbre ou progressão do vídeo anterior; o Luis chamou a repetida de "batida") e efeitos novos;
+   - o que continua igual é só a identidade (paleta, fontes, regras desta seção, logo do Claude, **vinheta do calendário** no "Dia N de trinta experimentos", chamada final e roxo do loop). A vinheta do calendário (30 dias, risquinhos nos dias feitos, o dia de hoje circulado em vermelho, logo do Claude no "com Claude") é padrão validado e não muda (pedido do Luis em 20/11/2026). O Dia 10 v3 é referência de nível de qualidade, não molde de cenas.
 
 ## 3. Identidade visual
 
@@ -165,7 +169,7 @@ Referência aprovada: teste "07 · Síntese" (`estudos/sintese-07/`, na versão 
 
 ## 6. Cenas aprovadas (referência de nível)
 
-Referência atual: Dia 10 v3 (`referencia/dia10-v3/postar/cobaia-dia10-final-leve.mp4`, fonte em `referencia/dia10-v3/fonte/`). Também na nova estética: Dia 9 (`referencia/dia09/`) e o teste "07 · Síntese" (`estudos/sintese-07/`). Reaproveite a ideia com elemento novo; nunca repita o exemplo ou o app de um vídeo anterior. Temas já usados nos Dias 1 a 11 estão no `CLAUDE.md`.
+Referência atual: Dia 10 v3 (`referencia/dia10-v3/postar/cobaia-dia10-final-leve.mp4`, fonte em `referencia/dia10-v3/fonte/`). Também na nova estética: Dia 9 (`referencia/dia09/`) e o teste "07 · Síntese" (`estudos/sintese-07/`). Ela mostra o nível de qualidade, não um molde: as cenas de cada vídeo são inventadas do zero a partir do roteiro (seção 2, regra 16), e nunca se repete exemplo, app, cena ou música de um vídeo anterior. Temas já usados nos Dias 1 a 11 estão no `CLAUDE.md`.
 
 ## 7. Chamada final e material de quem comenta
 
@@ -200,7 +204,7 @@ Referência atual: Dia 10 v3 (`referencia/dia10-v3/postar/cobaia-dia10-final-lev
 - **Motion junto com o roteiro:** cada frase tem um evento visual forte, com transição e som.
 - **Humanizer sempre:** todo roteiro e todo plano de roteiro passam pela skill `humanizer` antes de ir para o Luis.
 - **Um roteiro por vez**, do próximo dia. Quando o dia depende de um teste, o texto final só sai com o resultado na mão.
-- **Entrega do roteiro:** texto para o Luis gravar e texto para a IA de voz (sem tags, ou com tags animadas como [excited], [curious], [laughs]; nada de tom baixo astral), mais "Como gravar", "Onde estão os gatilhos" e "O que vai aparecer na tela" (Fala | Na tela | De onde vem a peça | Transição e som).
+- **Entrega do roteiro:** texto para o Luis gravar e texto para a IA de voz (sem tags, ou com tags animadas como [excited], [curious], [laughs]; nada de tom baixo astral; fala enérgica e para cima, com frases curtas, exclamações e as palavras de ênfase em MAIÚSCULAS, porque o Luis achou a voz calma demais no Dia 13; a sigla "IA" se escreve "í-á" ou "inteligência artificial", porque o ElevenLabs v3 lê "IA" como "A-I-E"), mais "Como gravar", "Onde estão os gatilhos" e "O que vai aparecer na tela" (Fala | Na tela | De onde vem a peça | Transição e som).
 - **Textos de postagem do dia num único pedido:** legendas das 3 redes e comentário fixado.
   - **Instagram:** 1ª linha é um segundo gancho com emoji; 3 a 5 linhas que ensinam; "comenta PALAVRA"; 5 hashtags (1 grande, 2 médias, 2 de nicho).
   - **TikTok:** gancho com a palavra que as pessoas buscam, 1 ou 2 linhas, "comenta PALAVRA", uma pergunta e 3 a 5 hashtags.
@@ -230,12 +234,19 @@ Referência atual: Dia 10 v3 (`referencia/dia10-v3/postar/cobaia-dia10-final-lev
 Resultado dos dois caminhos: a voz tratada e as palavras com tempo, que viram os blocos de palavras grandes em `fonte/dNNchunks.js` (formato no `motor/LEIAME.md`).
 
 **Música:**
-- Animada, instrumental, sem voz, ~120 a 130 BPM (EDM, tech house, electro pop). **Música do primeiro ao último quadro** (no Dia 5 v1 metade ficou sem música).
+- Animada, instrumental, sem voz, eletrônica com pegada (electro, drum & bass, future bass, tech house). **Música do primeiro ao último quadro** (no Dia 5 v1 metade ficou sem música).
 - **Não repita a faixa de nenhum dos três dias anteriores.** Dias 3, 4 e 5 usaram "Cat Walk": os Dias 9 e 10 usaram trilha sintetizada no `synth.py` (house lo-fi); o Dia 11 usou a faixa enviada pelo Luis. Faixa nova entra no `CREDITOS.txt` do dia.
-- **Trilha que acompanha a narrativa**, remontada compasso a compasso (lista `SEGS` no `aNN.py`, crossfade de 12 a 30 ms; ou sintetizada por trecho, como no `a10.py`): drop no gancho; breakdown no problema do dia a dia e build depois; compasso de pausa + tape stop antes da virada e drop na palavra-chave; build na digitação e cheio no resultado; breakdown + riser até o drop na prova; cheio na chamada final. Ganho por trecho (breakdown +4,5 dB, build +2,5 dB).
+- **Trilha que acompanha a narrativa**, remontada compasso a compasso (lista `SEGS` no `aNN.py`, crossfade de 12 a 30 ms; ou sintetizada por trecho, como no `a10.py`): drop no gancho; breakdown no problema do dia a dia e build depois; compasso de pausa + tape stop antes da virada e drop na palavra-chave; build na digitação e cheio no resultado; breakdown + riser até o drop na prova; cheio na chamada final. Ganho por trecho (breakdown +4,5 dB, build +2,5 dB), sempre em rampa, nunca em degrau (regra abaixo).
 - Volume base −11 dB, ducking pela voz (até −55%, ataque 20 ms, release 280 ms), −20 dB em silêncio dramático, −10 dB em tensão. A voz fica ~17 dB acima. Nada abaixo de ~−40 dBFS (confira no relatório do `mix` do `synth.py`).
 
-**Trilha montanha-russa:** trechos de faixas diferentes montados por cena no `aNN.py`: groove no gancho, escuro e sem batida no problema, vazio antes da virada, drop na revelação, respiro na emoção, drop de novo na chamada final.
+**Trilha dinâmica, mas suave (pedidos do Luis em 19/11/2026):** a música não pode ficar estática, numa linha reta do começo ao fim. Ela acompanha a narrativa e o motion: sobe nas revelações, baixa no problema, cresce até a chamada final. **Mas toda mudança é gradual.** O Luis reprovou a primeira tentativa (`motor/trilha.py`, Dia 12) porque ficou "cheia de degrau": trocava de música de uma vez e o volume pulava de baixo para alto num corte seco.
+- Troca de trecho ou de instrumento: fade-out de um e fade-in do outro, nunca corte seco. **O fade combina com o vídeo:** dura o mesmo que a transição da cena (em geral 0,2 a 0,5 s, o tempo do voo da bola) e termina junto com ela. Fade longo (1 s ou mais) o Luis reprovou.
+- Volume e filtro mudam em rampa curta, colada na transição da cena (0,2 a 0,5 s), nunca em degrau seco. Crescendo longo só em build (riser até um drop).
+- Uma base musical só, que evolui (camadas entrando e saindo aos poucos, filtro abrindo e fechando). Não pular de uma música para outra.
+- Silêncio ou parada só com fade curto na entrada e na saída, e só em momento forte do roteiro.
+- **Clima sempre para cima (pedido do Luis em 20/11/2026):** a trilha avança junto com o texto e com o que o vídeo quer entregar, mas o clímax nunca cai para algo triste ou depressivo. Tom maior e progressão luminosa (Dia 13: F C Dm Bb); quando desce, desce pouco (no máximo uns −3 dB, filtro acima de ~2,4 kHz, acordes ainda tocando) e volta subindo de forma suave e orgânica. A respiração do acorde no bumbo (sidechain) ajuda a sensação orgânica. Exemplo: `producoes/dia13/fonte/a13.py`.
+- **Modelo aprovado:** `producoes/dia12/fonte/a12.py` (tabela `ST`: estado das camadas, volume e filtro por cena, rampas de 0,3 s no corte, builds só antes de drop).
+- `motor/trilha.py` não está aprovado como está: antes de reusar, suavize as transições (rampas e crossfades) e mande uma amostra de áudio para o Luis ouvir antes de montar no vídeo.
 
 **Som do elemento vermelho:** squish na compressão, pluck no voo, pop com tink na abertura, **30% mais baixo que no Dia 10 v3** (×0,7, cerca de −3 dB).
 
