@@ -127,21 +127,16 @@ const ILL={
   const y=CY+540;c.fillStyle='rgba(242,238,230,.12)';rr(CX+60,y,CW-120,64,32);c.fill();c.fillStyle=OW;rr(CX+60,y,CW-60,64,32);c.fill();dot(CX+CW-40,y+32,26);
   c.font=F.m(26);c.fillStyle='rgba(242,238,230,.6)';c.textAlign='left';c.fillText('LIMITE',CX+60,y-18);
   c.font=F.mr(26);c.fillStyle='rgba(242,238,230,.55)';c.fillText('352 provedores · 1 bilhão de tokens/mês',CX+60,CY+665);},
-13(){card();// robô vira humano + carimbo 0% IA
-  const y=CY+300;
-  // robô (quadrado, antena, olhos de LED, boca em grade)
-  c.fillStyle='rgba(242,238,230,.35)';c.strokeStyle='rgba(242,238,230,.35)';c.lineWidth=12;c.lineCap='round';c.beginPath();c.moveTo(300,y-110);c.lineTo(300,y-160);c.stroke();c.beginPath();c.arc(300,y-166,14,0,7);c.fill();
-  rr(190,y-110,220,200,22);c.fill();c.fillStyle=CARD;rr(230,y-60,44,44,6);c.fill();rr(326,y-60,44,44,6);c.fill();rr(240,y+28,120,36,6);c.fill();c.fillStyle='rgba(242,238,230,.35)';[270,300,330].forEach(x=>c.fillRect(x-2,y+30,4,32));
-  // seta orgânica com a bola vermelha
-  c.strokeStyle=RD;c.lineWidth=10;c.beginPath();c.moveTo(450,y);c.bezierCurveTo(500,y-60,560,y+60,610,y);c.stroke();c.fillStyle=RD;c.beginPath();c.moveTo(610,y-22);c.lineTo(640,y+4);c.lineTo(604,y+20);c.closePath();c.fill();dot(450,y,16);
-  // humano (contorno orgânico, olhos redondos, sorriso)
-  c.fillStyle=OW;c.beginPath();for(let i=0;i<=80;i++){const a=i/80*6.2832,r=1+.035*Math.sin(a*3+1)+.02*Math.sin(a*5);const px=780+112*r*Math.cos(a),py=y-6+104*r*Math.sin(a)*(Math.sin(a)>0?1.06:1);i?c.lineTo(px,py):c.moveTo(px,py);}c.closePath();c.fill();
-  c.strokeStyle=OW;c.lineWidth=12;c.beginPath();c.moveTo(770,y-108);c.bezierCurveTo(780,y-150,830,y-145,815,y-118);c.stroke();
-  c.fillStyle=CARD;c.beginPath();c.arc(744,y-30,17,0,7);c.fill();c.beginPath();c.arc(816,y-30,17,0,7);c.fill();c.strokeStyle=RD;c.lineWidth=13;c.beginPath();c.arc(780,y+4,52,Math.PI*.2,Math.PI*.8);c.stroke();
-  // linhas de texto escritas de jeito humano + carimbo verde
-  const y2=CY+470;c.strokeStyle='rgba(242,238,230,.45)';c.lineWidth=12;[[440,0],[380,1],[300,2]].forEach(([w,i])=>{c.beginPath();for(let q=0;q<=20;q++){const v=q/20;const px=CX+90+w*v,py=y2+i*50+5*Math.sin(v*8+i*2);q?c.lineTo(px,py):c.moveTo(px,py);}c.stroke();});
-  c.save();c.translate(CX+700,y2+50);c.rotate(-.14);c.strokeStyle=GR;c.lineWidth=8;rr(-130,-62,290,124,18);c.stroke();c.font=F.a(96);c.fillStyle=GR;c.textAlign='left';c.fillText('0%',-108,36);c.font=F.m(46);c.fillText('IA',58,30);c.restore();
+13(){card();// texto humano passa na lupa e sai aprovado 0% IA
+  const px=CX+250,py=CY+330;c.save();c.translate(px,py);c.rotate(-.05);c.fillStyle=OW;rr(-190,-230,380,460,22);c.fill();
+  c.strokeStyle='rgba(12,12,12,.6)';c.lineWidth=13;c.lineCap='round';for(let r=0;r<7;r++){const L=[300,260,290,220,280,240,160][r];c.beginPath();for(let q=0;q<=20;q++){const v=q/20;const x=-150+L*v,y=-160+r*52+5*Math.sin(v*9+r*1.7)+3*Math.sin(v*21+r);q?c.lineTo(x,y):c.moveTo(x,y);}c.stroke();}c.restore();
+  // a lupa (o elemento vermelho) com a lente aumentando a letra à mão
+  const lx=px+120,ly=py-40;c.save();c.beginPath();c.arc(lx,ly,92,0,7);c.clip();c.fillStyle=OW;c.fillRect(lx-100,ly-100,200,200);c.strokeStyle='rgba(12,12,12,.7)';c.lineWidth=22;c.lineCap='round';for(let r=0;r<3;r++){c.beginPath();for(let q=0;q<=20;q++){const v=q/20;const x=lx-120+260*v,y=ly-60+r*70+9*Math.sin(v*7+r*2);q?c.lineTo(x,y):c.moveTo(x,y);}c.stroke();}c.restore();
+  c.strokeStyle=RD;c.lineCap='round';c.lineWidth=22;c.beginPath();c.arc(lx,ly,92,0,7);c.stroke();c.lineWidth=34;c.beginPath();c.moveTo(lx+68,ly+68);c.lineTo(lx+150,ly+150);c.stroke();
+  // carimbo verde
+  c.save();c.translate(CX+650,CY+470);c.rotate(-.14);c.strokeStyle=GR;c.lineWidth=10;rr(-170,-92,340,184,22);c.stroke();c.font=F.a(78);c.fillStyle=GR;c.textAlign='center';c.fillText('APROVADO',0,6);c.font=F.mr(44);c.fillText('0% IA',0,62);c.restore();
   c.font=F.mr(26);c.fillStyle='rgba(242,238,230,.55)';c.textAlign='left';c.fillText('/anti-robô · seu humanizador de texto',CX+60,CY+665);},
+
 };
 const DAYS={
 1:{l1:[['ninguém','s']],l2:[['EDITOU','a'],['ESSE','a'],['VÍDEO','a',RD]],kw:null},

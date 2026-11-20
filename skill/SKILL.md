@@ -59,7 +59,7 @@ Tudo o que se repete entre os vídeos mora no repositório privado `luisalves23/
 16. **Cada vídeo nasce do zero (pedido do Luis em 20/11/2026).** Palavras dele: "Todo vídeo que você fizer, eu quero que você esquece totalmente como é que você fez o vídeo anterior e cria algo totalmente novo, dinâmico e orgânico." O Dia 13 v1 foi recusado por repetir elementos dos vídeos anteriores. Antes de desenhar as cenas, esqueça como os outros vídeos foram montados e invente tudo a partir do roteiro do dia:
    - gancho, metáforas visuais, cenas, transições e movimentos de câmera novos, tirados do que a fala diz (ex.: "0% de IA" vira uma lupa varrendo o texto sem achar vestígio e o carimbo de aprovado, não um velocímetro);
    - música em estilo novo a cada vídeo (nunca repetir gênero, timbre ou progressão do vídeo anterior; o Luis chamou a repetida de "batida") e efeitos novos;
-   - o que continua igual é só a identidade (paleta, fontes, regras desta seção, logo do Claude, chamada final e roxo do loop). O Dia 10 v3 é referência de nível de qualidade, não molde de cenas.
+   - o que continua igual é só a identidade (paleta, fontes, regras desta seção, logo do Claude, **vinheta do calendário** no "Dia N de trinta experimentos", chamada final e roxo do loop). A vinheta do calendário (30 dias, risquinhos nos dias feitos, o dia de hoje circulado em vermelho, logo do Claude no "com Claude") é padrão validado e não muda (pedido do Luis em 20/11/2026). O Dia 10 v3 é referência de nível de qualidade, não molde de cenas.
 
 ## 3. Identidade visual
 

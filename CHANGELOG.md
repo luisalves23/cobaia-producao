@@ -2,6 +2,16 @@
 
 Entradas novas no topo. Formato: `## AAAA-MM-DD · conta · título`, o pedido do Luis e o que mudou. Nunca apague entradas.
 
+## 2026-11-20 · principal · Dia 13 refeito do zero
+
+Pedido do Luis: refazer o Dia 13 inteiro sem repetir os vídeos anteriores. Aprovou o gancho novo (chat com o Claude: arquivo anexado, pedido digitado, envio, o texto se transforma e passa pelo detector com sirene). Recusou a amostra afro-pop e pediu trilha mais enérgica e eletrônica. Pediu para manter a vinheta do calendário validada nos últimos vídeos.
+
+O que mudou:
+- `producoes/dia13/`: voz nova (a antiga ficou como `voz-v1.mp3`), `d13.html` novo (a v1 ficou em `d13-v1.html`), palavras novas, trilha `musica13.py` (drum and bass em ré maior a 172 BPM, drops no "ZERO", no "truque" e no segundo "ZERO"), `a13.py` novo, storyboard e texto enviado ao ElevenLabs.
+- Cenas novas: lupa que não acha vestígio e carimbo verde "APROVADO 0% IA", pedido no chat, mergulho de pesquisa profunda com gancho puxando os 5 padrões, fragmentadora, placas de proibido, carta do truque e tecla da barra, cartão do Anti-Robô com zíper, caixa com laço instalando, "/anti-robô", três folhas aprovadas, guia folheado; chamada final com segue, curte e comenta HUMANO.
+- `skill/SKILL.md`, seção 2, regra 16: a vinheta do calendário é padrão fixo e não muda.
+- `capas/capas.html`: ilustração do Dia 13 trocada (folha, lupa vermelha e carimbo aprovado).
+
 ## 2026-11-20 · principal · Cada vídeo nasce do zero
 
 Pedido do Luis: o Dia 13 v1 não foi aprovado porque usou muitos elementos dos vídeos anteriores (gancho do robô virando rosto, velocímetro do 0%, música "batida"). "Todo vídeo que você fizer, eu quero que você esquece totalmente como é que você fez o vídeo anterior e cria algo totalmente novo, dinâmico e orgânico", com base no próprio roteiro. Também pediu fala mais enérgica no ElevenLabs e "IA" escrito de um jeito que o v3 não leia "A-I-E".
