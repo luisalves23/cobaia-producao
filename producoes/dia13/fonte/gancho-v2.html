@@ -105,7 +105,7 @@ const WY = 170; // palavras mais altas neste vídeo: o carimbo precisa de espaç
 // ---------- GANCHO v2: o carimbo de IA que quica ----------
 const imp = (t, t0, d = .18) => t < t0 ? 0 : Math.exp(-(t - t0) / d);
 const PG = { y: 1130, w: 520, h: 540 }; const SS = .78;
-const HITS = [0, .41, 1.01], TB = 2.46;
+const HITS = [], TB = 2.46;
 // esteira de folhas: cada folha chega no centro, leva o carimbo e sai pela esquerda
 function pageX(i, t) { if (i === 3) return lerp(1500, 540, easeOutCubic(ap(t, 1.12, .32))) + 18 * Math.sin((t - 1.44) * 20) * imp(t, 1.44, .12);
   const h = HITS[i]; const inn = i === 0 ? 1 : easeOutCubic(ap(t, h - .2, .16)); const out = easeInCubic(ap(t, h + .2, .2)); return lerp(1500, 540, inn) - 1050 * out; }
@@ -148,7 +148,7 @@ function speed(c, t, s) { if (s.v <= .05 || s.v >= 1) return; c.save(); c.stroke
 // ---------- 2,5 a 6 s: o texto humano passa pelo detector ----------
 const GROUND = 1470, ARCH = { w: 470, h: 700 };
 function page3(t) { // x, y, escala da folha humana
-  if (t < 3.9) { const k = imp(t, 3.42, .12); return [pageX(3, t), PG.y + 8 * Math.sin(t * 3.2) * clamp((t - 2.6) * 2), 1 + .05 * k]; }
+  if (t < 3.9) { const k = imp(t, 3.42, .12); const g = spring(t - TB, 2.6, .5); return [540, PG.y + 8 * Math.sin(t * 3.2) * clamp((t - 2.6) * 2), (.25 + .75 * g) * (1 + .05 * k)]; }
   const sc = .5, gy = GROUND - PG.h * sc / 2 - 6;
   if (t < 4.16) { const u = easeInOutCubic(ap(t, 3.9, .22)); return [lerp(540, -200, u), lerp(PG.y, gy, u), lerp(1, sc, u)]; }
   const u = ap(t, 4.16, .8); const x = lerp(-200, 540, easeOutCubic(u)); const hop = u < 1 ? Math.abs(Math.sin(u * Math.PI * 4)) * 70 * (1 - u * .6) : 0;
@@ -181,21 +181,72 @@ function part2(c, t, P) {
   for (let i = 2; i >= 1; i--) arch(c, i, t, P);
   const [x, y, s] = page3(t); c.save(); c.translate(x, y); c.scale(s, s); c.translate(-x, -y); sheet(c, x, y, t, 3, P, { m: 1, rev: 1 }); c.restore();
   arch(c, 0, t, P); beam(c, t); }
+// ---------- 0 a 2,5 s: o chat com o Claude (arquivo anexado, pedido digitado, envio, transformação) ----------
+const CW_ = { x: 540, y: 1060, w: 900, h: 820 }; const INY = 1386, REQ = 'humaniza esse texto';
+const T_FLY = .41, T_LAND = .62, T_TYPE = .64, T_SEND = 1.75, T_CL = 2.15, T_GRAB = 2.28;
+function fileIcon(c, x, y, s, m, t, o = {}) { // documento com dobra; m: 0 linhas de robô, 1 escrita humana
+  c.save(); c.translate(x, y); c.rotate(o.rot || 0); c.scale(s, s);
+  if (o.shadow !== false) { c.shadowColor = 'rgba(0,0,0,.45)'; c.shadowBlur = 30; c.shadowOffsetY = 14; }
+  c.fillStyle = OW; c.beginPath(); c.moveTo(-60, -78); c.lineTo(30, -78); c.lineTo(60, -48); c.lineTo(60, 78); c.lineTo(-60, 78); c.closePath(); c.fill(); c.shadowColor = 'transparent';
+  c.fillStyle = '#CFC9BE'; c.beginPath(); c.moveTo(30, -78); c.lineTo(30, -48); c.lineTo(60, -48); c.closePath(); c.fill();
+  for (let r = 0; r < (o.label ? 5 : 6); r++) { const yy = -46 + r * 20, L = (r === 5 ? 50 : 88) - (r % 2) * 10; if (m < .5) { c.fillStyle = 'rgba(12,12,12,.45)'; c.fillRect(-42, yy - 4, L, 8); }
+    else { c.strokeStyle = 'rgba(12,12,12,.6)'; c.lineWidth = 6; c.lineCap = 'round'; c.beginPath(); for (let q = 0; q <= 12; q++) { const v = q / 12; const px = -42 + L * v, py = yy + 3 * noise1(v * 4 + r * 2 + t, r); q ? c.lineTo(px, py) : c.moveTo(px, py); } c.stroke(); } }
+  if (o.label) { c.font = '700 22px "JetBrains Mono"'; c.fillStyle = 'rgba(12,12,12,.55)'; c.fillText('.txt', -42, 66); }
+  c.restore(); }
+function fileFly(t) { // o arquivo: gigante no quadro 0, voa e encaixa no campo do chat
+  if (t < T_FLY) { const w = 1 + .06 * Math.sin(t * 14) * Math.exp(-t * 3); return [540, 1000 - 30 * Math.sin(t * 6), 2.6 * w, -.06 + .04 * Math.sin(t * 9)]; }
+  const u = easeInOutCubic(ap(t, T_FLY, T_LAND - T_FLY)); const sq = imp(t, T_LAND, .07); return [lerp(540, 205, u), lerp(1000, INY, u) - 160 * Math.sin(Math.PI * u), lerp(2.6, .5, u) * (1 + .25 * sq), lerp(-.06, 0, u) + .9 * Math.sin(Math.PI * u)]; }
+const nTyped = t => t < T_TYPE ? 0 : Math.min(REQ.length, Math.floor((t - T_TYPE) / .047) + 1);
+const bubK = t => spring(t - T_SEND, 2.8, .72);
+function bubGeo(t) { const k = bubK(t); return { x: lerp(560, 620, k), y: lerp(INY, 920, k), s: lerp(.85, 1, clamp(k)) }; }
+function chatScene(c, t, P) {
+  const ex = easeInCubic(ap(t, TB, .26)); if (ex >= 1) return; const en = t < .01 ? .93 : .93 + .07 * spring(t, 3, .55);
+  c.save(); c.globalAlpha *= 1 - ex; c.translate(540, CW_.y); const zs = en * (1 + .9 * ex); c.scale(zs, zs); c.translate(-540, -CW_.y);
+  // janela do chat
+  c.save(); c.shadowColor = 'rgba(0,0,0,.5)'; c.shadowBlur = 60; c.fillStyle = '#18181C'; rr(c, CW_.x - CW_.w / 2, CW_.y - CW_.h / 2, CW_.w, CW_.h, 44); c.fill(); c.restore();
+  c.strokeStyle = 'rgba(242,238,230,.14)'; c.lineWidth = 3; rr(c, CW_.x - CW_.w / 2, CW_.y - CW_.h / 2, CW_.w, CW_.h, 44); c.stroke();
+  [0, 1, 2].forEach(q => { c.fillStyle = 'rgba(242,238,230,.22)'; c.beginPath(); c.arc(160 + q * 30, 705, 8, 0, 7); c.fill(); }); mono(c, 'novo chat', 270, 714, 'rgba(242,238,230,.4)', 26, 700);
+  c.fillStyle = 'rgba(242,238,230,.08)'; c.fillRect(CW_.x - CW_.w / 2, 750, CW_.w, 2);
+  // campo de digitar
+  const sent = t >= T_SEND; c.fillStyle = '#26262B'; rr(c, 130, INY - 56, 820, 112, 56); c.fill(); c.strokeStyle = 'rgba(242,238,230,.18)'; c.lineWidth = 3; c.stroke();
+  if (!sent) { const n = nTyped(t); c.font = '900 46px Inter'; c.fillStyle = OW; const tx = REQ.slice(0, n); c.fillText(tx, 262, INY + 16);
+    if (t > T_LAND && Math.floor(t * 7) % 2 === 0 || (n > 0 && n < REQ.length)) { c.fillStyle = OW; c.fillRect(268 + c.measureText(tx).width, INY - 26, 5, 52); }
+    if (n === 0 && t > T_LAND) { c.fillStyle = 'rgba(242,238,230,.3)'; c.fillText('', 262, INY + 14); } }
+  // o arquivo (antes de encaixar ele está fora do chat: desenhado por cima, mas o chat está vazio em volta)
+  if (!sent) { const [fx, fy, fs, fr] = fileFly(t); if (t >= T_LAND) fileIcon(c, fx, fy, fs, 0, t, { rot: fr }); }
+  // balão do pedido enviado
+  if (sent) { const g = bubGeo(t); c.save(); c.translate(g.x, g.y); c.scale(g.s, g.s); c.fillStyle = '#2F2F35'; rr(c, -340, -105, 680, 210, 44); c.fill();
+    const grab = ap(t, T_GRAB, .18); if (grab < 1) fileIcon(c, -250, 0, .78 * (1 + .15 * imp(t, T_SEND + .25, .08)), 0, t, { shadow: false }); else { c.strokeStyle = 'rgba(242,238,230,.25)'; c.setLineDash([10, 10]); c.lineWidth = 3; rr(c, -298, -62, 96, 124, 12); c.stroke(); c.setLineDash([]); }
+    c.font = '900 50px Inter'; c.fillStyle = OW; c.fillText('humaniza', -165, -10); c.fillText('esse texto', -165, 52); c.restore(); }
+  // o Claude chega na conversa
+  if (t > T_CL) { const k = spring(t - T_CL, 2.8, .45); claude(c, 215, 1170, 130 * k, (1 - clamp(k)) * -3 + .2 * Math.sin(t * 6), 1);
+    if (t < TB) for (let q = 0; q < 3; q++) { c.fillStyle = 'rgba(242,238,230,.6)'; c.beginPath(); c.arc(330 + q * 40, 1170 + 9 * Math.sin(t * 16 - q), 11, 0, 7); c.fill(); } }
+  // o Claude pega o arquivo
+  if (t > T_GRAB && t < TB) { const u = easeInOutCubic(ap(t, T_GRAB, .18)); const g = bubGeo(t); const x0 = g.x - 250, y0 = g.y; fileIcon(c, lerp(x0, 240, u), lerp(y0, 1170, u) - 120 * Math.sin(Math.PI * u), lerp(.78, .3, u), 0, t, { rot: u * 1.5 }); }
+  c.restore();
+  // arquivo gigante do quadro 0 (antes de encaixar)
+  if (t < T_LAND) { const [fx, fy, fs, fr] = fileFly(t); fileIcon(c, fx, fy, fs, 0, t, { rot: fr, label: t < T_FLY });
+    if (t > T_FLY) { c.save(); c.strokeStyle = 'rgba(242,238,230,.3)'; c.lineWidth = 5; c.lineCap = 'round'; for (let q = 0; q < 4; q++) { c.beginPath(); c.moveTo(fx + 60 * fs + 20, fy - 40 + q * 26); c.lineTo(fx + 60 * fs + 20 + 120 * (1 - ap(t, T_FLY, .21)), fy - 70 + q * 26); c.stroke(); } c.restore(); } }
+}
+// o elemento vermelho: botão de enviar → bola que marca o arquivo → some no HUMANIZAR → sai e volta como sirene
+function sendBtn(c, t, P) {
+  if (t < T_SEND + .02) { if (t > TB) return; const pr = Math.exp(-Math.pow((t - T_SEND) / .05, 2)); const pulse = 1 + .12 * Math.max(0, Math.sin((t - 1.62) * 20)) * (t > 1.6 && t < T_SEND ? 1 : 0); const k = t < .01 ? .93 : .93 + .07 * spring(t, 3, .55);
+    c.save(); c.translate(540, CW_.y); c.scale(k, k); c.translate(-540, -CW_.y); c.translate(888, INY); c.scale(pulse * (1 - .2 * pr), pulse * (1 - .2 * pr)); c.fillStyle = RD; c.beginPath(); c.arc(0, 0, 42, 0, 7); c.fill(); c.strokeStyle = OW; c.lineWidth = 8; c.lineCap = 'round'; c.lineJoin = 'round'; c.beginPath(); c.moveTo(0, 16); c.lineTo(0, -16); c.moveTo(-13, -3); c.lineTo(0, -16); c.lineTo(13, -3); c.stroke(); c.restore(); return; }
+  if (t < T_GRAB) { const g = bubGeo(t); const A = [888, INY], B = [g.x - 250 + 80, g.y - 82]; const u = easeInOutCubic(ap(t, T_SEND + .02, .26)); const x = lerp(A[0], B[0], u), y = lerp(A[1], B[1], u) - 200 * Math.sin(Math.PI * u); const land = imp(t, T_SEND + .28, .06);
+    c.save(); c.translate(x, y); c.scale(1 + .4 * land, 1 - .3 * land); c.fillStyle = RD; c.beginPath(); c.arc(0, 0, u < 1 ? 30 - 12 * u : 18, 0, 7); c.fill(); c.restore(); return; }
+  if (t < TB) { const u = easeInOutCubic(ap(t, T_GRAB, .18)); const g = bubGeo(t); const x = lerp(g.x - 170, 300, u), y = lerp(g.y - 82, 1090, u) - 120 * Math.sin(Math.PI * u); c.fillStyle = RD; c.beginPath(); c.arc(x, y, 18, 0, 7); c.fill(); return; }
+  if (t > 2.72 && t < 3.1) { const u = easeInCubic(ap(t, 2.72, .36)); blobAt(c, t, lerp(790, 1180, u), lerp(1130, 1250, u) - 90 * Math.sin(Math.PI * u), 26, OW, 1400, 0, 9); }
+}
 function scene(t, P) {
   const c = ctx;
-  // anel de borracha no quique
-  if (t > TB && t < TB + .6) { const r = ap(t, TB, .5); c.save(); c.globalAlpha = (1 - r) * .9; c.strokeStyle = OW; c.lineWidth = 10 * (1 - r) + 2; c.beginPath(); c.ellipse(540, DOWN + 20, 200 + 500 * easeOutCubic(r), 60 + 160 * easeOutCubic(r), 0, 0, 7); c.stroke(); c.restore(); }
-  for (let i = 0; i < 3; i++) { const x = pageX(i, t); if (x < -400 || x > 1500) continue; sheet(c, x, PG.y, t, i, P, { mark: t >= HITS[i] ? 1 + 0 * ap(t, HITS[i], .1) : 0 }); }
-  if (t > 1.1 && t < 3.9) { const rv = ap(t, 2.15, .45); const [px, py, ps] = page3(t); c.save(); c.translate(px, py); c.scale(ps, ps); c.translate(-px, -py); sheet(c, px, py, t, 3, P, { m: rv > 0 ? 1 : 0, rev: rv }); c.restore(); }
+  if (t < TB + .3) chatScene(c, t, P);
+  if (t > TB && t < TB + .6) { const r = ap(t, TB, .5); c.save(); c.globalAlpha = (1 - r) * .9; c.strokeStyle = OW; c.lineWidth = 10 * (1 - r) + 2; c.beginPath(); c.ellipse(540, PG.y, 260 + 500 * easeOutCubic(r), 300 + 300 * easeOutCubic(r), 0, 0, 7); c.stroke(); c.restore(); }
+  if (t >= TB && t < 3.9) { const rv = ap(t, TB + .05, .45); const [px, py, ps] = page3(t); c.save(); c.translate(px, py); c.scale(ps, ps); c.translate(-px, -py); sheet(c, px, py, t, 3, P, { m: 1, rev: rv }); c.restore(); }
   part2(c, t, P);
-  const s = stampState(t); speed(c, t, s);
+  sendBtn(c, t, P);
   beacon(c, t, P);
-  HITS.forEach((h, i) => splat(c, t, h, 40 + i));
-  const col = P.bg === RD ? OW : RD, dark = P.bg === RD ? '#D8D2C8' : '#B81F24'; if (t < TB + .7) drawStamp(c, s, col, dark);
-  // o quique: o carimbo bate e não pega; linhas de borracha
-  if (t > TB && t < TB + .35) { const r = ap(t, TB, .35); c.save(); c.strokeStyle = OW; c.lineCap = 'round'; c.lineWidth = 7; c.globalAlpha = 1 - r; [[-1, -.6], [1, -.6], [-1, .2], [1, .2]].forEach(([sx, a]) => { c.beginPath(); c.moveTo(540 + sx * (210 + 60 * r), DOWN - 40 + a * 60); c.lineTo(540 + sx * (280 + 120 * r), DOWN - 60 + a * 120); c.stroke(); }); c.restore(); }
 }
-function cam(t) { const z = 1 + .18 * imp(t, 0, .16) + .07 * imp(t, .47, .12) + .08 * imp(t, .94, .12) + .2 * imp(t, TB, .18) + .06 * imp(t, 3.98, .14) + .05 * imp(t, 4.66, .12) + .07 * imp(t, 5.76, .14); const sh = 30 * imp(t, 0, .1) + 14 * imp(t, .47, .08) + 16 * imp(t, .94, .08) + 34 * imp(t, TB, .12) + 12 * imp(t, 3.98, .08) + 14 * imp(t, 5.76, .1);
+function cam(t) { const z = 1 + .18 * imp(t, 0, .16) + .06 * imp(t, T_LAND, .12) + .07 * imp(t, T_SEND, .12) + .2 * imp(t, TB, .18) + .06 * imp(t, 3.98, .14) + .05 * imp(t, 4.66, .12) + .07 * imp(t, 5.76, .14); const sh = 30 * imp(t, 0, .1) + 12 * imp(t, T_LAND, .08) + 14 * imp(t, T_SEND, .08) + 34 * imp(t, TB, .12) + 12 * imp(t, 3.98, .08) + 14 * imp(t, 5.76, .1);
   ctx.translate(540, 1000); ctx.scale(z, z); ctx.translate(-540 + sh * Math.sin(t * 90), -1000 + sh * .6 * Math.cos(t * 77)); }
 function hud(t, P) { ctx.save(); ctx.font = '400 24px "JetBrains Mono"'; ctx.fillStyle = P.fg; ctx.globalAlpha = .55; const fr = Math.floor(t * 30);
   ctx.fillText('DIA 13 / 30', 90, 230); const tc_ = `00:${String(Math.floor(t)).padStart(2, '0')}:${String(fr % 30).padStart(2, '0')}`; ctx.fillText(tc_, 990 - ctx.measureText(tc_).width, 230); const s2 = '@cobaia.dev'; ctx.fillText(s2, 990 - ctx.measureText(s2).width, 264);

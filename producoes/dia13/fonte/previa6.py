@@ -9,8 +9,12 @@ w=wave.open('amostra-musica.wav'); m=np.frombuffer(w.readframes(w.getnframes()),
 mus=buf(T); mus[:]=m[:len(mus)]
 sfx=buf(T)
 def thud(g=1.0): return (kick(.3,90,38,.4)+splat(.3)*.5)*g
-for h in (0,.41,1.01): add(sfx,thud(),h-.005,.9); add(sfx,card(),h,.4)
-add(sfx,thud(1.3),2.455,1); add(sfx,pluck_bend(midi(50),.6,9,.22),2.47,.7); add(sfx,paperflutter(.4),2.6,.25)
+add(sfx,thud(1.2),0,1); add(sfx,paperflutter(.35),.0,.3)
+add(sfx,paperflutter(.25),.41,.35); add(sfx,clunk(),.62,.6); add(sfx,card(),.62,.5)
+for k in range(19): add(sfx,keyclick(.6),.64+k*.047,.35)
+add(sfx,waterdrop(700,1500),1.75,.6); add(sfx,tink(midi(88)),2.03,.25)
+add(sfx,glass(midi(76),.6),2.15,.18); add(sfx,card(),2.28,.4); add(sfx,paperflutter(.2),2.3,.25)
+add(sfx,thud(1.4),2.455,1); add(sfx,glass(midi(83),.9),2.47,.25); add(sfx,pencil(.4),2.52,.3)
 add(sfx,swell(.5,400,4000),3.45,.18); add(sfx,waterdrop(500,1300),3.97,.6)
 for t0,g in ((3.98,.7),(4.66,.5),(4.78,.5)): add(sfx,clunk(),t0,g)
 for k in range(4): add(sfx,card(),4.16+k*.2,.25)
