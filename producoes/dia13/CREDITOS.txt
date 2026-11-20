@@ -1,0 +1,1 @@
+Trilha e efeitos: sintetizados no próprio vídeo com motor/synth.py (a13.py). Sem faixas de terceiros.

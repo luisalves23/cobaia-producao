@@ -2,6 +2,17 @@
 
 Entradas novas no topo. Formato: `## AAAA-MM-DD · conta · título`, o pedido do Luis e o que mudou. Nunca apague entradas.
 
+## 2026-11-20 · principal · Dia 13 (Anti-Robô) e trilha sempre para cima
+
+Pedido do Luis: fazer o vídeo do Dia 13 com o áudio e o roteiro dele (humanizador Anti-Robô, palavra HUMANO), com capa, legendas e comentários; os 3 primeiros segundos com motion caprichado para viralizar; trilha que avança junto com o texto, sempre com o clima lá em cima, nunca depressiva, descendo e subindo de forma suave e orgânica. Palavra do vídeo: orgânico. Pediu o vídeo pronto para postar.
+
+O que mudou:
+- `producoes/dia13/`: roteiro, palavras grandes, corrente, mapa da música, cenas (gancho: robô quadrado imprimindo texto de robô, o pedido entra na boca dele e no "humanizar" ele derrete num rosto humano, as linhas rígidas viram ondas e sai um anel de onda), trilha future bass em fá maior a 128 BPM, capa e textos do post. Link do guia usado: https://cobaia-dev.vercel.app/humano/ (página ainda não estava no ar quando o vídeo foi feito).
+- `motor/synth.py`: instrumento `supersaw` (acorde de serras desafinadas); linha no `motor/LEIAME.md`.
+- `skill/SKILL.md`, seção 9: regra "clima sempre para cima".
+- `capas/capas.html`: capa do Dia 13.
+- `CLAUDE.md`: Dia 13 na tabela do que já foi feito.
+
 ## 2026-11-19 · principal · Dia 12: gancho mais viral
 
 Pedido do Luis: os 3 primeiros segundos ficaram fracos; reformular o que aparece para ficar mais viral. Ele aprovou o storyboard novo e pediu o vídeo fechado para postar.

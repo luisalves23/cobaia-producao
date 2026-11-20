@@ -74,6 +74,16 @@ def pad(notes, d, cut=1800, att=0.4, rel=0.6, det=0.004):
         f = midi(n)
         for dd in (-det, 0, det): s += (2 * ((f * (1 + dd) * t) % 1) - 1).astype(np.float32)
     s = lp(s, cut, 2); e = np.minimum(1, t / att) * np.minimum(1, (d - t) / rel); return (s * e / (len(notes) * 3)).astype(np.float32)
+def supersaw(notes, d, cut=5000, att=0.01, rel=0.08, det=0.012, voices=5):
+    """Acorde de future bass (Dia 13): serras desafinadas abertas no estéreo do mono, brilho de cima, ataque curto."""
+    t = tt(d); s = np.zeros_like(t, dtype=np.float32)
+    for n in notes:
+        f = midi(n)
+        for k in range(voices):
+            dd = det * (k / (voices - 1) - .5) * 2; ph = R.uniform(0, 1)
+            s += (2 * ((f * (1 + dd) * t + ph) % 1) - 1).astype(np.float32)
+    s = lp(s, cut, 2); e = np.minimum(1, t / att) * np.minimum(1, np.maximum(0, d - t) / rel)
+    return (s * e / (len(notes) * voices)).astype(np.float32)
 def subdrop(d=1.6, f0=70, f1=28):
     t = tt(d); f = f1 + (f0 - f1) * np.exp(-t / 0.5); return (np.sin(2 * np.pi * np.cumsum(f) / SR) * np.exp(-t / 0.7) * np.minimum(1, t / 0.005)).astype(np.float32)
 def swell(d=1.0, lo=300, hi=6000):  # ruído em reverso subindo (não é whoosh: é filtro abrindo devagar)

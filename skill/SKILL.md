@@ -240,6 +240,7 @@ Resultado dos dois caminhos: a voz tratada e as palavras com tempo, que viram os
 - Volume e filtro mudam em rampa curta, colada na transição da cena (0,2 a 0,5 s), nunca em degrau seco. Crescendo longo só em build (riser até um drop).
 - Uma base musical só, que evolui (camadas entrando e saindo aos poucos, filtro abrindo e fechando). Não pular de uma música para outra.
 - Silêncio ou parada só com fade curto na entrada e na saída, e só em momento forte do roteiro.
+- **Clima sempre para cima (pedido do Luis em 20/11/2026):** a trilha avança junto com o texto e com o que o vídeo quer entregar, mas o clímax nunca cai para algo triste ou depressivo. Tom maior e progressão luminosa (Dia 13: F C Dm Bb); quando desce, desce pouco (no máximo uns −3 dB, filtro acima de ~2,4 kHz, acordes ainda tocando) e volta subindo de forma suave e orgânica. A respiração do acorde no bumbo (sidechain) ajuda a sensação orgânica. Exemplo: `producoes/dia13/fonte/a13.py`.
 - **Modelo aprovado:** `producoes/dia12/fonte/a12.py` (tabela `ST`: estado das camadas, volume e filtro por cena, rampas de 0,3 s no corte, builds só antes de drop).
 - `motor/trilha.py` não está aprovado como está: antes de reusar, suavize as transições (rampas e crossfades) e mande uma amostra de áudio para o Luis ouvir antes de montar no vídeo.
 
