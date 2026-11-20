@@ -1,9 +1,9 @@
 <!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="fonts.css">
 <style>html,body{margin:0;background:#000}canvas{display:block}</style></head><body><canvas id="c"></canvas>
-<script src="lib.js"></script><script src="d13chunks.js"></script><script src="icons.js"></script>
+<script src="lib.js"></script><script src="d13v2chunks.js"></script><script src="icons.js"></script>
 <script>
 // DIA 13 v2 — gancho: o carimbo de IA que quica
-const TEND = 3.3; window.NFRAMES = Math.round(TEND * 30);
+const TEND = 6.0; window.NFRAMES = Math.round(TEND * 30);
 const BK = '#0C0C0C', OW = '#F2EEE6', RD = '#FF2D2D', GR = '#1D1D21', PU = '#0B0820', OR = '#D97757', GN = '#22C063';
 const CTA0 = 54.15, RALO = 56.95, PURP = 56.95, LOOP = 58.65;
 const OY = 620; const [CV, cc] = mk(1080, 1100), [TX, tc] = mk(1080, 520), [BL, bc] = mk(1080, 1920);
@@ -11,7 +11,7 @@ const CLP = new Path2D(CLAUDE_PATH);
 let PHOTO = null; const photoP = new Promise(res => { const im = new Image(); im.onload = () => { PHOTO = im; res(); }; im.onerror = res; im.src = 'perfil.jpg'; }); window.ready = Promise.all([window.ready, photoP]);
 const sp = (t, t0, f = 2.4, z = .45) => spring(t - t0, f, z), ap = (t, t0, d = .15) => clamp((t - t0) / d);
 // ---------- palette flips ----------
-const FL = [[0, 'B'], [2.45, 'R'], [3.0, 'B']];
+const FL = [[0, 'B'], [2.46, 'R'], [3.96, 'B']];
 const MODES = { B: { bg: BK, fg: OW, acc: RD, card: GR, g: RD }, R: { bg: RD, fg: BK, acc: OW, card: BK, g: OW }, O: { bg: OW, fg: BK, acc: RD, card: '#E4DFD5', g: RD } };
 function pal(t) { let m = 'B'; FL.forEach(([tt, k]) => { if (t >= tt) m = k; }); return MODES[m]; }
 const BEATL = 60 / 128; const beats = t => (t < CTA0 && !(t > 6.1 && t < 9.25)) ? Math.exp(-((t % BEATL) / .06)) : 0;
@@ -105,7 +105,7 @@ const WY = 170; // palavras mais altas neste vídeo: o carimbo precisa de espaç
 // ---------- GANCHO v2: o carimbo de IA que quica ----------
 const imp = (t, t0, d = .18) => t < t0 ? 0 : Math.exp(-(t - t0) / d);
 const PG = { y: 1130, w: 520, h: 540 }; const SS = .78;
-const HITS = [0, .47, .94], TB = 2.45;
+const HITS = [0, .41, 1.01], TB = 2.46;
 // esteira de folhas: cada folha chega no centro, leva o carimbo e sai pela esquerda
 function pageX(i, t) { if (i === 3) return lerp(1500, 540, easeOutCubic(ap(t, 1.12, .32))) + 18 * Math.sin((t - 1.44) * 20) * imp(t, 1.44, .12);
   const h = HITS[i]; const inn = i === 0 ? 1 : easeOutCubic(ap(t, h - .2, .16)); const out = easeInCubic(ap(t, h + .2, .2)); return lerp(1500, 540, inn) - 1050 * out; }
@@ -144,19 +144,58 @@ function drawStamp(c, s, col, dark) { c.save(); c.translate(s.x, s.y); c.rotate(
   c.restore(); }
 function splat(c, t, h, seed) { const lt = t - h; if (lt < 0 || lt > .4) return; const R_ = rng(seed); c.save(); c.fillStyle = BK; for (let q = 0; q < 26; q++) { const a = Math.PI * (1.05 + .9 * R_()) + (R_() < .5 ? 0 : Math.PI * .0); const sd = R_() < .5 ? -1 : 1; const d = (220 + 260 * R_()) * easeOutCubic(lt / .3); const x = 540 + sd * (140 + d * .9 * Math.abs(Math.cos(a))), y = DOWN + 10 - d * .35 * R_() + 300 * lt * lt; c.globalAlpha = 1 - lt / .4; c.beginPath(); c.arc(x, y, (4 + 9 * R_()) * (1 - lt), 0, 7); c.fill(); } c.restore(); }
 function speed(c, t, s) { if (s.v <= .05 || s.v >= 1) return; c.save(); c.strokeStyle = 'rgba(242,238,230,.35)'; c.lineWidth = 5; c.lineCap = 'round'; for (let q = 0; q < 6; q++) { const x = 540 - 150 + q * 60; c.beginPath(); c.moveTo(x, s.y - 280); c.lineTo(x, s.y - 280 - 110 * s.v); c.stroke(); } c.restore(); }
+
+// ---------- 2,5 a 6 s: o texto humano passa pelo detector ----------
+const GROUND = 1470, ARCH = { w: 470, h: 700 };
+function page3(t) { // x, y, escala da folha humana
+  if (t < 3.9) { const k = imp(t, 3.42, .12); return [pageX(3, t), PG.y + 8 * Math.sin(t * 3.2) * clamp((t - 2.6) * 2), 1 + .05 * k]; }
+  const sc = .5, gy = GROUND - PG.h * sc / 2 - 6;
+  if (t < 4.16) { const u = easeInOutCubic(ap(t, 3.9, .22)); return [lerp(540, -200, u), lerp(PG.y, gy, u), lerp(1, sc, u)]; }
+  const u = ap(t, 4.16, .8); const x = lerp(-200, 540, easeOutCubic(u)); const hop = u < 1 ? Math.abs(Math.sin(u * Math.PI * 4)) * 70 * (1 - u * .6) : 0;
+  const sh = t > 5.76 ? 8 * Math.sin(t * 80) * imp(t, 5.76, .2) : 0; return [x + sh, gy - hop, sc]; }
+function archK(i, t) { const t0 = [3.98, 4.66, 4.78][i]; return spring(t - t0, 2.6, .45); }
+const ARX = [[540, 1], [160, .6], [920, .6]];
+function arch(c, i, t, P) { const k = archK(i, t); if (k <= 0) return; const [x, s] = ARX[i]; const W = ARX && ARCH.w * s, H = ARCH.h * s;
+  c.save(); c.translate(x, GROUND); c.scale(1, k); c.globalAlpha *= clamp(k * 3);
+  c.fillStyle = '#1C1C20'; c.strokeStyle = OW; c.lineWidth = 6;
+  rr(c, -W / 2, -H, 54 * s, H, 14 * s); c.fill(); c.stroke(); rr(c, W / 2 - 54 * s, -H, 54 * s, H, 14 * s); c.fill(); c.stroke(); rr(c, -W / 2 - 10 * s, -H - 40 * s, W + 20 * s, 70 * s, 22 * s); c.fill(); c.stroke();
+  // luzinhas nas colunas
+  for (let q = 0; q < 7; q++) { const on = (Math.floor(t * 10) + q + i) % 7 === 0; c.fillStyle = on ? OW : 'rgba(242,238,230,.25)'; [-W / 2 + 27 * s, W / 2 - 27 * s].forEach(px => { c.beginPath(); c.arc(px, -H + 70 * s + q * 70 * s, 7 * s, 0, 7); c.fill(); }); }
+  if (i > 0) { c.fillStyle = 'rgba(242,238,230,.55)'; c.beginPath(); c.arc(0, -H - 40 * s, 18 * s, Math.PI, 0); c.fill(); }
+  c.restore(); }
+function beam(c, t) { if (t < 5.06 || t > 5.75) return; const u = easeInOutCubic(ap(t, 5.08, .55)); const y = GROUND - ARCH.h + 30 + (ARCH.h - 60) * u; const a = Math.sin(Math.PI * clamp((t - 5.06) / .69));
+  c.save(); c.globalAlpha = a; c.shadowColor = OW; c.shadowBlur = 40; c.fillStyle = OW; rr(c, 540 - ARCH.w / 2 + 54, y - 5, ARCH.w - 108, 10, 5); c.fill(); c.globalAlpha = a * .12; c.shadowBlur = 0; c.fillRect(540 - ARCH.w / 2 + 54, GROUND - ARCH.h + 30, ARCH.w - 108, y - (GROUND - ARCH.h + 30)); c.restore(); }
+function blobAt(c, t, x, y, r, col, vx = 0, vy = 0, seed = 1) { const v = Math.hypot(vx, vy), st = clamp(v / 2600) * .5, an = Math.atan2(vy, vx); c.save(); c.translate(x, y); c.rotate(an); c.scale(1 + st, 1 - st * .55); c.fillStyle = col; c.beginPath();
+  for (let i = 0; i <= 40; i++) { const a = i / 40 * 6.2832; const rr_ = r * (1 + .09 * noise1(a * 1.6 + t * 7, seed)); i ? c.lineTo(rr_ * Math.cos(a), rr_ * Math.sin(a)) : c.moveTo(rr_ * Math.cos(a), rr_ * Math.sin(a)); } c.fill(); c.restore(); }
+// o elemento vermelho volta como bola e vira a sirene do detector
+const BEAC = [540, GROUND - ARCH.h - 40];
+function beacon(c, t, P) {
+  if (t < 3.45) return; const col = t < 3.96 ? OW : RD;
+  if (t < 3.98) { const u = ap(t, 3.45, .53); const x = lerp(1180, BEAC[0], u), y = lerp(1250, BEAC[1] - 30, u) - 220 * Math.sin(Math.PI * u); const th = 6.283 * clamp((u - .3) / .5); blobAt(c, t, x + 50 * Math.sin(th), y - 50 * (1 - Math.cos(th)), 30, col, 900, 300 * Math.cos(Math.PI * u), 5); return; }
+  const k = archK(0, t); const sq = .5 * imp(t, 3.98, .06); const fl = Math.max(imp(t, 5.76, .25), .35 * imp(t, 5.12, .2));
+  c.save(); c.translate(BEAC[0], GROUND - (ARCH.h + 40) * k); c.scale(1 + .4 * sq, 1 - .35 * sq);
+  if (fl > .02) { c.save(); c.globalAlpha = fl * .3; const rot = (t - 5.76) * 9; c.fillStyle = RD; for (const a of [rot, rot + Math.PI]) { c.beginPath(); c.moveTo(0, -20); c.arc(0, -20, 330, a - .2, a + .2); c.closePath(); c.fill(); } c.restore(); }
+  c.shadowColor = RD; c.shadowBlur = 30 + 60 * fl; c.fillStyle = RD; c.beginPath(); c.arc(0, -4, 44, Math.PI, 0); c.lineTo(52, 0); c.lineTo(-52, 0); c.closePath(); c.fill(); c.shadowBlur = 0; c.fillStyle = 'rgba(255,255,255,.35)'; c.beginPath(); c.ellipse(-14, -28, 12, 7, -.5, 0, 7); c.fill(); c.restore(); }
+function part2(c, t, P) {
+  if (t < 3.9) return;
+  for (let i = 2; i >= 1; i--) arch(c, i, t, P);
+  const [x, y, s] = page3(t); c.save(); c.translate(x, y); c.scale(s, s); c.translate(-x, -y); sheet(c, x, y, t, 3, P, { m: 1, rev: 1 }); c.restore();
+  arch(c, 0, t, P); beam(c, t); }
 function scene(t, P) {
   const c = ctx;
   // anel de borracha no quique
   if (t > TB && t < TB + .6) { const r = ap(t, TB, .5); c.save(); c.globalAlpha = (1 - r) * .9; c.strokeStyle = OW; c.lineWidth = 10 * (1 - r) + 2; c.beginPath(); c.ellipse(540, DOWN + 20, 200 + 500 * easeOutCubic(r), 60 + 160 * easeOutCubic(r), 0, 0, 7); c.stroke(); c.restore(); }
   for (let i = 0; i < 3; i++) { const x = pageX(i, t); if (x < -400 || x > 1500) continue; sheet(c, x, PG.y, t, i, P, { mark: t >= HITS[i] ? 1 + 0 * ap(t, HITS[i], .1) : 0 }); }
-  if (t > 1.1) { const rv = ap(t, 2.15, .45); sheet(c, pageX(3, t), PG.y, t, 3, P, { m: rv > 0 ? 1 : 0, rev: rv }); }
+  if (t > 1.1 && t < 3.9) { const rv = ap(t, 2.15, .45); const [px, py, ps] = page3(t); c.save(); c.translate(px, py); c.scale(ps, ps); c.translate(-px, -py); sheet(c, px, py, t, 3, P, { m: rv > 0 ? 1 : 0, rev: rv }); c.restore(); }
+  part2(c, t, P);
   const s = stampState(t); speed(c, t, s);
+  beacon(c, t, P);
   HITS.forEach((h, i) => splat(c, t, h, 40 + i));
-  const col = P.bg === RD ? OW : RD, dark = P.bg === RD ? '#D8D2C8' : '#B81F24'; drawStamp(c, s, col, dark);
+  const col = P.bg === RD ? OW : RD, dark = P.bg === RD ? '#D8D2C8' : '#B81F24'; if (t < TB + .7) drawStamp(c, s, col, dark);
   // o quique: o carimbo bate e não pega; linhas de borracha
   if (t > TB && t < TB + .35) { const r = ap(t, TB, .35); c.save(); c.strokeStyle = OW; c.lineCap = 'round'; c.lineWidth = 7; c.globalAlpha = 1 - r; [[-1, -.6], [1, -.6], [-1, .2], [1, .2]].forEach(([sx, a]) => { c.beginPath(); c.moveTo(540 + sx * (210 + 60 * r), DOWN - 40 + a * 60); c.lineTo(540 + sx * (280 + 120 * r), DOWN - 60 + a * 120); c.stroke(); }); c.restore(); }
 }
-function cam(t) { const z = 1 + .18 * imp(t, 0, .16) + .07 * imp(t, .47, .12) + .08 * imp(t, .94, .12) + .2 * imp(t, TB, .18); const sh = 30 * imp(t, 0, .1) + 14 * imp(t, .47, .08) + 16 * imp(t, .94, .08) + 34 * imp(t, TB, .12);
+function cam(t) { const z = 1 + .18 * imp(t, 0, .16) + .07 * imp(t, .47, .12) + .08 * imp(t, .94, .12) + .2 * imp(t, TB, .18) + .06 * imp(t, 3.98, .14) + .05 * imp(t, 4.66, .12) + .07 * imp(t, 5.76, .14); const sh = 30 * imp(t, 0, .1) + 14 * imp(t, .47, .08) + 16 * imp(t, .94, .08) + 34 * imp(t, TB, .12) + 12 * imp(t, 3.98, .08) + 14 * imp(t, 5.76, .1);
   ctx.translate(540, 1000); ctx.scale(z, z); ctx.translate(-540 + sh * Math.sin(t * 90), -1000 + sh * .6 * Math.cos(t * 77)); }
 function hud(t, P) { ctx.save(); ctx.font = '400 24px "JetBrains Mono"'; ctx.fillStyle = P.fg; ctx.globalAlpha = .55; const fr = Math.floor(t * 30);
   ctx.fillText('DIA 13 / 30', 90, 230); const tc_ = `00:${String(Math.floor(t)).padStart(2, '0')}:${String(fr % 30).padStart(2, '0')}`; ctx.fillText(tc_, 990 - ctx.measureText(tc_).width, 230); const s2 = '@cobaia.dev'; ctx.fillText(s2, 990 - ctx.measureText(s2).width, 264);
