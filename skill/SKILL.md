@@ -159,7 +159,7 @@ Referência aprovada: teste "07 · Síntese" (`estudos/sintese-07/`, na versão 
   - **Zoom na ênfase (pedido do Luis em 11/11):** onde a fala dá ênfase ou mostra algo, a câmera dá zoom nesse ponto, e os frames de aprovação já mostram esse zoom. Em demonstração de sistema ou app (vários apps abrindo, teste de velocidade, player), o zoom é **leve** (1,15 a 1,35x) e **acompanha o mouse**.
   - **Antes e depois lado a lado:** em comparação de velocidade, tela dividida com o jeito antigo travando (carregando, erro, fechando) e o novo abrindo na hora, cada lado com seu cronômetro.
   - **Cursor branco** guiando tudo o que é falado: vai até o item e clica com leve encolhida.
-  - Pedido digitado no ritmo da fala, palavras-chave em vermelho, legenda escondida nesse trecho.
+  - Pedido digitado no ritmo da fala, palavras-chave em vermelho; a legenda continua embaixo.
   - Em reprodução, fiel à tela real e aos números reais; fora da prova, telas de apoio podem ser genéricas.
   - **Cliques em sequência** (ex.: "Cancelar inscrição"): botão vermelho com texto branco; o cursor clica num, desce, clica no próximo; cada linha clicada vira "✓ Cancelada" e some; o zoom acompanha cada clique.
 - **Gancho desde o frame 0**, sem fade do preto: o quadro 0 já tem a frase inteira e a imagem concreta, e o loop volta para esse quadro completo.
