@@ -138,7 +138,7 @@ Mantenha esta tabela atualizada a cada vídeo novo.
 
 | Pasta | O que é |
 |---|---|
-| `skill/` | Skill `cobaia-dev-videos`, como instalar e o histórico de pedidos do Luis |
+| `skill/` | Skill `cobaia-dev-videos`, a referência técnica que não coube nela, como instalar e o histórico de pedidos do Luis |
 | `motor/` | Código que renderiza: animação, áudio, fontes, ícones, render, encode, voz |
 | `DOSSIE.md` | Dossiê Cobaia 2.0: regra principal, metas, checklist e ajustes com data |
 | `referencia/` | Dia 10 v3 (acabamento do motion) e Dia 9 |

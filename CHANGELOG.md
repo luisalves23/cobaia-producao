@@ -16,6 +16,7 @@ O que mudou:
 - `formatos/face-cam/regras.md` (novo) e `LEIAME.md`: direção de gravação e quadro de novidades; `formatos/motion/LEIAME.md` atualizado.
 - `motor/novo-dia.sh`: cria `brutos/`, avisa para tirar o calendário e a vinheta da base e traz o checklist no `LEIAME.md` do dia; `motor/LEIAME.md`; `.gitignore` (`producoes/*/brutos/`).
 - `README.md`, `PROMPT-NOVA-CONTA.md` e aviso no topo do `skill/historico-pedidos.md`.
+- `skill/referencia-tecnica.md` (novo): detalhes técnicos tirados da skill para ela ficar abaixo de 48 KB (celular sem whisper, efeitos, movimento, telas, capa, site, PDF, exemplos). Continuam valendo.
 
 ## 2026-11-20 · principal · Dia 13 refeito do zero
 
