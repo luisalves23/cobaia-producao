@@ -18,7 +18,7 @@ Meta permanente: **cada vídeo precisa superar o anterior** nas metas do dossiê
 Tudo o que se repete entre os vídeos mora no repositório privado `luisalves23/cobaia-producao`, que é a fonte única para todas as contas do Claude que produzem o canal. Comece pelo `CLAUDE.md` e pelo `DOSSIE.md` da raiz.
 
 1. **Antes de cada produção: `git pull`.** Outra conta pode ter melhorado a skill, o motor ou as regras. Leia as entradas novas do `CHANGELOG.md` antes de começar.
-2. **Todo vídeo novo nasce com `bash motor/novo-dia.sh NN`**, que cria `producoes/diaNN/` com o motor e a base do Dia 10 v3. A base serve para o acabamento (paleta, leque, elemento vermelho, chamada final, roxo e loop); as cenas são sempre novas. A cena de calendário e a vinheta da base saem sempre (dossiê, seção 13).
+2. **Todo vídeo novo nasce com `bash motor/novo-dia.sh NN`**, que cria `producoes/diaNN/` com o motor e a base limpa de `motor/base/` (acabamento do Dia 10 v3 sem cena de calendário, sem gancho palavra por palavra, sem frase de envio no CTA e já com frase-tema fixa, selo e legenda). A base serve para o acabamento (paleta, leque, elemento vermelho, chamada final, roxo com o próximo episódio e loop); as cenas são sempre novas.
 3. **O storyboard indica, cena por cena, de onde veio a peça** (referência, peça do motor ou "nova").
 4. **Peça nova e reaproveitável volta para `motor/`** no fim do vídeo, com uma linha no `motor/LEIAME.md`.
 5. **Mudou a identidade ou o processo?** Mude aqui (skill, motor ou CLAUDE.md), registre no `CHANGELOG.md` e dê push no mesmo dia.

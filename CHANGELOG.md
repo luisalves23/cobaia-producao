@@ -2,6 +2,16 @@
 
 Entradas novas no topo. Formato: `## AAAA-MM-DD · conta · título`, o pedido do Luis e o que mudou. Nunca apague entradas.
 
+## 2026-11-21 · principal · Versão 2.0: base limpa de novo dia e dossiê em primeiro lugar
+
+**Versão 2.0 do repositório (21/11/2026).** Pedido do Luis: o repositório segue o Dossiê Cobaia 2.0, que vale por cima de qualquer regra antiga. O dossiê fica em primeiro lugar na ordem de leitura e de prioridade; as mudanças D1 a D26 valem em tudo (com os ajustes do D7, reprodução fiel da tela real quando não houver gravação, e do D15, sempre 3 temas aprovados à frente); a base de qualquer novo dia perde a cena de calendário, o gancho palavra por palavra, a frase de envio no CTA e a abertura sem frase; o checklist da seção 11 abre o QA e a revisão da seção 12 é etapa do pipeline.
+
+O que mudou (além da entrada abaixo, do mesmo dia):
+- `motor/base/` (novo): `dNN.html`, `dNNlegenda.js` e `aNN.py`, o modelo limpo de novo dia. Sai a cena de calendário (cena, caneta da bola vermelha e som), as palavras grandes não entram antes do fim do gancho (`HOOK_END`), a abertura já tem a frase-tema fixa (`TEMA`) do quadro 0 ao fim, o cabeçalho segue a skill (barra no topo, selo "DIA NN/30 · experimentos com Claude", handle), a legenda embaixo termina acima de y 1536, a chamada final não tem frase de envio e o roxo mostra `PALAVRA` e o próximo episódio (`PROXIMO`). Medidas da frase e da legenda são proposta até o Luis aprovar no primeiro storyboard.
+- `motor/novo-dia.sh`: copia a base de `motor/base/` em vez da do Dia 10. `referencia/dia10-v3/` fica intacto (verificação de instalação).
+- `CLAUDE.md`: `DOSSIE.md` em primeiro na ordem de leitura e na prioridade; etapas 2 e 7 do pipeline com a base limpa. A etapa 14 (checklist do dossiê abrindo o QA) e a 17 (revisão de 48 h, seção 12) já tinham entrado na entrada abaixo.
+- `skill/SKILL.md` (§0, item 2) e `motor/LEIAME.md`: descrevem a base limpa.
+
 ## 2026-11-21 · principal · Dossiê Cobaia 2.0 como regra principal
 
 Pedido do Luis: o Dossiê Cobaia 2.0 (análise dos dados reais dos 13 vídeos) passa a ser a regra principal e vale por cima de qualquer instrução, skill, modelo ou doc antigo. Ele aprovou os 26 pontos da auditoria (D1 a D26) com dois ajustes: sem gravação, em vídeo de referência, vale reprodução fiel da tela real com os números reais (o proibido é ícone abstrato no lugar da prova); manter sempre uns 3 temas aprovados à frente para o card do próximo episódio. Respostas: rosto entra e primeiro nome pode, profissão, diploma e formação ficam fora; Dias 06 e 08 viram referência de formato; gravações vêm dele com o áudio; código real pode aparecer, mas prompts internos, chaves, dados pessoais e conteúdo das skills são borrados; ManyChat e Sentinela no Instagram, DM pelo comentário fixado no TikTok; produtos: guia do tablet (R$ 27,90), mentoria de casos reais, guia do notebook (R$ 49,90) planejado. Pediu a refiltragem dos temas dos Dias 14 a 30. Em todo trabalho, mostrar o checklist da seção 11 preenchido e, com os números de um vídeo postado, fazer a revisão da seção 12.

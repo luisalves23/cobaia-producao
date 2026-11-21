@@ -17,7 +17,8 @@ O que renderizou o Dia 10 v3 aprovado. Tudo é determinístico: o quadro `f` é 
 | `folha.py` | Folha de contato: `python3 folha.py sb storyboard.jpg [colunas] [largura]`. |
 | `enc.sh` | MP4 final: `bash enc.sh frames mix.wav saida.mp4` (x264 crf 17, AAC 256k, loudnorm −14 LUFS / −1,2 dBTP). |
 | `enc-leve.sh` | Versão < 25 MB a partir do HQ (dois passes). |
-| `novo-dia.sh` | Cria `producoes/diaNN/` com tudo isto e a base do Dia 10 v3 (acabamento). A cena do calendário e a vinheta da base saem sempre (Dossiê Cobaia 2.0). |
+| `novo-dia.sh` | Cria `producoes/diaNN/` com tudo isto e a base limpa de `base/`. |
+| `base/` | Modelo de novo dia do Dossiê Cobaia 2.0: `dNN.html` (acabamento do Dia 10 v3 sem cena de calendário, sem gancho palavra por palavra e sem frase de envio; com frase-tema fixa `TEMA`, selo, legenda e card do próximo episódio `PROXIMO`), `dNNlegenda.js` (legenda embaixo) e `aNN.py` (áudio sem a vinheta). Medidas da frase-tema e da legenda são proposta até o Luis aprovar no primeiro storyboard. `referencia/dia10-v3/` continua intacto para a verificação de instalação. |
 | `voz/` | `transcribe.py` (faster-whisper), `align.py` (alinhamento pelo texto quando o whisper não baixa), `cut3.py` / `cut.py` (corte de silêncio), `medir-musica.py` (BPM e volume). |
 
 ## Contrato da página do vídeo (`dNN.html`)

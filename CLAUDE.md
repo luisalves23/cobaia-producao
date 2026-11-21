@@ -12,7 +12,7 @@ Este repositório é a fonte única de como o @cobaia.dev produz vídeos hoje. Q
 3. **Mudou a skill?** Além do commit, atualize a skill instalada na sua conta com o conteúdo de `skill/SKILL.md` (ver `skill/COMO-INSTALAR.md`).
 4. Nunca apague entradas do CHANGELOG nem reescreva histórico (`push --force` proibido).
 
-Prioridade em caso de conflito: o que o Luis disser na conversa, depois o **`DOSSIE.md` (Dossiê Cobaia 2.0)**, depois `skill/SKILL.md`, depois este arquivo, depois o resto. O dossiê vale por cima de qualquer regra, skill, modelo ou doc antigo.
+Prioridade em caso de conflito: **`DOSSIE.md` (Dossiê Cobaia 2.0) em primeiro lugar**, depois `skill/SKILL.md`, depois este arquivo, depois o resto. O dossiê vale por cima de qualquer regra, skill, modelo ou doc antigo. Só um pedido do Luis na conversa passa na frente dele, e esse pedido entra como ajuste com data na seção 14 do dossiê.
 
 ## Quando o Luis pedir uma mudança
 
@@ -45,8 +45,8 @@ Se o pedido for só para um vídeo ("neste vídeo, faz assim"), aplique no víde
 
 ## Ordem de leitura
 
-1. Este arquivo.
-2. `DOSSIE.md` inteiro (regra principal).
+1. `DOSSIE.md` inteiro (regra principal, vale por cima de tudo).
+2. Este arquivo.
 3. `skill/SKILL.md` inteira (regras, identidade, motion, roteiro, áudio, QA).
 4. `CHANGELOG.md` (o que mudou recentemente) e `skill/historico-pedidos.md` (pedidos do Luis desde 01/11, para entender por que cada regra existe; o que o dossiê revogou ali não vale mais).
 5. `referencia/dia10-v3/`: assista `postar/cobaia-dia10-final-leve.mp4` e leia `fonte/d10.html`. É a referência de acabamento do motion, não de estrutura (a vinheta, o gancho palavra por palavra e o pedido de envio dele foram revogados).
@@ -73,12 +73,12 @@ Tema (4 perguntas) → roteiro → voz e gravações → mapa da música → cor
 |---|---|---|---|
 | 0 | Sincronizar | `git pull`, ler o CHANGELOG | |
 | 1 | Tema e roteiro | Tema que passa nas 4 perguntas (dossiê 3). Estrutura da seção 5 do dossiê: gancho que afirma, com ganho ou dor e a frase inteira no quadro 0; série só no selo (nada de "Dia N de trinta" na fala); dor com número antes de 7 s; "aí eu chamei o Claude"; 3 a 4 provas com número em escada; reação do Luis; CTA curto sem pedir envio; card do próximo episódio. Até 59 s, humanizer, texto para gravar e texto para IA de voz, lista das gravações que o Luis precisa mandar. **Aprovação do Luis.** | `producoes/diaNN/roteiro.md` |
-| 2 | Pasta do dia | `bash motor/novo-dia.sh NN` | `producoes/diaNN/` |
+| 2 | Pasta do dia | `bash motor/novo-dia.sh NN`. A base vem de `motor/base/`, já sem cena de calendário, sem gancho palavra por palavra, sem frase de envio e com frase-tema, selo e legenda | `producoes/diaNN/` |
 | 3 | Voz e gravações | O Luis manda o áudio pronto + o texto aprovado + as gravações de tela, do aparelho e do rosto (`brutos/`, fora do git). Copie o upload para `fonte/voz.mp3` (ou `.wav`, ajustando `VOZ` no `aNN.py`). ElevenLabs: entra como chegou, palavras com tempo pelo `align.py`. Celular: `transcribe.py` (ou `align.py`) + `cut3.py`. Receita, volumes e plano B sem whisper: `motor/voz/LEIAME.md`. | `fonte/voz.*`, palavras com tempo |
 | 4 | Palavras grandes | Escrever à mão o `fonte/dNNchunks.js` a partir das palavras com tempo (passo a passo no `motor/LEIAME.md`): uma palavra ou frase curta por bloco, fonte alternando, destaques 1/2/3 | `fonte/dNNchunks.js` |
 | 5 | Mapa da música | Trilha sintetizada no `aNN.py` (como no Dia 10) ou faixa medida com `medir-musica.py` e remontada por trechos (como no Dia 11). Drop no gancho, respiro antes da virada, drop na revelação, cheio na chamada final. | `mapa-musica.md` |
 | 6 | Corrente do elemento vermelho | Tabela tempo · fala · "veio de → vira" · cena, batida por batida, até o loop | `corrente.md` |
-| 7 | Cenas | Reescrever as cenas do `fonte/dNN.html` (a base do Dia 10 já traz paleta, palavras, leque, bola vermelha, chamada final, roxo e loop) | `fonte/dNN.html` |
+| 7 | Cenas | Reescrever as cenas do `fonte/dNN.html`. A base limpa já traz paleta, palavras (só depois do gancho), leque, bola vermelha, chamada final, roxo com o próximo episódio e loop. Preencher `TEMA`, `PALAVRA`, `MATERIAL` e `PROXIMO` no topo, e a legenda em `fonte/dNNlegenda.js` | `fonte/dNN.html`, `fonte/dNNlegenda.js` |
 | 8 | Storyboard e página | `cd producoes/diaNN/fonte && node ../../../motor/storyboard.cjs dNN.html ../storyboard <um tempo por cena>` e `python3 ../../../motor/folha.py ../storyboard ../storyboard.jpg`. Três camadas visíveis em todo quadro. PR da página do site junto. **Aprovação do Luis antes de renderizar.** | `storyboard.jpg` |
 | 9 | Render | `node ../../../motor/render-paralelo.cjs dNN.html frames I N` (N processos) | `fonte/frames/` (fora do git) |
 | 10 | Áudio | `python3 aNN.py` (trilha + foley + voz, som do elemento vermelho a ×0,7) | `dNN.wav` (fora do git) |

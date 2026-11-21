@@ -1,5 +1,5 @@
 #!/bin/bash
-# Cria producoes/diaNN/ com o motor e a base do Dia 10 v3.
+# Cria producoes/diaNN/ com o motor e a base limpa (motor/base/, Dossiê Cobaia 2.0).
 # uso (na raiz do repositório): bash motor/novo-dia.sh 12
 set -e
 N=$(printf "%02d" "$1"); n=$((10#$N))
@@ -8,11 +8,11 @@ ROOT=$(cd "$(dirname "$0")/.." && pwd); D="$ROOT/producoes/dia$N"
 mkdir -p "$D/fonte" "$D/postar" "$D/storyboard" "$D/brutos"
 cp "$ROOT"/motor/{lib.js,synth.py,icons.js,perfil.jpg} "$D/fonte/"
 sed 's#fonts/#../../../motor/fonts/#' "$ROOT/motor/fonts.css" > "$D/fonte/fonts.css"
-# base de acabamento (trocar todas as cenas; manter paleta, leque, elemento vermelho, chamada final, roxo e loop).
-# Dossiê Cobaia 2.0: apagar a cena do calendário e a vinheta "Dia N de 30" da base; selo fixo, frase-tema no topo e legenda embaixo em todo quadro.
-sed "s/d10chunks.js/d${n}chunks.js/; s#// DIA 10 — detetive de Wi-Fi.*#// DIA $n — base copiada do Dia 10 v3: refazer as cenas#" "$ROOT/referencia/dia10-v3/fonte/d10.html" > "$D/fonte/d$n.html"
+# base limpa do Dossiê Cobaia 2.0 (motor/base/), tirada do acabamento do Dia 10 v3 sem a cena de calendário,
+# sem gancho palavra por palavra, sem frase de envio no CTA e já com frase-tema fixa, selo e legenda.
+# Trocar todas as cenas e tempos; manter paleta, leque, elemento vermelho, chamada final, roxo e loop.
+for f in dNN.html dNNlegenda.js aNN.py; do sed "s/dNN/d${n}/g; s/aNN/a${n}/g; s/DIA NN/DIA $N/g" "$ROOT/motor/base/$f" > "$D/fonte/${f/NN/$n}"; done
 echo "const CHUNKS=[];" > "$D/fonte/d${n}chunks.js"
-sed "s/d10chunks.js/d${n}chunks.js/g" "$ROOT/referencia/dia10-v3/fonte/a10.py" > "$D/fonte/a$n.py"
 cat > "$D/LEIAME.md" <<EOT
 # Dia $n
 
