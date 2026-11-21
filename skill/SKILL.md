@@ -329,9 +329,9 @@ Depois, o QA técnico:
 ## 12. Código e fontes
 
 - **Motor:** `motor/` (LEIAME.md): `lib.js` (mola, ruído, grão, texto), `synth.py` (instrumentos e foley sintetizados, mix), `icons.js` (logos vetoriais), `fonts.css` + `fonts/`, `perfil.jpg`, `render.cjs` / `render-paralelo.cjs` / `storyboard.cjs` (Playwright), `folha.py`, `enc.sh`, `enc-leve.sh`, `novo-dia.sh` e `voz/` (transcrição, alinhamento e corte).
-- **Referências:** `referencia/dia10-v3/` (padrão), `referencia/dia09/`, `estudos/` (análise das 5 referências de fluid motion e a síntese 07), `exemplos/dia11-paleta-gta/` (só como exemplo de troca de paleta).
+- **Referências:** `DOSSIE.md` (regra principal), `referencia/dia10-v3/` (acabamento do motion), `referencia/dia09/`, `estudos/` (análise das 5 referências de fluid motion e a síntese 07), `exemplos/dia11-paleta-gta/` (só como exemplo de troca de paleta).
 - **Fontes dos vídeos feitos:** `producoes/diaNN/fonte/` (consulta; o vídeo novo nasce do `novo-dia.sh`).
-- Formatos: `formatos/motion/` (atual) e `formatos/face-cam/` (reservado; o Luis define as regras).
+- Formatos: `formatos/motion/` e `formatos/face-cam/regras.md` (direção de gravação de rosto e quadro de novidades).
 
 ## 13. Registro de mudanças (obrigatório)
 
