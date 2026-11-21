@@ -2,6 +2,21 @@
 
 Entradas novas no topo. Formato: `## AAAA-MM-DD · conta · título`, o pedido do Luis e o que mudou. Nunca apague entradas.
 
+## 2026-11-21 · principal · Dossiê Cobaia 2.0 como regra principal
+
+Pedido do Luis: o Dossiê Cobaia 2.0 (análise dos dados reais dos 13 vídeos) passa a ser a regra principal e vale por cima de qualquer instrução, skill, modelo ou doc antigo. Ele aprovou os 26 pontos da auditoria (D1 a D26) com dois ajustes: sem gravação, em vídeo de referência, vale reprodução fiel da tela real com os números reais (o proibido é ícone abstrato no lugar da prova); manter sempre uns 3 temas aprovados à frente para o card do próximo episódio. Respostas: rosto entra e primeiro nome pode, profissão, diploma e formação ficam fora; Dias 06 e 08 viram referência de formato; gravações vêm dele com o áudio; código real pode aparecer, mas prompts internos, chaves, dados pessoais e conteúdo das skills são borrados; ManyChat e Sentinela no Instagram, DM pelo comentário fixado no TikTok; produtos: guia do tablet (R$ 27,90), mentoria de casos reais, guia do notebook (R$ 49,90) planejado. Pediu a refiltragem dos temas dos Dias 14 a 30. Em todo trabalho, mostrar o checklist da seção 11 preenchido e, com os números de um vídeo postado, fazer a revisão da seção 12.
+
+O que mudou:
+- `DOSSIE.md` (novo): o dossiê na íntegra, com a seção 14 para os ajustes do Luis com data.
+- `skill/SKILL.md`: prioridade (Luis, dossiê, skill), metas, checklist obrigatório e revisão de 48 h; objetivo e filtro de tema no lugar de "ensinar o Claude" (§1); regras 1, 6, 11, 12 e 16 (§2: exceções das três camadas e do recorte do rosto, o que se borra, rosto sim e dados não, vinheta revogada); layout de três camadas, selo fixo, legenda obrigatória e área segura y 1536 (§4); gancho com frase inteira no quadro 0, prova real, palavras grandes só como destaque, nunca "parte 2", rosto (§5); Dias 06 e 08 como referência de formato (§6); CTA curto sem envio, card com próximo episódio, ManyChat e Sentinela, página no ar antes de postar, produtos (§7); estrutura da seção 5 do dossiê, quadro de novidades, copo meio cheio, 59 s e textos de postagem (§8); pipeline com gravações, página junto do storyboard e revisão de 48 h (§10); checklist do dossiê no QA (§11). Trechos obsoletos de Liquid Glass e de "estações" encurtados.
+- `CLAUDE.md`: prioridade, ordem de leitura, pipeline (tema, gravações, página, checklist, revisão de 48 h), resumo das regras, Dias 06 e 08 como exceção do repositório antigo, mapa do repositório.
+- `roteiro/temas.md` (novo): fila de temas aprovados e a refiltragem dos Dias 14 a 30 (aguardando o Luis).
+- `roteiro/modelo-textos-postagem.md` (novo): modelo das três redes com 17h à mão, comentário fixado sobre o aparelho, CTA de DM no TikTok e título do Shorts.
+- `roteiro/plano-30-dias.md` marcado como superado; `roteiro/banco-ganchos-virais.md` com o aviso de que é fonte de ideia e que pergunta só serve reescrita.
+- `formatos/face-cam/regras.md` (novo) e `LEIAME.md`: direção de gravação e quadro de novidades; `formatos/motion/LEIAME.md` atualizado.
+- `motor/novo-dia.sh`: cria `brutos/`, avisa para tirar o calendário e a vinheta da base e traz o checklist no `LEIAME.md` do dia; `motor/LEIAME.md`; `.gitignore` (`producoes/*/brutos/`).
+- `README.md`, `PROMPT-NOVA-CONTA.md` e aviso no topo do `skill/historico-pedidos.md`.
+
 ## 2026-11-20 · principal · Dia 13 refeito do zero
 
 Pedido do Luis: refazer o Dia 13 inteiro sem repetir os vídeos anteriores. Aprovou o gancho novo (chat com o Claude: arquivo anexado, pedido digitado, envio, o texto se transforma e passa pelo detector com sirene). Recusou a amostra afro-pop e pediu trilha mais enérgica e eletrônica. Pediu para manter a vinheta do calendário validada nos últimos vídeos.

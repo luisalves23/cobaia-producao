@@ -1,5 +1,7 @@
 # Banco de ganchos virais (vídeos curtos de IA)
 
+> **Dossiê Cobaia 2.0 (21/11/2026):** este banco é fonte de ideia, não decide o gancho. Todo gancho segue a seção 4 do `DOSSIE.md`: frase inteira no quadro 0, afirma (nunca pergunta), começa pelo ganho ou pela dor de quem assiste. Os ganchos em pergunta abaixo ("Why don't they teach this??", "Por que ninguém ensina isso?", "What was bro thinking") só servem reescritos como afirmação.
+
 Atualizar uma vez por semana. Só entra o que tem views confirmadas.
 Última atualização: 09/11/2026 (fontes: ChatGPT Deep Research via DarkUGC e ViralAnatomy; Gemini não trouxe dados confirmados além do NetworkChuck).
 
