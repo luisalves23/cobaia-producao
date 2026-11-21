@@ -2,6 +2,8 @@
 
 Tudo o que o Luis pediu para mudar na produção, em ordem, de 01/11/2026 até a criação deste repositório. Serve para entender **por que** cada regra da skill existe.
 
+> **Dossiê Cobaia 2.0 (21/11/2026):** o `DOSSIE.md` revogou parte destes pedidos (vinheta "Dia N de trinta" depois do gancho, gancho palavra por palavra, gancho em pergunta, palavras grandes no lugar da legenda, telas sempre simuladas, canal sem rosto, ensino por conceito). Este arquivo fica como histórico; o que vale está no dossiê e na skill.
+
 **Como ler:**
 - A `skill/SKILL.md` já incorpora tudo o que continua valendo. Em conflito, a skill vence este arquivo.
 - Até 15/11 o canal usava a identidade antiga (biblioteca `telas/`, Liquid Glass nos cartões, legenda pequena, câmera lateral, HyperFrames, "constituição"). A partir de 16/11 vale a estética de motion aprovada, e o padrão final é o Dia 10 v3 (18/11). Pedidos antigos sobre visual e ferramenta foram substituídos; pedidos sobre roteiro, canal, aprovação, voz, chamada e post continuam valendo como estão na skill.

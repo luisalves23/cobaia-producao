@@ -1,6 +1,6 @@
 # cobaia-producao
 
-Kit de produção dos vídeos do @cobaia.dev ("30 dias, 30 experimentos com Claude"), na identidade aprovada no Dia 10 v3.
+Kit de produção dos vídeos do @cobaia.dev ("30 dias, 30 experimentos com Claude"). A regra principal é o [Dossiê Cobaia 2.0](DOSSIE.md); o acabamento do motion segue o Dia 10 v3.
 
 **Se você é um Claude:** comece pelo [`CLAUDE.md`](CLAUDE.md).
 

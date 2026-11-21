@@ -1,5 +1,7 @@
 # 30 dias de Claude
 
+> **Superado pelo Dossiê Cobaia 2.0 (21/11/2026).** Este plano foi feito para "ensinar o Claude" por conceito, com a saudação "Dia X dos trinta" e ganchos em pergunta, e tudo isso foi revogado. Ficou só como registro. Os temas valem apenas depois de passar nas 4 perguntas do dossiê: a refiltragem dos Dias 14 a 30 e a fila de temas aprovados estão em `roteiro/temas.md`.
+
 > Cópia do Doc "30 dias de Claude" (claude.ai/artifact/Keww5wmsbGyjSUCz2U6wks), tirada em 19/11/2026, só a parte do plano. O Doc é a versão viva e só a conta principal abre. Os Dias 6 a 11 já fugiram desta tabela: o que foi feito de verdade está no `CLAUDE.md`. As regras antigas do fim do Doc ficaram de fora porque a skill substitui.
 
 ## Como cada vídeo funciona
